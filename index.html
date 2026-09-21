@@ -34,8 +34,8 @@ h3{font-size:19px;font-weight:700}
 h4{font-size:16px;font-weight:700}
 p{margin:0}
 a{color:var(--blue)}
-.layout{max-width:calc(var(--w) + var(--side) + 32px);margin:0 auto;display:grid;grid-template-columns:var(--side) minmax(0,1fr);gap:32px}
-.wrap{min-width:0;max-width:var(--w)}
+.layout{max-width:none;margin:0;display:grid;grid-template-columns:var(--side) minmax(0,1fr);gap:32px}
+.wrap{min-width:0;max-width:none;padding-right:8px}
 /* ---- card menu (sidebar on desktop, scroll strip on mobile) ---- */
 aside.side{position:sticky;top:0;align-self:start;height:100vh;overflow:auto;padding:24px 12px 24px 0;border-right:1px solid var(--line);scrollbar-width:thin}
 .brandmark{display:flex;align-items:center;gap:10px;font-weight:800;font-size:15px;color:var(--ink);padding:4px 6px 14px}
@@ -73,12 +73,12 @@ aside.side{position:sticky;top:0;align-self:start;height:100vh;overflow:auto;pad
   .card i span{display:none}
 }
 .eyebrow{font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--brand)}
-.lede{font-size:17px;color:var(--ink-2);max-width:70ch;margin-top:10px}
+.lede{font-size:17px;color:var(--ink-2);max-width:none;margin-top:10px}
 header.top{padding:40px 0 24px;border-bottom:1px solid var(--line)}
 section{padding:44px 0 8px;border-bottom:1px solid var(--line)}
 section.part{padding-top:56px}
 .sec-head{margin-bottom:20px}
-.sec-head p{color:var(--ink-2);max-width:72ch}
+.sec-head p{color:var(--ink-2);max-width:none}
 .meta{font-size:12.5px;color:var(--ink-3);margin-top:6px}
 .grid{display:grid;gap:14px}
 .g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
