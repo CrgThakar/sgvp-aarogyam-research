@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SGVP Aarogyam Research</title>
+<meta name="description" content="Master page for all SGVP Aarogyam research: brand and manufacturing model, website audit, distribution channels, A2 ghee launch analysis, competitor playbooks, analytics setup, budgets and KPIs.">
+<style>
+:root{
+  --bg:#FAF8F3; --surface:#FFFFFF; --surface-2:#F2EEE5; --ink:#1E1B16; --ink-2:#5B554B; --ink-3:#8A8377;
+  --line:#E4DED2; --brand:#D8551F; --brand-ink:#9E3A10; --green:#2F7A3E; --green-soft:#E3F1E4;
+  --blue:#1F5F8B; --blue-soft:#E1ECF5; --amber:#B7791F; --amber-soft:#FBF0D9; --red:#B3261E; --red-soft:#F9E3E1;
+  --radius:10px; --w:1100px; --side:220px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15130F; --surface:#1E1B16; --surface-2:#26221B; --ink:#F1ECE2; --ink-2:#BDB5A6; --ink-3:#8A8377;
+    --line:#37322A; --brand:#F0733D; --brand-ink:#F8A77E; --green:#6CC07A; --green-soft:#1E3322;
+    --blue:#7FB3DC; --blue-soft:#1B2C3B; --amber:#E2A94B; --amber-soft:#3A2D14; --red:#F08B84; --red-soft:#3B1D1B;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15130F; --surface:#1E1B16; --surface-2:#26221B; --ink:#F1ECE2; --ink-2:#BDB5A6; --ink-3:#8A8377;
+  --line:#37322A; --brand:#F0733D; --brand-ink:#F8A77E; --green:#6CC07A; --green-soft:#1E3322;
+  --blue:#7FB3DC; --blue-soft:#1B2C3B; --amber:#E2A94B; --amber-soft:#3A2D14; --red:#F08B84; --red-soft:#3B1D1B;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:1.55;padding:0 16px 64px}
+h1,h2,h3,h4{line-height:1.15;text-wrap:balance;margin:0;letter-spacing:-.01em}
+h1{font-size:clamp(28px,4.5vw,42px);font-weight:800}
+h2{font-size:clamp(22px,3vw,30px);font-weight:800;margin-bottom:6px}
+h3{font-size:19px;font-weight:700}
+h4{font-size:16px;font-weight:700}
+p{margin:0}
+a{color:var(--blue)}
+.layout{max-width:calc(var(--w) + var(--side) + 32px);margin:0 auto;display:grid;grid-template-columns:var(--side) minmax(0,1fr);gap:32px}
+.wrap{min-width:0;max-width:var(--w)}
+aside.side{position:sticky;top:0;align-self:start;height:100vh;overflow:auto;padding:28px 0 28px;border-right:1px solid var(--line)}
+aside.side .brandmark{font-weight:800;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--brand);padding:0 14px 14px}
+aside.side a{display:block;padding:6px 14px;font-size:13.5px;color:var(--ink-2);text-decoration:none;border-left:3px solid transparent}
+aside.side a:hover{color:var(--brand)}
+aside.side a.sub{padding-left:26px;font-size:12.5px;color:var(--ink-3)}
+aside.side .grp{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);padding:16px 14px 4px}
+nav.toc{display:none}
+@media (max-width:900px){
+  .layout{display:block}
+  aside.side{display:none}
+  nav.toc{display:flex;flex-wrap:wrap;gap:6px 14px;padding:12px 0;font-size:13px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:5}
+  nav.toc a{color:var(--ink-2);text-decoration:none;font-weight:600}
+}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--brand)}
+.lede{font-size:17px;color:var(--ink-2);max-width:70ch;margin-top:10px}
+header.top{padding:40px 0 24px;border-bottom:1px solid var(--line)}
+section{padding:44px 0 8px;border-bottom:1px solid var(--line)}
+section.part{padding-top:56px}
+.sec-head{margin-bottom:20px}
+.sec-head p{color:var(--ink-2);max-width:72ch}
+.meta{font-size:12.5px;color:var(--ink-3);margin-top:6px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px}
+.tile .num{font-size:30px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1}
+.tile .lbl{font-size:13px;color:var(--ink-2);margin-top:6px}
+.tile .sub{font-size:13.5px;color:var(--ink-2);margin-top:8px}
+.tile ul,.list{margin:6px 0 0;padding-left:18px;font-size:14.5px;color:var(--ink-2);display:grid;gap:4px}
+.callout{border-left:4px solid var(--brand);background:var(--surface-2);padding:14px 18px;border-radius:0 var(--radius) var(--radius) 0;margin:18px 0}
+.callout.warn{border-color:var(--amber);background:var(--amber-soft)}
+.callout.ok{border-color:var(--green);background:var(--green-soft)}
+.callout strong{display:block;margin-bottom:4px}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);background:var(--surface-2);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.n,th.n{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.p-crit{background:var(--red-soft);color:var(--red)}
+.p-high{background:var(--amber-soft);color:var(--amber)}
+.p-med{background:var(--blue-soft);color:var(--blue)}
+.p-ok{background:var(--green-soft);color:var(--green)}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.steps li{position:relative;padding:12px 16px 12px 44px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+.steps li::before{counter-increment:s;content:counter(s);position:absolute;left:13px;top:12px;width:22px;height:22px;border-radius:50%;background:var(--brand);color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center}
+.steps li strong{display:block;margin-bottom:2px}
+.steps li p{color:var(--ink-2);font-size:14.5px}
+.chan{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;gap:8px}
+.chan .share{font-size:26px;font-weight:800;color:var(--brand);line-height:1}
+.chan .share small{font-size:12px;font-weight:600;color:var(--ink-3);letter-spacing:.05em;text-transform:uppercase;margin-left:6px}
+.chan ul{margin:0;padding-left:18px;color:var(--ink-2);font-size:14.5px;display:grid;gap:4px}
+.chan .why{font-size:14px;color:var(--ink-2)}
+.bar{display:flex;height:22px;border-radius:6px;overflow:hidden;border:1px solid var(--line);margin-top:12px}
+.bar span{display:grid;place-items:center;font-size:11px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--ink-2);margin-top:8px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.timeline{display:grid;gap:12px}
+.phase{display:grid;grid-template-columns:130px 1fr;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px}
+.phase .when{font-weight:800;font-size:17px;color:var(--brand)}
+.phase .when small{display:block;font-size:12px;font-weight:600;color:var(--ink-3);margin-top:4px;text-transform:uppercase;letter-spacing:.05em}
+.phase ul{margin:6px 0 0;padding-left:18px;color:var(--ink-2);font-size:14.5px;display:grid;gap:4px}
+.phase .goal{font-size:14px;font-weight:600;margin-top:8px;color:var(--green)}
+@media (max-width:560px){.phase{grid-template-columns:1fr}}
+.comp{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
+.comp h3{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.comp h3 small{font-size:13px;font-weight:600;color:var(--ink-3)}
+.comp dl{display:grid;grid-template-columns:auto 1fr;gap:5px 14px;font-size:14.5px;margin:10px 0 0}
+.comp dt{color:var(--ink-3);font-weight:600;white-space:nowrap}
+.comp dd{margin:0;color:var(--ink-2)}
+.comp .gap{margin-top:10px;padding:8px 12px;border-radius:6px;background:var(--green-soft);color:var(--green);font-size:14px;font-weight:600}
+.code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:var(--surface-2);padding:1px 6px;border-radius:4px}
+pre{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;overflow:auto;color:var(--ink-2)}
+.muted{color:var(--ink-3);font-size:13px}
+footer{margin-top:40px;padding-top:16px;font-size:13px;color:var(--ink-3)}
+.src{font-size:13.5px;columns:2;column-gap:28px}
+@media (max-width:700px){.src{columns:1}}
+.src li{break-inside:avoid;margin-bottom:4px}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<aside class="side" aria-label="Contents">
+  <div class="brandmark">SGVP Aarogyam · Research</div>
+  <a href="#log">Research log</a>
+  <a href="#decisions">Decisions &amp; open questions</a>
+  <div class="grp">Business model</div>
+  <a href="#brand">1 · Own brand via SGVP manufacturing</a>
+  <div class="grp">Existing site</div>
+  <a href="#audit">2 · sgvpaarogyam.com audit</a>
+  <a href="#channels">3 · Six distribution channels</a>
+  <a href="#heroes">4 · Hero SKUs &amp; 90-day plan</a>
+  <a href="#budget">5 · Team &amp; budget</a>
+  <a href="#platform">6 · Platform &amp; partner portal</a>
+  <div class="grp">New brand</div>
+  <a href="#newsite">7 · New 5-product website</a>
+  <a href="#analytics">8 · Analytics across two sites</a>
+  <div class="grp">A2 ghee</div>
+  <a href="#ghee">9 · A2 ghee launch analysis</a>
+  <a class="sub" href="#ghee-maths">Maths &amp; supply</a>
+  <a class="sub" href="#ghee-tiers">Price tiers</a>
+  <a class="sub" href="#ghee-channels">Channel plan</a>
+  <a class="sub" href="#ghee-econ">Unit economics</a>
+  <a class="sub" href="#ghee-plan">90-day plan &amp; KPIs</a>
+  <a href="#competitors">10 · Competitor playbooks</a>
+  <div class="grp">Appendix</div>
+  <a href="#sources">Sources</a>
+</aside>
+
+<div class="wrap">
+
+<nav class="toc">
+  <a href="#log">Log</a><a href="#brand">Brand</a><a href="#audit">Audit</a><a href="#channels">Channels</a><a href="#heroes">Heroes</a><a href="#budget">Budget</a><a href="#platform">Platform</a><a href="#newsite">New site</a><a href="#analytics">Analytics</a><a href="#ghee">A2 ghee</a><a href="#competitors">Competitors</a><a href="#sources">Sources</a>
+</nav>
+
+<header class="top">
+  <p class="eyebrow">Master research page · one URL for everything</p>
+  <h1>SGVP Aarogyam — research, analysis &amp; plans</h1>
+  <p class="lede">Everything researched so far for SGVP Aarogyam and the new own-brand line, on one page: business model, website audit, distribution channels, budgets, the A2 ghee launch analysis and competitor playbooks. New research gets added as a numbered section and a row in the log below.</p>
+  <p class="meta">Last updated 21 Sep 2026 · Sections 1–10 · Figures are planning estimates unless a source is cited in the appendix.</p>
+</header>
+
+<!-- ===================== LOG ===================== -->
+<section id="log">
+  <div class="sec-head"><h2>Research log</h2><p>Index of what has been researched, when, and where it lives on this page. Add a row each time a section is added or materially updated.</p></div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Date</th><th>Topic</th><th>Summary</th><th>Section</th></tr></thead>
+      <tbody>
+        <tr><td>18 Sep 2026</td><td>Website audit</td><td>110-page crawl of sgvpaarogyam.com; 18 fixes ranked by priority; 47 SKUs, thin content, broken trust signals, claim wording</td><td><a href="#audit">§2</a></td></tr>
+        <tr><td>18 Sep 2026</td><td>Distribution plan</td><td>Six-channel plan to 4,700 units/day; doctors 40%, distributors 25%, marketplaces 12%, PCD 10%, institutional 8%, D2C 5%</td><td><a href="#channels">§3</a></td></tr>
+        <tr><td>18 Sep 2026</td><td>Hero SKUs, 90-day plan, team &amp; budget, platform</td><td>8 hero SKUs; week-by-week launch; Stage 1 ≈ ₹8.5 L/month; Shopify now, Astro + partner portal at Stage 2</td><td><a href="#heroes">§4</a>–<a href="#platform">§6</a></td></tr>
+        <tr><td>21 Sep 2026</td><td>Own brand via SGVP manufacturing</td><td>Third-party manufacturing vs loan licence; 7 steps; agreement checklist; ₹10–18 L starting budget</td><td><a href="#brand">§1</a></td></tr>
+        <tr><td>21 Sep 2026</td><td>New 5-product website</td><td>Shopify, cluster SEO per product, Hindi/Gujarati pages, doctor &amp; distributor lead pages, 2 posts/week</td><td><a href="#newsite">§7</a></td></tr>
+        <tr><td>21 Sep 2026</td><td>Analytics across two sites</td><td>One GA4 property, GSC domain property, subdomain vs subfolder SEO trade-off</td><td><a href="#analytics">§8</a></td></tr>
+        <tr><td>21 Sep 2026</td><td>A2 ghee launch analysis</td><td>100 × 1 L/day = 2,500–3,000 L milk/day; price tiers; 7-channel split; unit economics; compliance; 90-day plan</td><td><a href="#ghee">§9</a></td></tr>
+        <tr><td>21 Sep 2026</td><td>Competitor playbooks</td><td>Anveshan, Two Brothers, Shahji, GirOrganic, Bansi Gir, Kapiva, Gau Amritam — model, price, channels, hook, weakness</td><td><a href="#competitors">§10</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===================== DECISIONS ===================== -->
+<section id="decisions">
+  <div class="sec-head"><h2>Decisions taken &amp; open questions</h2></div>
+  <div class="grid g2">
+    <div class="tile">
+      <h4>Decided / recommended</h4>
+      <ul>
+        <li>First product of the new brand: <strong>A2 Gir cow ghee, 1 L</strong>, target 100 bottles/day</li>
+        <li>Manufacturing model: start with <strong>third-party manufacturing</strong> by SGVP Aarogyam; move to loan licence with own formulas later</li>
+        <li>Price position for ghee: <strong>₹1,800–2,000 / L</strong> (gaushala / trust tier)</li>
+        <li>Platform: Shopify for both sites at Stage 1; one GA4 property, one GSC domain property</li>
+        <li>Lead with 8 hero SKUs on the SGVP site, not 47</li>
+      </ul>
+    </div>
+    <div class="tile">
+      <h4>Open — answer these next</h4>
+      <ul>
+        <li>Does SGVP's gaushala produce 2,500+ L A2 milk/day, or will milk be aggregated from Gir/Kankrej farmers? (decides cost, method and label claim)</li>
+        <li>Brand name and whether "Manufactured by SGVP Aarogyam" carries a co-branding fee</li>
+        <li>Two sites (content + shop subdomain) or one Shopify site? Default: one site unless there is a specific reason</li>
+        <li>Real COGS per hero SKU — the plan's unit economics use a 30% assumption</li>
+        <li>Who owns content cadence (2 posts/week) — in-house or freelance?</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 1 BRAND ===================== -->
+<section id="brand" class="part">
+  <div class="sec-head">
+    <p class="eyebrow">Section 1 · Business model</p>
+    <h2>Own brand, manufactured by SGVP Aarogyam</h2>
+    <p>Third-party (contract) manufacturing: SGVP makes the product, your brand name goes on the pack. This is how most new Ayurvedic brands in India start.</p>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th></th><th>Third-party manufacturing (recommended start)</th><th>Loan licence</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Who holds the licence</strong></td><td>SGVP Aarogyam (existing Gujarat FDCA / AYUSH licence)</td><td>You — own licence issued on SGVP's premises</td></tr>
+        <tr><td><strong>Label</strong></td><td>"Manufactured by: SGVP Aarogyam… Marketed by: [your company]"</td><td>"Manufactured by: [your company] at SGVP Aarogyam premises"</td></tr>
+        <tr><td><strong>Setup</strong></td><td>Low; no licence needed to start</td><td>Apply to Gujarat FDCA (AYUSH) with SGVP consent letter; 2–4 months</td></tr>
+        <tr><td><strong>Control</strong></td><td>SGVP decides formulation &amp; QC; you approve artwork</td><td>You own formulation and registration; easier to switch factory</td></tr>
+        <tr><td><strong>Best for</strong></td><td>Relabelling SGVP's existing formulas</td><td>Proprietary formulas at scale</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h3 style="margin-top:24px">Steps</h3>
+  <ol class="steps" style="margin-top:10px">
+    <li><strong>Company + trademark</strong><p>Pvt Ltd / LLP / proprietorship, GST. Trademark Class 5 (Ayurvedic medicines), Class 29 (ghee/dairy), Class 3 (cosmetics). ~₹4,500 per class, 6–12 months; ™ usable from filing.</p></li>
+    <li><strong>Product list</strong><p>(a) SGVP's existing formulations relabelled — 4–6 weeks; or (b) your own formulation — SGVP must get each proprietary medicine approved by the state licensing authority (Rule 158-B), adds 2–4 months.</p></li>
+    <li><strong>Quotation</strong><p>MOQ typically 500–2,000 units per SKU. Ask for raw material, conversion, packaging and testing costs separately. Ex-factory ≈ 25–40% of MRP for Ayurvedic tablets.</p></li>
+    <li><strong>Manufacturing agreement</strong><p>Brand exclusivity, formula confidentiality, quality specs + batch COA, artwork/brand ownership (you), product-complaint liability, MOQ, payment terms, exit clause.</p></li>
+    <li><strong>Packaging &amp; label (Rule 161)</strong><p>Name, ingredients with quantities and reference text, "Ayurvedic Proprietary Medicine", net content, batch, mfg/exp, licence no., manufacturer + marketer name and address, MRP, AYUSH warnings. No "cure / permanent / control" wording (Drugs &amp; Magic Remedies Act).</p></li>
+    <li><strong>First batch</strong><p>30–45 days from artwork approval; released with a Certificate of Analysis.</p></li>
+    <li><strong>Sell</strong><p>As marketer of ASU medicines you need no drug licence to sell online or to distributors. Food-positioned products (ghee, supplements) need an FSSAI licence in the brand owner's name.</p></li>
+  </ol>
+  <div class="grid g2" style="margin-top:18px">
+    <div class="tile">
+      <h4>Ask SGVP Aarogyam in the first meeting</h4>
+      <ul>
+        <li>Licences held — GMP under Schedule T? Copies needed for Amazon/1mg and distributor trust</li>
+        <li>Do they already do third-party manufacturing for other brands?</li>
+        <li>MOQ per SKU; price at 1k / 5k / 10k units; is packaging included?</li>
+        <li>Loan licence later — will they give the premises consent letter?</li>
+        <li>Who handles stability data and shelf-life declaration?</li>
+        <li>Co-branding: fee for "Manufactured by SGVP Aarogyam" on the pack? (It is legally required and an asset in Gujarat)</li>
+      </ul>
+    </div>
+    <div class="tile">
+      <h4>Starting budget (10 SKUs × 1,000 units)</h4>
+      <ul>
+        <li>Product cost: ₹8–15 L</li>
+        <li>Packaging design + printing: ₹1–2 L</li>
+        <li>Trademark, company, GST, CA: ₹30–50 K</li>
+        <li>Lab testing / COAs: usually included; ₹50 K if external</li>
+        <li><strong>Total ≈ ₹10–18 L before marketing</strong></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 2 AUDIT ===================== -->
+<section id="audit" class="part">
+  <div class="sec-head">
+    <p class="eyebrow">Section 2 · Existing site · audit of 18 Sep 2026</p>
+    <h2>sgvpaarogyam.com — what to fix</h2>
+    <p>110 pages, 47 products, Shopify (Ella theme 6.6.1). Skeleton is good — HTTPS, redirects, sitemap, canonicals, Product/Article/Organization schema, Core Web Vitals green (LCP 2.5 s, INP 113 ms, CLS 0), 38 blog posts of 1,900–2,500 words. It needs flesh: content, trust signals, and legal claim wording.</p>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>#</th><th>Priority</th><th>Problem</th><th>Fix</th><th>Effort</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><span class="pill p-crit">Critical</span></td><td>Hero slide typos ("Hor morn al", "PM O S")</td><td>Themes → Customize → Slideshow → fix; cut 13 slides to 4</td><td>15 min</td></tr>
+        <tr><td>2</td><td><span class="pill p-crit">Critical</span></td><td>Newsletter popup opens instantly over the hero</td><td>Delay 20 s / exit intent; once per 30 days</td><td>10 min</td></tr>
+        <tr><td>3</td><td><span class="pill p-crit">Critical</span></td><td>GMP / FDCA / FSSAI certificate logos are broken images</td><td>Re-upload; link each to a real certificate PDF</td><td>30 min</td></tr>
+        <tr><td>4</td><td><span class="pill p-crit">Critical</span></td><td>No medical disclaimer; titles claim "Diabetes Control", "Kidney Stone Removal", "Permanent Comfort"</td><td>Disclaimer block on product template; replace cure/removal/permanent with supports/helps manage/relief; lawyer review under Drugs &amp; Magic Remedies Act</td><td>1 day + legal</td></tr>
+        <tr><td>5</td><td><span class="pill p-crit">Critical</span></td><td>/products/hiponorm live at ₹0, sold out, 1-word description</td><td>Complete or set to Draft</td><td>5 min</td></tr>
+        <tr><td>6</td><td><span class="pill p-crit">Critical</span></td><td>Internal collections indexed (12-gst, tablets-5-gst, cosmetics, seasonal-collection, mypage)</td><td>Untick Online Store channel; delete /pages/mypage</td><td>15 min</td></tr>
+        <tr><td>7</td><td><span class="pill p-crit">Critical</span></td><td>3 dead sitemap pages (from-the-desk-of-ceo, html-sitemap, tablet)</td><td>Restore CEO page or add URL redirects</td><td>20 min</td></tr>
+        <tr><td>8</td><td><span class="pill p-high">High</span></td><td>47/47 products have 1–2 images; 43/47 descriptions under 120 words</td><td>Front, back label, pack size, lifestyle image; 150–250 words per product</td><td>2 weeks</td></tr>
+        <tr><td>9</td><td><span class="pill p-high">High</span></td><td>No product_type or tags</td><td>Bulk edit: type (Tablet/Syrup/Ointment/Lozenge/Food) + condition tags</td><td>2 h</td></tr>
+        <tr><td>10</td><td><span class="pill p-high">High</span></td><td>Judge.me installed, zero reviews</td><td>Send review requests to past customers; import Google/Amazon reviews; or uninstall</td><td>1 h</td></tr>
+        <tr><td>11</td><td><span class="pill p-high">High</span></td><td>No delivery estimate, COD or return info on product pages</td><td>Render Shiprocket Promise block; add "COD · ships in 24 h · 7-day return"</td><td>1 h</td></tr>
+        <tr><td>12</td><td><span class="pill p-high">High</span></td><td>Duplicate Terms and Privacy pages</td><td>Delete duplicates; redirect</td><td>15 min</td></tr>
+        <tr><td>13</td><td><span class="pill p-high">High</span></td><td>23 product and 33 blog titles over 60 chars; doubled store-name suffix</td><td>Shorten; fix theme title logic</td><td>3 h</td></tr>
+        <tr><td>14</td><td><span class="pill p-med">Medium</span></td><td>18 pages without meta description; empty homepage H1; 33 images without alt</td><td>Fill descriptions; slideshow heading as H1; alt text</td><td>4 h</td></tr>
+        <tr><td>15</td><td><span class="pill p-med">Medium</span></td><td>Phone is plain text; no WhatsApp anywhere</td><td>tel: link; WhatsApp floating button</td><td>30 min</td></tr>
+        <tr><td>16</td><td><span class="pill p-med">Medium</span></td><td>Accessibility 77: carousel ARIA errors, unnamed links, low-contrast CTA</td><td>Darken CTA; aria-labels on banner links</td><td>1 h</td></tr>
+        <tr><td>17</td><td><span class="pill p-med">Medium</span></td><td>Console JS errors on every page (global.js, variants.js)</td><td>Theme developer to guard updateBadgeSale</td><td>1 h dev</td></tr>
+        <tr><td>18</td><td><span class="pill p-ok">Confirm</span></td><td>Facebook Pixel present; no GA4 tag visible</td><td>Connect Google &amp; YouTube channel; GA4 is required for everything below</td><td>20 min</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="grid g4" style="margin-top:18px">
+    <div class="tile"><div class="num">4,700</div><div class="lbl">units/day target</div><div class="sub">47 products × 100</div></div>
+    <div class="tile"><div class="num">₹9.9 L</div><div class="lbl">MRP sales/day</div><div class="sub">at ₹210 median price</div></div>
+    <div class="tile"><div class="num">₹36 Cr</div><div class="lbl">per year</div><div class="sub">≈ ₹3.0 Cr / month</div></div>
+    <div class="tile"><div class="num">4 stages</div><div class="lbl">to get there</div><div class="sub">100/day → 500 → 2,000 → 4,700 over 24 months</div></div>
+  </div>
+  <div class="callout warn"><strong>Reality check</strong>A ₹36 Cr/year Ayurvedic brand sold through a Shopify store alone does not exist in India. Brands at that size (Charak, Vasu, Sandu) get 80–90% of volume from doctor prescriptions and distributors. The website is one of six channels — its job is to be the front door for B2B buyers.</div>
+</section>
+
+<!-- ===================== 3 CHANNELS ===================== -->
+<section id="channels" class="part">
+  <div class="sec-head">
+    <p class="eyebrow">Section 3 · Distribution</p>
+    <h2>Six channels that reach 4,700 units a day</h2>
+    <p>Expected share of volume at Stage 4. Planning assumptions from how mid-size Ayurvedic pharma brands in Gujarat and Maharashtra actually sell — validate against first-year data.</p>
+  </div>
+  <div class="bar" aria-label="Volume share by channel">
+    <span style="flex:40;background:#D8551F">Doctors 40%</span><span style="flex:25;background:#2F7A3E">Distributors 25%</span><span style="flex:12;background:#1F5F8B">Marketplaces 12%</span><span style="flex:10;background:#B7791F">PCD 10%</span><span style="flex:8;background:#5B554B">Inst. 8%</span><span style="flex:5;background:#8A8377">D2C 5%</span>
+  </div>
+  <div class="grid g2" style="margin-top:18px">
+    <div class="chan"><div class="share">40%<small>Doctor prescriptions</small></div><h3>BAMS / Vaidya detailing</h3><p class="why">Gujarat has ~25,000 registered Ayurvedic practitioners; Maharashtra ~60,000. A doctor prescribing Diabezeel to 5 patients/day is 150 units/month from one counter.</p><ul><li>MRs: start 6 (Ahmedabad, Surat, Vadodara, Rajkot); scale to 40 across 3 states; 12 visits/day, 200-doctor list</li><li>Doctor kit: classical references, clinical rationale per herb, dosage card, prescription pad</li><li>Quarterly CME with R&amp;D head — SGVP Gurukul's reputation is the asset</li><li>Track by prescription audit at chemists, not MR self-report</li></ul></div>
+    <div class="chan"><div class="share">25%<small>Stockist → pharmacy</small></div><h3>Distributor network</h3><p class="why">Prescriptions only convert if the chemist has stock. One distributor per district covered by MRs.</p><ul><li>Margins: retailer 20% on MRP, distributor 10%, super-stockist 5%; launch scheme 10+1, 20+3 on heroes</li><li>33 Gujarat distributors in 6 months; then Maharashtra, Rajasthan, MP</li><li>Min first order ₹50,000; credit 21 days after two cash orders</li><li>IndiaMART, TradeIndia, Udaan/Jumbotail for inbound; chains later (Wellness Forever, Apollo, MedPlus)</li></ul></div>
+    <div class="chan"><div class="share">12%<small>Marketplaces</small></div><h3>Amazon, Flipkart, 1mg, Netmeds, Apollo 24|7, JioMart</h3><ul><li>Amazon Brand Registry, A+ content, Sponsored Products on 8 heroes, Subscribe &amp; Save for chronic SKUs</li><li>1mg/Netmeds/Apollo vendor portals need GMP, AYUSH licence, FSSAI (for foods), COAs</li><li>Identical MRP everywhere; same trade margin as distributors so channels don't fight</li></ul></div>
+    <div class="chan"><div class="share">10%<small>PCD / franchise</small></div><h3>Monopoly-district PCD partners</h3><ul><li>Partner buys at net rate (~40–45% below MRP), exclusive district, runs own MRs</li><li>Offer in states you won't reach for 2 years: UP, Bihar, Punjab, Karnataka, TN, Bengal</li><li>Min monthly purchase ₹1 L; promo inputs at cost; recruit via website page, IndiaMART, franchise portals</li></ul></div>
+    <div class="chan"><div class="share">8%<small>Institutional &amp; export</small></div><h3>Hospitals, panchakarma, corporates, GeM, export</h3><ul><li>Ayurvedic hospitals and panchakarma centres buy syrups/tablets in bulk</li><li>GeM registration — state AYUSH departments procure through it</li><li>Corporate wellness / Diwali packs: 500–5,000 units per order</li><li>Export: UAE, UK, USA, Kenya via importers; AYUSH export NOC; USA needs dietary-supplement labelling</li></ul></div>
+    <div class="chan"><div class="share">5%<small>Own website D2C</small></div><h3>sgvpaarogyam.com retail</h3><ul><li>Google Shopping + Search on condition keywords; convert blog traffic with in-post CTAs</li><li>Subscriptions on chronic SKUs (Seal / Appstle): ₹250 sale → ₹3,000/year</li><li>WhatsApp refill reminders at day 25</li></ul></div>
+  </div>
+  <h3 style="margin-top:26px">Turn the site into the B2B front door</h3>
+  <div class="table-wrap" style="margin-top:10px">
+    <table>
+      <thead><tr><th>Build</th><th>What</th><th>Effort</th></tr></thead>
+      <tbody>
+        <tr><td>"Partner with us" hub</td><td>/pages/distributors, /pages/doctors, /pages/pcd-franchise — margin summary, requirements, 6-field enquiry form, WhatsApp; "For Business" in header</td><td>1 week</td></tr>
+        <tr><td>Wholesale pricing</td><td>Stage 1 (₹0): tag approved partners, segment-limited automatic discount with MOQ rule, Razorpay, bank deposit for net-30, Draft Orders. Stage 2: own partner portal (§6)</td><td>2 days → 3 weeks</td></tr>
+        <tr><td>Professional product pages</td><td>Composition table, classical reference, indications, contraindications, pack sizes, HSN, GST, shelf life, COA download</td><td>2 weeks</td></tr>
+        <tr><td>Trust wall</td><td>/pages/quality: GMP PDF, AYUSH licence no., FSSAI, lab tests, plant photos, R&amp;D team, institution background</td><td>3 days</td></tr>
+        <tr><td>Doctor portal</td><td>Login-gated prescribing info, dosage charts, leaflets (Gu/Hi/En), sample request, CME calendar</td><td>3 weeks</td></tr>
+        <tr><td>Bulk / corporate page</td><td>/pages/bulk-orders: pack options, MOQ 100, custom branding, lead time → WhatsApp</td><td>2 days</td></tr>
+        <tr><td>Regional language</td><td>Translate &amp; Adapt (free): Gujarati and Hindi product pages</td><td>1 week</td></tr>
+        <tr><td>B2B analytics</td><td>GA4 events on partner forms; Sheet/HubSpot CRM; weekly enquiries → calls → orders review</td><td>1 day</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===================== 4 HEROES ===================== -->
+<section id="heroes" class="part">
+  <div class="sec-head">
+    <p class="eyebrow">Section 4 · Focus</p>
+    <h2>Lead with 8 hero SKUs, then the 90-day plan</h2>
+    <p>No MR can detail 47 products; no distributor stocks 47 unknown SKUs. Pick the eight with the biggest, chronic, self-diagnosable conditions.</p>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Hero SKU</th><th>Condition</th><th>Why it can hit 100/day</th><th class="n">MRP</th><th>Primary channel</th><th>Repeat</th></tr></thead>
+      <tbody>
+        <tr><td>Diabezeel</td><td>Type-2 diabetes</td><td>10 Cr+ diabetics; doctors add Ayurvedic adjuncts readily</td><td class="n">₹250</td><td>Doctors</td><td>Monthly</td></tr>
+        <tr><td>SG-Liv (tab + syrup)</td><td>Liver / fatty liver</td><td>Liv.52 proves the category; fatty liver is epidemic</td><td class="n">₹145–220</td><td>Doctors + pharmacy</td><td>Yes</td></tr>
+        <tr><td>Crushtone</td><td>Kidney stones</td><td>High search intent; blog already ranks; 2–3 month courses</td><td class="n">₹198</td><td>Online + doctors</td><td>Course</td></tr>
+        <tr><td>Digestral (tab + syrup)</td><td>Digestion / gas</td><td>OTC impulse buy at chemist counter</td><td class="n">₹185–220</td><td>Pharmacy OTC</td><td>Repeat</td></tr>
+        <tr><td>Pailexo (tab + ointment)</td><td>Piles</td><td>Private online search; high conversion</td><td class="n">₹170–200</td><td>Online + pharmacy</td><td>Course</td></tr>
+        <tr><td>Rumarath / Elastic Liniment</td><td>Joint pain</td><td>Largest OTC Ayurvedic category after digestion; ₹95 trial price</td><td class="n">₹95–300</td><td>Pharmacy OTC</td><td>Yes</td></tr>
+        <tr><td>Godhooli Toothpaste</td><td>Oral care</td><td>Daily-use FMCG at ₹89; kirana, not just pharmacy</td><td class="n">₹89</td><td>General trade + online</td><td>Monthly</td></tr>
+        <tr><td>Gir Cow A2 Ghee</td><td>Wellness food</td><td>Premium; best-written page; gifting and corporate bulk — now the lead product of the new brand (§9)</td><td class="n">₹675</td><td>D2C + corporate</td><td>Monthly</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="grid g3" style="margin-top:16px">
+    <div class="tile"><h4>Unit economics per hero at 100/day</h4><ul><li>MRP ₹210 − trade margin 35% (₹74) = ₹136 net</li><li>− COGS est. 30% (₹63) = <strong>₹73 gross/unit</strong></li><li>3,000 units/month = ₹2.2 L gross — replace COGS with the real number</li></ul></div>
+    <div class="tile"><h4>100/day of Diabezeel needs</h4><ul><li>~3,000 patients on it (1 bottle = 30 days)</li><li>~150 prescribing doctors at 20 patients each</li><li>4–5 MRs; 8–10 district distributors</li></ul></div>
+    <div class="tile"><h4>100/day of Godhooli needs</h4><ul><li>~600 retail counters selling 5/month</li><li>12–15 distributors (50 counters each)</li><li>Kirana + medical + Amazon; sampling sachets, dentist visits</li></ul></div>
+  </div>
+  <h3 style="margin-top:26px">First 90 days</h3>
+  <div class="timeline" style="margin-top:10px">
+    <div class="phase"><div class="when">Week 1–2<small>Fix &amp; decide</small></div><div><ul><li>All 7 Critical website fixes; disclaimer live; certificates uploaded</li><li>Lock 8 heroes, trade-margin ladder and a one-page scheme sheet</li><li>Legal review of every claim; rewrite titles</li><li>Hire Sales Head (Ayurvedic pharma, 8+ yrs) and 1 e-commerce executive</li></ul></div></div>
+    <div class="phase"><div class="when">Week 3–4<small>Build B2B layer</small></div><div><ul><li>Wholesale app; distributor / doctor / PCD tags and net price lists; "For Business" pages live</li><li>Content sprint on 8 heroes: composition tables, 4 images, 200 words, COA PDF</li><li>IndiaMART, TradeIndia; apply to 1mg, Netmeds, Amazon Brand Registry</li><li>Recruit 6 MRs; print visual aids and sample packs</li></ul></div></div>
+    <div class="phase"><div class="when">Week 5–8<small>Launch Gujarat</small></div><div><ul><li>MRs detail 12 doctors/day on heroes only</li><li>Sign 10–12 distributors across Gujarat districts with 20+3 launch scheme</li><li>Amazon live for heroes (₹1,500/day ads); Google Shopping (₹1,000/day)</li><li>Remaining 39 products: type, tags, meta, 2 images; reviews drive to 10 per hero</li></ul><p class="goal">Stock in ~300 pharmacies; first prescriptions and marketplace sales</p></div></div>
+    <div class="phase"><div class="when">Week 9–12<small>Measure &amp; double down</small></div><div><ul><li>Prescription audit at 50 chemists → focus MR time</li><li>Secondary sales report → next scheme</li><li>PCD applications for Rajasthan, MP, Maharashtra (5 partners)</li><li>Corporate Diwali pack (Chyavanprash + Ghee + Immurock) to 50 companies — Diwali 8 Nov 2026</li><li>Gujarati + Hindi pages; subscriptions on Diabezeel, SG-Liv, Cardpro</li></ul><p class="goal">100 orders/day combined; data to plan Stage 2 (Maharashtra)</p></div></div>
+  </div>
+</section>
+
+<!-- ===================== 5 BUDGET ===================== -->
+<section id="budget" class="part">
+  <div class="sec-head">
+    <p class="eyebrow">Section 5 · Money</p>
+    <h2>Team and monthly budget</h2>
+    <p>Indicative Gujarat-market salaries, 2026. Headcount scales with distributors signed, not ahead of them.</p>
+  </div>
+  <div class="grid g2">
+    <div class="table-wrap"><table>
+      <thead><tr><th>Role</th><th class="n">Stage 1</th><th class="n">Stage 3</th><th class="n">₹/month each</th></tr></thead>
+      <tbody>
+        <tr><td>Sales Head (Ayurvedic pharma)</td><td class="n">1</td><td class="n">1</td><td class="n">1.5–2.5 L</td></tr>
+        <tr><td>Area Sales Managers</td><td class="n">0</td><td class="n">4</td><td class="n">60–80 k</td></tr>
+        <tr><td>Medical Representatives</td><td class="n">6</td><td class="n">40</td><td class="n">25–35 k + incentives</td></tr>
+        <tr><td>Distributor / PCD manager</td><td class="n">0</td><td class="n">2</td><td class="n">50–70 k</td></tr>
+        <tr><td>E-commerce &amp; marketplace exec</td><td class="n">1</td><td class="n">2</td><td class="n">35–50 k</td></tr>
+        <tr><td>Content / design (freelance)</td><td class="n">1</td><td class="n">1</td><td class="n">30–40 k</td></tr>
+        <tr><td><strong>People cost</strong></td><td class="n"><strong>≈ ₹4.5 L</strong></td><td class="n"><strong>≈ ₹22 L</strong></td><td></td></tr>
+      </tbody></table></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Non-people spend</th><th class="n">Stage 1 / mo</th><th class="n">Stage 3 / mo</th></tr></thead>
+      <tbody>
+        <tr><td>Physician samples &amp; visual aids</td><td class="n">₹1.0 L</td><td class="n">₹6 L</td></tr>
+        <tr><td>Launch schemes (free goods)</td><td class="n">₹1.5 L</td><td class="n">₹8 L</td></tr>
+        <tr><td>Amazon + Google ads</td><td class="n">₹75 k</td><td class="n">₹4 L</td></tr>
+        <tr><td>Shopify apps</td><td class="n">₹10 k</td><td class="n">₹15 k</td></tr>
+        <tr><td>IndiaMART / marketplace fees</td><td class="n">₹15 k</td><td class="n">₹40 k</td></tr>
+        <tr><td>Legal, certifications, GeM/export</td><td class="n">₹50 k once</td><td class="n">₹20 k</td></tr>
+        <tr><td>CME / doctor events</td><td class="n">—</td><td class="n">₹1.5 L</td></tr>
+        <tr><td><strong>Total</strong></td><td class="n"><strong>≈ ₹4 L</strong></td><td class="n"><strong>≈ ₹20 L</strong></td></tr>
+      </tbody></table></div>
+  </div>
+  <div class="callout"><strong>Break-even logic</strong>Stage 1 ≈ ₹8.5 L/month all-in → ~11,600 units/month (≈390/day) at ₹73 gross to cover — that is the Stage 2 number, so Stage 1 runs at a loss by design. Stage 3 at 2,000/day ≈ ₹44 L gross vs ≈ ₹42 L cost — roughly break-even. Stage 4 is where it becomes a profitable brand. Plug in real COGS before committing.</div>
+</section>
+
+<!-- ===================== 6 PLATFORM ===================== -->
+<section id="platform" class="part">
+  <div class="sec-head">
+    <p class="eyebrow">Section 6 · Technology</p>
+    <h2>Platform, speed, languages and the partner portal</h2>
+    <p>Short version: fix the Shopify site now, build the headless site at Stage 2, keep Shopify underneath forever.</p>
+  </div>
+  <div class="grid g2">
+    <div class="tile"><h4>Storefront today (checked 18 Sep 2026)</h4><ul>
+      <li><strong>Ella theme 6.6.1</strong> — ~30 CSS files + global.js; source of console errors; the main page weight. Keep for Stage 1.</li>
+      <li><strong>Judge.me</strong> — zero reviews. Collect or uninstall.</li>
+      <li><strong>SEOAnt</strong> — injects JS on every page; remove once SEO fixes are done by hand.</li>
+      <li><strong>Facebook Pixel</strong> — keep; add Conversions API.</li>
+      <li><strong>Shiprocket</strong> — Promise block not rendered.</li>
+      <li><strong>Missing</strong> — translation app, WhatsApp, GA4/GTM, Razorpay Magic / GoKwik.</li>
+    </ul></div>
+    <div class="tile"><h4>Stage 2 target architecture</h4><ul>
+      <li><strong>sgvpaarogyam.com — Astro</strong>: static pages rebuilt on Shopify webhook; 0–30 KB JS; Lighthouse 95+; catalogue via Storefront API (free Headless channel on Basic plan); cart → Shopify checkout unchanged; full schema control; Cloudflare Pages / Vercel at ₹0.</li>
+      <li><strong>partners.sgvpaarogyam.com — Next.js + Postgres</strong>: phone-OTP login (Supabase Auth); tables partners, price_lists, orders, order_items, payments, credit_ledger; Razorpay Orders API + webhook; net price and MOQ per partner tag; Shopify sync for inventory.</li>
+      <li>Start Astro build in week 3 only if a developer is free; go live month 3–4 once product content is rewritten and there are 20+ partner enquiries/month.</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- ===================== 7 NEW SITE ===================== -->
+<section id="newsite" class="part">
+  <div class="sec-head">
+    <p class="eyebrow">Section 7 · New brand</p>
+    <h2>A 5-product website that ranks and generates leads</h2>
+    <p>A 5-product store cannot out-rank Dabur on "ayurvedic medicine for diabetes"; it can own long-tail condition + ingredient searches and convert them into WhatsApp, doctor and distributor leads.</p>
+  </div>
+  <div class="grid g2">
+    <div class="tile"><h4>Platform</h4><ul><li><strong>Shopify</strong> (₹1,600–1,999/mo), Dawn or Sense theme, ≤ 6 apps. WordPress + Woo only if 100+ articles and full SEO control are the plan.</li><li>Buy brand .com and .in before announcing the name.</li></ul></div>
+    <div class="tile"><h4>Structure — small and deep</h4>
+<pre>Home
+├── /products/&lt;name&gt;           ×5   money pages
+├── /collections/&lt;condition&gt;   ×3–5
+├── /pages/about               founder + "made at SGVP Aarogyam, GMP"
+├── /pages/for-doctors         sample-request form
+├── /pages/distributor         territory + WhatsApp
+├── /pages/ingredients/&lt;herb&gt;  ×10–15
+└── /blogs/health/…            2 articles / week</pre>
+      <p class="sub">Every page has one job: WhatsApp button (floating, prefilled), lead form on doctor/distributor pages, Buy on product pages.</p></div>
+  </div>
+  <h3 style="margin-top:24px">Keyword cluster per product</h3>
+  <div class="table-wrap" style="margin-top:10px"><table>
+    <thead><tr><th>Page type</th><th>Example keyword</th><th>Intent</th></tr></thead>
+    <tbody>
+      <tr><td>Product page</td><td>gudmar tablet for sugar control · ayurvedic tablet for blood sugar</td><td>Buy</td></tr>
+      <tr><td>Ingredient page</td><td>gudmar benefits · gurmar leaves uses</td><td>Learn → buy</td></tr>
+      <tr><td>Blog</td><td>how to reduce HbA1c naturally · is ayurvedic medicine safe with metformin</td><td>Learn</td></tr>
+      <tr><td>Comparison</td><td>[brand] vs Dabur Madhumehari</td><td>Decide</td></tr>
+      <tr><td>Gujarati / Hindi</td><td>સુગર માટે આયુર્વેદિક દવા · शुगर की आयुर्वेदिक दवा</td><td>Almost no competition</td></tr>
+    </tbody></table></div>
+  <p class="muted" style="margin-top:8px">Target 200–3,000 searches/month, low difficulty; skip what big brands and Healthline own. Validate in Keyword Planner / Ahrefs free tools before writing.</p>
+  <div class="grid g3" style="margin-top:18px">
+    <div class="tile"><h4>Product page that ranks</h4><ul><li>Title ≤ 60 chars; H1 = product + what it's for</li><li>600–1,000 words: who for, each herb + classical action + reference, dosage, pack, time to results, who should not take it</li><li>5–7 images incl. back label</li><li>8–10 FAQs with FAQ schema (wins "People also ask")</li><li>Reviews from day one; trust strip: GMP, AYUSH no., "Made by SGVP Aarogyam", COD, 7-day return</li><li>Disclaimer; "supports / helps manage" wording only</li></ul></div>
+    <div class="tile"><h4>Technical, once at launch</h4><ul><li>Search Console + GA4 + Merchant Center (free Shopping listings)</li><li>Product, Organization, FAQ, Article schema</li><li>CWV green: WebP &lt; 150 KB, no homepage slider, no popup in first 20 s</li><li>Google Business Profile for the map pack</li><li>Sitemap submitted; internal collections no-index</li></ul></div>
+    <div class="tile"><h4>Content engine + leads</h4><ul><li>2 posts/week, 1,500–2,200 words, one condition question each, linking to one product; 50 articles in 26 weeks</li><li>Hindi + Gujarati versions of top 10 (hreflang)</li><li>Doctor page → sample form; distributor page → margin + territory; exit intent → "Talk to our Vaidya on WhatsApp"</li><li>Every form and WhatsApp click = GA4 conversion</li><li>Backlinks: JustDial, Sulekha, IndiaMART, 1 launch press mention, 3–5 Ayurveda blog guest posts, SGVP partner link</li></ul></div>
+  </div>
+  <div class="table-wrap" style="margin-top:18px"><table>
+    <thead><tr><th>Month</th><th>Milestone</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Site live, 5 product pages done, GSC/GA4/Merchant Center set, 8 articles</td></tr>
+      <tr><td>2–3</td><td>Indexed; first Hindi/Gujarati + ingredient rankings; ₹300–500/day Shopping + brand ads for first sales and reviews</td></tr>
+      <tr><td>4–6</td><td>40+ articles; product pages on page 1–2 for long-tail; doctor/distributor leads from organic</td></tr>
+      <tr><td>6–12</td><td>Traffic compounds; 60–70% of leads organic if cadence held</td></tr>
+    </tbody></table></div>
+  <p class="muted" style="margin-top:8px">Year-1 budget (lean): Shopify + domain + apps ~₹35 K · build ₹40–80 K · photography ₹15–25 K · content ₹1.5–3 L (100 articles) · ads first 3 months ₹30–45 K → ≈ ₹2.5–4.5 L.</p>
+</section>
+
+<!-- ===================== 8 ANALYTICS ===================== -->
+<section id="analytics" class="part">
+  <div class="sec-head">
+    <p class="eyebrow">Section 8 · Measurement</p>
+    <h2>One set of Google tools across sgvpaarogyam.com and shop.sgvpaarogyam.com</h2>
+  </div>
+  <div class="grid g2">
+    <div class="tile"><h4>Google Analytics 4</h4><ul><li>One property; one or two web data streams (per site if separate reporting is wanted)</li><li>Same root domain → cookie on .sgvpaarogyam.com → one session across both; no cross-domain linking needed</li><li>Add sgvpaarogyam.com to <em>List unwanted referrals</em> so the shop doesn't show the content site as a referral</li><li>Same Measurement ID on both (Shopify via Google &amp; YouTube channel; other site via GTM)</li><li>Mark conversions once: purchase, WhatsApp click, doctor form, distributor form</li></ul></div>
+    <div class="tile"><h4>Search Console &amp; the rest</h4><ul><li>Add sgvpaarogyam.com as a <strong>Domain property</strong> (DNS TXT) — covers www, shop., http/https; submit both sitemaps</li><li>Merchant Center: one account, claim root domain; feed from the Shopify site</li><li>Google Ads: one account linked to the GA4 property</li><li>GTM: one container on both sites</li><li>Meta Pixel: same ID; add both domains in Business Manager</li></ul></div>
+  </div>
+  <div class="table-wrap" style="margin-top:16px"><table>
+    <thead><tr><th>Option</th><th>SEO effect</th><th>Verdict</th></tr></thead>
+    <tbody>
+      <tr><td>Subfolder — sgvpaarogyam.com/shop/</td><td>Best; all authority in one place</td><td>Shopify needs a reverse proxy (Cloudflare Worker); ~1 day dev + maintenance</td></tr>
+      <tr><td>Subdomain — shop.sgvpaarogyam.com</td><td>Google treats it as mostly a separate site; authority flows only partly</td><td>Fine if heavily interlinked and canonicals are correct</td></tr>
+      <tr><td>One Shopify site</td><td>No duplication, one admin, Shopify blog handles 2 posts/week</td><td><strong>Recommended for a 5-product brand unless there is a specific reason to split</strong></td></tr>
+    </tbody></table></div>
+</section>
+
+<!-- ===================== 9 GHEE ===================== -->
+<section id="ghee" class="part">
+  <div class="sec-head">
+    <p class="eyebrow">Section 9 · First product of the new brand</p>
+    <h2>A2 Gir cow ghee — the road to 100 bottles of 1 L a day</h2>
+    <p>Competitor map, price positioning, supply reality, unit economics and a B2B + B2C channel plan. India's A2 ghee market was ≈ ₹1.28 bn in 2025, growing ~21%/yr; West India is the largest region. Public brand pricing as of Sep 2026.</p>
+  </div>
+
+  <h3 id="ghee-maths">Maths &amp; supply</h3>
+  <div class="grid g4" style="margin-top:10px">
+    <div class="tile"><div class="num">100 L</div><div class="lbl">ghee per day</div><div class="sub">≈ 3,000 L / month</div></div>
+    <div class="tile"><div class="num">2,500–3,000 L</div><div class="lbl">milk per day (Bilona)</div><div class="sub">25–30 L Gir milk per L of ghee</div></div>
+    <div class="tile"><div class="num">350–450</div><div class="lbl">milking Gir cows</div><div class="sub">250–300 if direct-cream</div></div>
+    <div class="tile"><div class="num">₹42 L</div><div class="lbl">revenue / month</div><div class="sub">at ~₹1,400 blended · ≈ ₹5 Cr / yr</div></div>
+  </div>
+  <div class="table-wrap" style="margin-top:14px"><table>
+    <thead><tr><th></th><th>Bilona (curd → churned makkhan → ghee)</th><th>Direct cream (separator → ghee)</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Milk per L ghee</strong></td><td class="n">25–30 L</td><td class="n">18–20 L</td></tr>
+      <tr><td><strong>Cost, bought milk @ ₹55–65/L</strong></td><td class="n">₹1,600–2,000</td><td class="n">₹1,100–1,300</td></tr>
+      <tr><td><strong>Cost, own gaushala</strong></td><td class="n">₹1,000–1,250</td><td class="n">₹750–900</td></tr>
+      <tr><td><strong>Market price it supports</strong></td><td class="n">₹1,800–2,900</td><td class="n">₹1,000–1,500</td></tr>
+      <tr><td><strong>Best for</strong></td><td>D2C, gifting, export, Ayurvedic clinics</td><td>Sweet shops, hotels, distributors</td></tr>
+    </tbody></table></div>
+  <div class="callout ok"><strong>Recommended</strong>Own gaushala → Bilona at ₹1,800–2,000 MRP with the lowest cost base in the premium tier. Bought milk → one Bilona SKU for D2C/gifting and one direct-cream "A2 Cow Ghee" SKU for B2B. Never sell bought-milk Bilona to sweet shops at ₹1,200.</div>
+
+  <h3 id="ghee-tiers" style="margin-top:26px">Price tiers and where the brand fits</h3>
+  <div class="table-wrap" style="margin-top:10px"><table>
+    <thead><tr><th>Tier</th><th class="n">₹ / L</th><th>Brands</th><th>Where they win</th><th>Threat</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Mass cow ghee</strong> <span class="muted">not A2</span></td><td class="n">600–750</td><td>Amul, Patanjali, Gowardhan, Sagar, Nandini, Gopaljee</td><td>Every kirana, q-commerce; price anchor for B2B</td><td><span class="pill p-med">Indirect</span></td></tr>
+      <tr><td><strong>Mid A2 / desi cow</strong></td><td class="n">1,000–1,500</td><td>Kapiva, Vedic Ghee, Sarvottam, GirOrganic (₹1,700–1,800), regional dairies</td><td>Amazon, BigBasket, modern trade</td><td><span class="pill p-high">High</span></td></tr>
+      <tr><td><strong>Premium Bilona D2C</strong></td><td class="n">1,800–2,900</td><td>Two Brothers (~₹2,200), Anveshan (₹1,800–2,100), Shahji (₹2,268), Pushti (₹2,150), Alimente (₹2,900)</td><td>Own sites + Amazon; lab reports, reviews, videos, subscriptions</td><td><span class="pill p-high">High online</span></td></tr>
+      <tr><td><strong>Gaushala / trust</strong> <span class="muted">closest peers</span></td><td class="n">2,000–3,600</td><td>Bansi Gir Gaushala (₹3,600/L), Gau Amritam, Pathmeda, Gavyamart, ISKCON Govardhan</td><td>Devotional trust, satsang &amp; temple networks</td><td><span class="pill p-crit">Direct</span></td></tr>
+    </tbody></table></div>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="tile"><h4>Position: gaushala / trust tier at ₹1,800–2,000</h4><p class="sub">Under Bansi Gir, level with Anveshan, above GirOrganic. Promise: "Bilona A2 Gir cow ghee from the SGVP gaushala, Ahmedabad — every batch lab-tested." Institution + method + proof; nothing about disease.</p><ul><li>Only you can say: made where the cows are; Gurukul heritage; Ayurvedic pharmacy in the same house; Gujarat home market</li></ul></div>
+    <div class="tile"><h4>Avoid</h4><ul><li>Price war with mid-tier A2 — you lose the story</li><li>Disease claims — FSSAI and Magic Remedies Act</li><li>"A2" on label without a beta-casein report on file</li><li>5 L B2B launch before 500 ml / 1 L reviews exist online</li></ul></div>
+  </div>
+
+  <h3 id="ghee-channels" style="margin-top:26px">Channel plan — 100 bottles/day at steady state</h3>
+  <div class="bar" aria-label="Volume share by channel"><span style="flex:20;background:#D8551F">Ayurvedic 20</span><span style="flex:15;background:#B7791F">Food 15</span><span style="flex:10;background:#9E3A10">Gifting 10</span><span style="flex:15;background:#2F7A3E">Distrib. 15</span><span style="flex:20;background:#1F5F8B">Marketplace 20</span><span style="flex:15;background:#5B554B">D2C 15</span><span style="flex:5;background:#8A8377">Exp 5</span></div>
+  <div class="table-wrap" style="margin-top:14px"><table>
+    <thead><tr><th>Channel</th><th class="n">Bottles/day</th><th class="n">Price to them</th><th>How</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Ayurvedic clinics, panchakarma centres, pharmacies</strong> (B2B)</td><td class="n">20</td><td class="n">₹1,200–1,300</td><td>Ghee is the base for ghritam, snehana, netra tarpana, basti; 20–60 L/month per centre. 5 L tins; ghee in the MR bag and stockist price list; 40 centres in 90 days.</td></tr>
+      <tr><td><strong>Sweet shops, restaurants, hotels, cloud kitchens</strong> (B2B)</td><td class="n">15</td><td class="n">₹1,100–1,250</td><td>"A2 ghee ni mithai" is already a premium claim in Ahmedabad/Surat. 5 L and 15 L; counter-top co-branding standee; 10 sweet shops + 5 hotels.</td></tr>
+      <tr><td><strong>Corporate &amp; temple gifting</strong></td><td class="n">10 <span class="muted">(spikes 100+)</span></td><td class="n">₹1,400–1,600</td><td>Gift box (jar + story card + spoon). Pitch Gujarat corporates, trusts, CA firms, mandals before 10 Oct for Diwali (8 Nov 2026).</td></tr>
+      <tr><td><strong>Distributors, kirana, modern trade</strong></td><td class="n">15</td><td class="n">₹1,250–1,350</td><td>Retailer 20%, distributor 10%, launch 10+1. Ahmedabad, Surat, Rajkot, Vadodara, Mumbai first. Reliance Signature, Nature's Basket, Osia. IndiaMART for inbound.</td></tr>
+      <tr><td><strong>Amazon, Blinkit / Zepto / Instamart, BigBasket</strong></td><td class="n">20</td><td class="n">MRP − 25–35%</td><td>Brand Registry, A+ content, lab-report images, 50 reviews month 1. Q-commerce Ahmedabad + Mumbai dark stores. Consider ₹1,999 MRP + 10% coupon there.</td></tr>
+      <tr><td><strong>Own website + WhatsApp</strong></td><td class="n">15</td><td class="n">₹1,800 / ₹1,650 sub</td><td>Highest margin, owns the customer number. Gurukul alumni, satsang community, Gujarati NRIs. Gaushala video + batch report + FAQ + reviews; 5% prepaid discount.</td></tr>
+      <tr><td><strong>Export — USA / UK / Canada / UAE</strong></td><td class="n">5 → 20+</td><td class="n">₹2,500–3,500 eq.</td><td>Amazon US/UK via forwarder or an importer (NJ / Leicester / Toronto). APEDA, FSSAI export cert, US FDA facility registration.</td></tr>
+    </tbody></table></div>
+  <div class="callout"><strong>Ramp</strong>20–25/day by month 3 (B2B-led) · 50/day by month 6 · 100/day by month 9–12. A strong Diwali pulls month-6 numbers into month 2.</div>
+
+  <h3 id="ghee-econ" style="margin-top:26px">Unit economics — 1 L Bilona jar</h3>
+  <div class="grid g2" style="margin-top:10px">
+    <div class="table-wrap"><table>
+      <thead><tr><th>Cost item</th><th class="n">Bought milk</th><th class="n">Own gaushala</th></tr></thead>
+      <tbody>
+        <tr><td>A2 Gir milk, 25–28 L</td><td class="n">₹1,400–1,800</td><td class="n">₹800–1,000</td></tr>
+        <tr><td>Processing, fuel, labour</td><td class="n">₹80–120</td><td class="n">₹80–120</td></tr>
+        <tr><td>Glass jar, lid, label, carton</td><td class="n">₹70–110</td><td class="n">₹70–110</td></tr>
+        <tr><td>Lab tests, amortised</td><td class="n">₹10–20</td><td class="n">₹10–20</td></tr>
+        <tr><td><strong>Landed cost</strong></td><td class="n"><strong>₹1,600–2,000</strong></td><td class="n"><strong>₹1,000–1,250</strong></td></tr>
+      </tbody></table></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Channel</th><th class="n">Realised ₹/L</th><th class="n">Margin @ ₹1,150 cost</th></tr></thead>
+      <tbody>
+        <tr><td>Own website</td><td class="n">1,800</td><td class="n">36%</td></tr>
+        <tr><td>Amazon / q-commerce (after 30%)</td><td class="n">1,260</td><td class="n">9%</td></tr>
+        <tr><td>Gifting</td><td class="n">1,500</td><td class="n">23%</td></tr>
+        <tr><td>Ayurvedic B2B (5 L)</td><td class="n">1,250</td><td class="n">8%</td></tr>
+        <tr><td>Food B2B (15 L)</td><td class="n">1,150</td><td class="n">0%</td></tr>
+        <tr><td>Distributor</td><td class="n">1,300</td><td class="n">12%</td></tr>
+      </tbody></table></div>
+  </div>
+  <div class="callout warn"><strong>Read the margin column</strong>Bilona at B2B prices barely breaks even, even on own milk. Use a direct-cream SKU (₹750–900 own / ₹1,100–1,300 bought) for sweet shops and distributors; keep Bilona for D2C, gifting, Ayurvedic clinics and export. Marketplaces are a volume-and-reviews channel, not a profit channel.</div>
+
+  <div class="grid g2" style="margin-top:18px">
+    <div class="tile"><h4>Compliance — must have before first sale</h4><ul><li><strong>FSSAI licence</strong> (State &lt; ₹20 Cr turnover, else Central); logo + number on label</li><li>Label: veg mark, net weight, nutrition panel, batch, best-before, manufacturer &amp; marketer address, MRP, customer care</li><li><strong>A2 beta-casein report</strong> per milk source; adulteration + fat profile per batch (NABL, ₹2,500–4,000)</li><li>Trademark Class 29; Class 5 for any ghritam variants</li></ul></div>
+    <div class="tile"><h4>Later</h4><ul><li>AGMARK grading — B2B and modern-trade signal</li><li>NPOP / India Organic if feed is certified (+15–20% price headroom)</li><li>Export: APEDA, FSSAI export cert, US FDA registration, prior notice per shipment</li><li>Wording: "traditionally used in Ayurveda", "A2 protein", "grass-fed" (if true); never cures / treats / good for diabetes</li></ul></div>
+  </div>
+
+  <h3 id="ghee-plan" style="margin-top:26px">90-day launch plan</h3>
+  <div class="timeline" style="margin-top:10px">
+    <div class="phase"><div class="when">Days 1–15<small>Decide &amp; certify</small></div><div><ul><li>Confirm milk source and daily litres; lock method(s)</li><li>Apply for FSSAI; send first batch for beta-casein + adulteration + fat-profile tests</li><li>Brand name, trademark (Class 29), domain; packaging brief: 500 ml, 1 L, 5 L, gift box</li><li>Shoot gaushala + Bilona video and product photos in one day</li></ul><p class="goal">Licence applied, lab reports in hand, packaging at printer</p></div></div>
+    <div class="phase"><div class="when">Days 16–45<small>Open B2B &amp; the site</small></div><div><ul><li>Ghee in the MR bag and stockist list; 20 Ayurvedic centres signed</li><li>10 sweet shops / 5 hotels pitched with a 5 L trial tin</li><li>Gifting deck to 50 companies and trusts by 10 Oct</li><li>Product page live; GA4, GSC, Merchant Center connected; Amazon with Brand Registry; 50 seeded reviews</li></ul><p class="goal">20–25 bottles/day, 30+ reviews, gifting booked</p></div></div>
+    <div class="phase"><div class="when">Days 46–90<small>Scale &amp; Diwali</small></div><div><ul><li>Diwali fulfilment (peak 25 Oct – 7 Nov); production planned 3 weeks ahead</li><li>First 5 distributors; q-commerce onboarding Ahmedabad; modern-trade samples</li><li>Subscription live; 2 posts/week; Hindi + Gujarati product page</li><li>APEDA registration for Q1 2027 export</li></ul><p class="goal">40–50 bottles/day exiting December with a repeat base</p></div></div>
+  </div>
+  <div class="table-wrap" style="margin-top:16px"><table>
+    <thead><tr><th>KPI</th><th class="n">Month 3</th><th class="n">Month 6</th><th class="n">Month 12</th></tr></thead>
+    <tbody>
+      <tr><td>Bottles (1 L eq.) per day</td><td class="n">25</td><td class="n">50</td><td class="n">100</td></tr>
+      <tr><td>B2B accounts active</td><td class="n">30</td><td class="n">70</td><td class="n">150</td></tr>
+      <tr><td>Online reviews</td><td class="n">50</td><td class="n">200</td><td class="n">600</td></tr>
+      <tr><td>Subscription customers</td><td class="n">50</td><td class="n">250</td><td class="n">800</td></tr>
+      <tr><td>Repeat rate (90-day)</td><td class="n">25%</td><td class="n">35%</td><td class="n">45%</td></tr>
+      <tr><td>Blended realised ₹/L</td><td class="n">1,350</td><td class="n">1,400</td><td class="n">1,450</td></tr>
+      <tr><td>Organic share of site traffic</td><td class="n">20%</td><td class="n">45%</td><td class="n">65%</td></tr>
+    </tbody></table></div>
+</section>
+
+<!-- ===================== 10 COMPETITORS ===================== -->
+<section id="competitors" class="part">
+  <div class="sec-head">
+    <p class="eyebrow">Section 10 · Competitor playbooks · Sep 2026</p>
+    <h2>How each A2 ghee competitor actually works</h2>
+    <p>Model, scale, price, channels, marketing hook, weakness — and the gap it leaves for an SGVP brand.</p>
+  </div>
+  <div class="grid g2">
+    <div class="comp"><h3>Anveshan <small>the lab-report D2C brand</small></h3><dl>
+      <dt>Model</dt><dd>Founded 2020 (IIT Guwahati). Aggregates from farmer clusters; owns no cows. Ghee + cold-pressed oils + honey.</dd>
+      <dt>Scale</dt><dd>₹47 Cr FY24 → ₹77 Cr FY25; claims ₹280–300 Cr run-rate. ₹121–150 Cr Series B at ~₹846 Cr valuation. Loss ₹11.8 Cr FY25.</dd>
+      <dt>Price</dt><dd>₹900–1,045 / 500 ml (≈ ₹1,800–2,100/L)</dd>
+      <dt>Channels</dt><dd>anveshan.farm, Amazon/Flipkart, modern trade; <strong>quick-commerce structurally shifted their economics</strong></dd>
+      <dt>Hook</dt><dd>Every batch lab-tested, reports published; 10/10 on Unbox Health; repeat 35–45%</dd>
+      <dt>Weak</dt><dd>No farm, no heritage; growth bought with ads</dd></dl>
+      <div class="gap">Gap: they cannot say "our cows".</div></div>
+    <div class="comp"><h3>Two Brothers Organic Farms <small>Amorearth · the farm-story brand</small></h3><dl>
+      <dt>Model</dt><dd>Own certified-organic farm at Bhodani, Maharashtra; Gir cows; Bilona; 100+ SKUs (atta, jaggery, protein atta, low-GI rice)</dd>
+      <dt>Scale</dt><dd>₹38 Cr FY24 → ₹108 Cr FY25; targeting ₹200 Cr FY26; raised ₹110 Cr Oct 2025; sells in US and MENA</dd>
+      <dt>Price</dt><dd>~₹2,200/L</dd>
+      <dt>Channels</dt><dd><strong>Own website ≈ 50%</strong>, Amazon/marketplaces 15–20%, q-commerce growing, <strong>offline ~5%</strong></dd>
+      <dt>Hook</dt><dd>Founder faces, farm videos, Instagram; 89% five-star on Amazon</dd>
+      <dt>Weak</dt><dd>Almost no offline / B2B; depends on content + paid social</dd></dl>
+      <div class="gap">Gap: ghee is their door, the basket is the business — plan the basket behind your ghee.</div></div>
+    <div class="comp"><h3>Shahji Ghee <small>the 65-year legacy Amazon brand</small></h3><dl>
+      <dt>Model</dt><dd>Meerut dairy family since 1957; Gir + Sahiwal; Bilona small batches; also buffalo ghee</dd>
+      <dt>Price</dt><dd>₹2,268/L; 50 ml trial packs</dd>
+      <dt>Channels</dt><dd>Amazon-first (brand store, <strong>Amazon Live</strong>), Flipkart, BigBasket, Tata Cliq Luxury, own Shopify</dd>
+      <dt>Hook</dt><dd>Heritage + SEO: blog posts like "Anveshan vs Two Brothers vs Shahji" rank for competitor names</dd>
+      <dt>Weak</dt><dd>UP regional; thin Gujarat presence</dd></dl>
+      <div class="gap">Copy: honest comparison posts on your blog; trial-size SKU.</div></div>
+    <div class="comp"><h3>GirOrganic <small>closest Gujarat model to yours</small></h3><dl>
+      <dt>Model</dt><dd>Since 1990; 5–6 cows → <strong>450+ Gir cows on 500 acres</strong>, certified organic, Surat / Chhota Udaipur. Owns the whole chain.</dd>
+      <dt>Price</dt><dd>₹859–900 / 500 ml (≈ ₹1,700–1,800/L) — cheaper because they own the milk</dd>
+      <dt>Channels</dt><dd>Own site, Amazon bestseller listing, distributors; also honey, oils, wheat</dd>
+      <dt>Hook</dt><dd>"Gopal Ratna Award winner 2023" in every listing title and on pack; organic certification</dd></dl>
+      <div class="gap">Lesson: this is the cost/price position an own-gaushala SGVP brand lands in. Get a government recognition (Gopal Ratna / Kamdhenu) on the pack.</div></div>
+    <div class="comp"><h3>Bansi Gir Gaushala <small>direct Ahmedabad competitor</small></h3><dl>
+      <dt>Model</dt><dd>600 Gir cows, Ahmedabad; "non-violent ghee" (calf drinks first); Kamdhenu Award 2017; ghee + Gauveda tonics + cow-dung products</dd>
+      <dt>Price</dt><dd><strong>₹2,500 / 500 ml · ₹3,600 / 1 L</strong> — highest in the market</dd>
+      <dt>Channels</dt><dd>Gaushala store, own site, IndiaMART/TradeIndia, Flipkart/ShopClues; word of mouth via satsang / gau-seva donors; minimal digital marketing</dd>
+      <dt>Weak</dt><dd>2× the D2C brands' price; weak online presence; basic product pages</dd></dl>
+      <div class="gap">A well-run SGVP brand at ₹1,800–2,000 with the same trust story is a threat to them, not the reverse.</div></div>
+    <div class="comp"><h3>Kapiva <small>Ayurveda wellness brand, ghee as a side SKU</small></h3><dl>
+      <dt>Model</dt><dd>Ayurvedic D2C (juices, gummies, powders); ghee is one of 100+ SKUs; sourced A2 milk, Bilona</dd>
+      <dt>Price</dt><dd>Inconsistent: ₹726–890 / 500 ml on Blinkit/Zepto vs ₹1,600–1,950 / 500 ml on own site — discounts hard on q-commerce</dd>
+      <dt>Channels</dt><dd>Blinkit/Zepto/Instamart, Amazon, <strong>1mg / PharmEasy as a health product</strong>, pharmacies</dd></dl>
+      <div class="gap">Lesson: 1mg / Netmeds / Apollo 24|7 are viable ghee channels when positioned as Ayurvedic wellness — SGVP Aarogyam already fits there.</div></div>
+    <div class="comp"><h3>Gau Amritam <small>the Vedic-method niche brand</small></h3><dl>
+      <dt>Model</dt><dd>Gangatiri / Kankrej cow; hand "mathni" churning (clockwise-anticlockwise wooden churner) as the differentiator; lab-tested; small volume</dd>
+      <dt>Price</dt><dd>₹2,000+/L; Amazon India, Walmart US, own site</dd>
+      <dt>Hook</dt><dd>Recommended by YouTuber Fit Tuber — a single creator mention drives their Amazon sales</dd></dl>
+      <div class="gap">Lesson: one trusted health creator &gt; months of ads. Bring 2–3 Gujarati / Hindi health creators to the gaushala.</div></div>
+    <div class="comp"><h3>Organic G <small>Vadodara · white-label supplier</small></h3><dl>
+      <dt>Model</dt><dd>Operates 6 gaushalas; sells D2C, <strong>private / white label and bulk supply</strong></dd></dl>
+      <div class="gap">Fallback milk / ghee supplier if SGVP's gaushala volume is short; also a signal that white-label A2 ghee is a mature service in Gujarat.</div></div>
+  </div>
+
+  <h3 style="margin-top:26px">Patterns across all of them</h3>
+  <div class="table-wrap" style="margin-top:10px"><table>
+    <thead><tr><th>Pattern</th><th>Who</th><th>What it means for SGVP</th></tr></thead>
+    <tbody>
+      <tr><td>Own website is the #1 channel</td><td>Two Brothers (50%), Anveshan</td><td>Build the D2C page properly, not as a brochure</td></tr>
+      <tr><td>Quick-commerce is the growth channel</td><td>Anveshan, Two Brothers, Kapiva</td><td>Onboard Blinkit/Zepto/Instamart in month 3, not year 2</td></tr>
+      <tr><td>Offline ≈ 5% for D2C brands</td><td>All the startups</td><td><strong>The B2B / doctor / distributor network is the gap none of them fill</strong></td></tr>
+      <tr><td>Proof beats claims</td><td>Anveshan (lab), GirOrganic (award), Bansi (award)</td><td>Batch reports + a government award on the pack</td></tr>
+      <tr><td>Ghee is the entry, the basket is the business</td><td>Two Brothers, Anveshan, Kapiva</td><td>Honey, oils, chyawanprash behind the ghee within 12 months</td></tr>
+      <tr><td>Content ranks for competitor names</td><td>Shahji</td><td>Honest "SGVP vs Bansi vs Anveshan" posts</td></tr>
+      <tr><td>Trial packs</td><td>Shahji (50 ml), everyone (500 ml)</td><td>Add 200–250 ml — the gifting and sampling SKU</td></tr>
+    </tbody></table></div>
+  <div class="callout ok"><strong>The gap nobody owns</strong>An own-gaushala brand at ₹1,800–2,000 with lab reports <em>and</em> an Ayurvedic doctor / distributor network <em>and</em> Gujarat home advantage. GirOrganic has the cows but not the doctors; Anveshan has the proof but not the cows; Bansi has the trust but not the price or digital execution.</div>
+</section>
+
+<!-- ===================== SOURCES ===================== -->
+<section id="sources" class="part">
+  <div class="sec-head"><h2>Sources</h2><p>Public pages consulted, Sep 2026. Prices and figures were read at that time and will drift.</p></div>
+  <ul class="src">
+    <li><a href="https://www.imarcgroup.com/a2-ghee-market-india">IMARC — India A2 Ghee Market 2026–2034</a></li>
+    <li><a href="https://www.stardairyfarms.com/blog/a2-ghee-price-in-india.html">Star Dairy Farms — A2 ghee price guide 2026</a></li>
+    <li><a href="https://raghasdairy.com/a2-ghee-price-india/">Raghas Dairy — A2 ghee brand comparison</a></li>
+    <li><a href="https://pulse.d2cinsider.com/anveshan-raises-e2-82-b9121-crore-series-b-led-by-vertex-ventures-as-d2c-food-brand-accelerates-growth-and-rural-impact/">D2C Insider — Anveshan Series B</a></li>
+    <li><a href="https://startuppedia.in/trending/startup-news/founded-by-iit-guwahati-alumni-d2c-food-tech-startup-anveshan-grows-65-to-rs-775-crore-in-fy25-loss-widens-to-rs-118-crore-11180447">Startuppedia — Anveshan FY25</a></li>
+    <li><a href="https://www.inventiva.co.in/stories/anveshan-has-believers-does-it-have-market/">Inventiva — Anveshan premium food paradox</a></li>
+    <li><a href="https://inc42.com/buzz/two-brothers-organic-farms-nets-inr-110-cr-to-expand-global-presence/">Inc42 — Two Brothers raises ₹110 Cr</a></li>
+    <li><a href="https://www.indianretailer.com/interview/retail-people/new-commerce/two-brothers-organic-farms-targets-100-percent-growth-eyes">Indian Retailer — Two Brothers channel mix</a></li>
+    <li><a href="https://startuppedia.in/smbs/we-aim-for-rs-2000-cr-in-annual-revenue-by-2030-says-two-brothers-organic-farms-founder-now-venturing-into-protein-atta-and-low-gi-rice-11248763">Startuppedia — Two Brothers ₹2,000 Cr goal</a></li>
+    <li><a href="https://shahjighee.com/pages/our-story">Shahji Ghee — Our story</a></li>
+    <li><a href="https://shahjighee.com/anveshan-vs-two-brothers-vs-shahji-a2-ghee-which-ghee-should-you-buy/">Shahji — comparison post</a></li>
+    <li><a href="https://www.amazon.in/live/video/1d19579351fc42bc87c6334db79035d4">Shahji — Amazon Live</a></li>
+    <li><a href="https://girorganic.com/pages/about">GirOrganic — About</a></li>
+    <li><a href="https://www.amazon.in/GirOrganic-organic-bilona-preparation-grassfed/dp/B07VPZN1WX">GirOrganic — Amazon listing</a></li>
+    <li><a href="https://pureecoindia.in/bansi-gir-gaushala-its-non-violent-ghee-rutaksha-rawat/">Pure &amp; Eco India — Bansi Gir Gaushala</a></li>
+    <li><a href="https://www.shopclues.com/bansi-gir-gaushala-gau-ghee-1l-grassfed-and-traditional-bilona-method-a2-cow-ghee-134646850.html">ShopClues — Bansi Gir 1 L ₹3,600</a></li>
+    <li><a href="https://blinkit.com/prn/kapiva-desi-a2-ghee-cow/prid/486019">Blinkit — Kapiva A2 ghee</a></li>
+    <li><a href="https://www.1mg.com/otc/kapiva-a2-desi-pure-foods-100-organic-cow-ghee-good-fats-for-healthy-heart-otc655110">1mg — Kapiva A2 ghee</a></li>
+    <li><a href="https://gauamritam.com/">Gau Amritam</a></li>
+    <li><a href="https://organicgshop.com/about-us/">Organic G, Vadodara</a></li>
+    <li><a href="https://pushtiorganics.com/products/ghee-a">Pushti Organics — 1 L</a></li>
+    <li><a href="https://alimente.co.in/product/alimente-al-997-a2-sahiwal-cow-pure-vedic-ghee/">Alimente — 1 L</a></li>
+    <li><a href="https://www.tradeindia.com/products/shahji-ghee-a2-sahiwal-cow-ghee-1-litre-9333182.html">TradeIndia — Shahji 1 L</a></li>
+    <li><a href="https://twobrothersfood.com/blogs/all-blogs/top-6-best-a2-ghee-brands-on-amazon-2025-edition-ranked-by-quality-authenticity">Two Brothers — top A2 brands on Amazon</a></li>
+    <li><a href="https://www.gavyamart.in/blogs/know-your-products/top-10-best-a2-cow-ghee-brands-in-india-2026-edition">Gavyamart — top 10 A2 brands 2026</a></li>
+  </ul>
+  <footer>Maintained as a single self-contained HTML file. To add research: append a numbered section, add a row to the research log, add sources to this list, update the "Last updated" line in the header. No scripts, no external assets.</footer>
+</section>
+
+</div>
+</div>
+</body>
+</html>
