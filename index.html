@@ -54,7 +54,7 @@ aside.side{position:sticky;top:0;align-self:start;height:100vh;overflow:auto;pad
 .card.on .ic{background:var(--brand);color:#fff}
 .c-log .ic{color:#5B554B}.c-dec .ic{color:#2F7A3E}.c-brand .ic{color:#D8551F}.c-audit .ic{color:#B3261E}.c-chan .ic{color:#1F5F8B}
 .c-hero .ic{color:#B7791F}.c-money .ic{color:#2F7A3E}.c-tech .ic{color:#5B554B}.c-site .ic{color:#1F5F8B}.c-ana .ic{color:#9E3A10}
-.c-ghee .ic{color:#B7791F}.c-comp .ic{color:#B3261E}.c-src .ic{color:#8A8377}
+.c-ghee .ic{color:#B7791F}.c-brands .ic{color:#D8551F}.c-comp .ic{color:#B3261E}.c-src .ic{color:#8A8377}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .card .ic{filter:brightness(1.5)}}
 :root[data-theme="dark"] .card .ic{filter:brightness(1.5)}
 .card.on .ic{filter:none}
@@ -159,6 +159,7 @@ footer{margin-top:40px;padding-top:16px;font-size:13px;color:var(--ink-3)}
   <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8zm0 18c-3.35 0-6-2.57-6-6.2 0-2.34 1.95-5.44 6-9.14 4.05 3.7 6 6.79 6 9.14 0 3.63-2.65 6.2-6 6.2zm-4.17-6c.37 0 .67.26.74.62.41 2.22 2.28 2.98 3.64 2.87.43-.02.79.32.79.75 0 .4-.32.73-.72.75-2.13.13-4.62-1.09-5.19-4.12-.08-.45.28-.87.74-.87z"/></symbol>
   <symbol id="i-groups" viewBox="0 0 24 24"><path d="M12 12.75c1.63 0 3.07.39 4.24.9 1.08.48 1.76 1.56 1.76 2.73V18H6v-1.61c0-1.18.68-2.26 1.76-2.73 1.17-.52 2.61-.91 4.24-.91zM4 13c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm1.13 1.1c-.37-.06-.74-.1-1.13-.1-.99 0-1.93.21-2.78.58A2.01 2.01 0 0 0 0 16.43V18h4.5v-1.61c0-.83.23-1.61.63-2.29zM20 13c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm4 3.43c0-.81-.48-1.53-1.22-1.85A6.95 6.95 0 0 0 20 14c-.39 0-.76.04-1.13.1.4.68.63 1.46.63 2.29V18H24v-1.57zM12 6c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z"/></symbol>
   <symbol id="i-link" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></symbol>
+  <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z"/></symbol>
 </svg>
   <div class="brandmark"><span class="logo">SG</span><span>SGVP Aarogyam<small>Research hub</small></span></div>
   <nav class="menu">
@@ -186,6 +187,7 @@ footer{margin-top:40px;padding-top:16px;font-size:13px;color:var(--ink-3)}
   <nav class="menu">
     <a class="card c-ghee" href="#ghee"><span class="ic"><svg><use href="#i-drop"/></svg></span><i><b>9 · A2 ghee launch</b><span>100 bottles/day: maths to KPIs</span></i></a>
     <a class="card c-comp" href="#competitors"><span class="ic"><svg><use href="#i-groups"/></svg></span><i><b>10 · Competitor playbooks</b><span>8 brands: model, price, channels</span></i></a>
+    <a class="card c-brands" href="#brands"><span class="ic"><svg><use href="#i-trophy"/></svg></span><i><b>11 · Top A2 ghee brands</b><span>14 A2 brands + 3 mass anchors, ranked</span></i></a>
   </nav>
   <div class="grp">Appendix</div>
   <nav class="menu">
@@ -200,7 +202,7 @@ footer{margin-top:40px;padding-top:16px;font-size:13px;color:var(--ink-3)}
   <p class="eyebrow">Master research page · one URL for everything</p>
   <h1>SGVP Aarogyam — research, analysis &amp; plans</h1>
   <p class="lede">Everything researched so far for SGVP Aarogyam and the new own-brand line, on one page: business model, website audit, distribution channels, budgets, the A2 ghee launch analysis and competitor playbooks. New research gets added as a numbered section and a row in the log below.</p>
-  <p class="meta">Last updated 21 Sep 2026 · Sections 1–10 · Figures are planning estimates unless a source is cited in the appendix.</p>
+  <p class="meta">Last updated 21 Sep 2026 · Sections 1–11 · Figures are planning estimates unless a source is cited in the appendix.</p>
 </header>
 
 <!-- ===================== LOG ===================== -->
@@ -218,6 +220,7 @@ footer{margin-top:40px;padding-top:16px;font-size:13px;color:var(--ink-3)}
         <tr><td>21 Sep 2026</td><td>Analytics across two sites</td><td>One GA4 property, GSC domain property, subdomain vs subfolder SEO trade-off</td><td><a href="#analytics">§8</a></td></tr>
         <tr><td>21 Sep 2026</td><td>A2 ghee launch analysis</td><td>100 × 1 L/day = 2,500–3,000 L milk/day; price tiers; 7-channel split; unit economics; compliance; 90-day plan</td><td><a href="#ghee">§9</a></td></tr>
         <tr><td>21 Sep 2026</td><td>Competitor playbooks</td><td>Anveshan, Two Brothers, Shahji, GirOrganic, Bansi Gir, Kapiva, Gau Amritam — model, price, channels, hook, weakness</td><td><a href="#competitors">§10</a></td></tr>
+        <tr><td>21 Sep 2026</td><td>Top A2 ghee brands report</td><td>14 A2 brands + 3 mass anchors ranked by market weight: base, breed, method, ₹/L, channels, proof, scale; price clusters and channel ownership</td><td><a href="#brands">§11</a></td></tr>
       </tbody>
     </table>
   </div>
@@ -718,6 +721,54 @@ footer{margin-top:40px;padding-top:16px;font-size:13px;color:var(--ink-3)}
   <div class="callout ok"><strong>The gap nobody owns</strong>An own-gaushala brand at ₹1,800–2,000 with lab reports <em>and</em> an Ayurvedic doctor / distributor network <em>and</em> Gujarat home advantage. GirOrganic has the cows but not the doctors; Anveshan has the proof but not the cows; Bansi has the trust but not the price or digital execution.</div>
 </section>
 
+<!-- ===================== 11 TOP BRANDS ===================== -->
+<section id="brands" class="part">
+  <div class="sec-head">
+    <p class="eyebrow">Section 11 · Market map · Sep 2026</p>
+    <h2>Top A2 ghee brands in India — ranked report</h2>
+    <p>Ranked by market weight (revenue, reach and review volume), not by quality. Prices are the 1 L equivalent as listed on the brand's own site or a major marketplace in Sep 2026; marketplaces discount 10–25% below these. Mass cow-ghee brands are included at the end because every B2B buyer anchors on them.</p>
+  </div>
+  <div class="grid g4">
+    <div class="tile"><div class="num">₹1.28 bn</div><div class="lbl">India A2 ghee market, 2025</div><div class="sub">→ ₹9.5 bn by 2034 at ~21% CAGR (IMARC)</div></div>
+    <div class="tile"><div class="num">₹1,600–2,400</div><div class="lbl">the crowded band</div><div class="sub">where 9 of the 14 A2 brands below sit</div></div>
+    <div class="tile"><div class="num">2</div><div class="lbl">brands above ₹100 Cr</div><div class="sub">Two Brothers, Anveshan — both D2C-first, both loss-making</div></div>
+    <div class="tile"><div class="num">3</div><div class="lbl">Gujarat-based A2 brands</div><div class="sub">GirOrganic, Bansi Gir, Organic G — none own the doctor channel</div></div>
+  </div>
+  <div class="table-wrap" style="margin-top:18px">
+    <table>
+      <thead><tr><th>#</th><th>Brand</th><th>Base</th><th>Breed · method</th><th class="n">₹ / L</th><th>Where it sells</th><th>Proof / hook</th><th>Scale &amp; note</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><strong>Two Brothers Organic Farms</strong> (Amorearth)</td><td>Bhodani, Maharashtra</td><td>Gir · Bilona, own organic farm</td><td class="n">~2,200</td><td>Own site ≈50%, Amazon 15–20%, Blinkit/Zepto/Instamart, Amazon US</td><td>Founder story, farm videos, 89% 5-star on Amazon</td><td>₹108 Cr FY25 → ₹200 Cr FY26 target; ₹110 Cr raised Oct 2025. Offline ~5%.</td></tr>
+        <tr><td>2</td><td><strong>Anveshan</strong></td><td>Bengaluru; farmer clusters</td><td>Gir/Sahiwal · Bilona, sourced</td><td class="n">1,800–2,100</td><td>Own site, quick-commerce (growth engine), Amazon, Flipkart, modern trade</td><td>Every batch lab-tested, reports published; 10/10 Unbox Health</td><td>₹77 Cr FY25; claims ₹280–300 Cr run-rate; ₹846 Cr valuation; loss ₹11.8 Cr.</td></tr>
+        <tr><td>3</td><td><strong>GirOrganic</strong></td><td>Surat / Chhota Udaipur, Gujarat</td><td>Gir · Bilona, own 450-cow farm, 500 acres, certified organic</td><td class="n">1,700–1,800</td><td>Own site, Amazon (bestseller listing), distributors</td><td>Gopal Ratna Award 2023 in every listing title; organic cert</td><td>Since 1990. Lowest premium-tier price because they own the milk. Closest model to an SGVP brand.</td></tr>
+        <tr><td>4</td><td><strong>Kapiva</strong></td><td>Mumbai; sourced</td><td>Gir · Bilona</td><td class="n">1,450–1,800 <span class="muted">q-com</span> · 3,200–3,900 <span class="muted">site</span></td><td>Blinkit/Zepto/Instamart, Amazon, 1mg, PharmEasy, pharmacies</td><td>Ayurveda wellness brand; ghee is one of 100+ SKUs</td><td>Discounts hardest on quick-commerce; listed as a health product on 1mg.</td></tr>
+        <tr><td>5</td><td><strong>Shahji Ghee</strong></td><td>Meerut, UP</td><td>Gir + Sahiwal · Bilona small batch</td><td class="n">2,268</td><td>Amazon-first (brand store, Amazon Live), Flipkart, BigBasket, Tata Cliq, own site</td><td>"Since 1957" heritage; comparison blog posts rank for rivals' names</td><td>Also buffalo ghee and 50 ml trial packs. Thin in Gujarat.</td></tr>
+        <tr><td>6</td><td><strong>Barosi</strong></td><td>Haryana farm</td><td>Sahiwal · Bilona, farm-made small batch</td><td class="n">1,611–2,040</td><td>BigBasket, Amazon, own site</td><td>"Danedar" texture, farm-made; also A2 buffalo ghee</td><td>Mid-premium price; strong on BigBasket.</td></tr>
+        <tr><td>7</td><td><strong>Rosier Foods</strong></td><td>Delhi NCR; sourced</td><td>Gir · Bilona</td><td class="n">2,380</td><td>Amazon, BigBasket, Flipkart, own site</td><td>Wider "clean food" basket: honey, atta, oils</td><td>Ghee as the door to a basket — same play as Two Brothers.</td></tr>
+        <tr><td>8</td><td><strong>Bansi Gir Gaushala</strong> (Gauveda)</td><td>Ahmedabad, Gujarat</td><td>Gir · Bilona, own 600-cow gaushala</td><td class="n">3,600</td><td>Gaushala store, own site, Flipkart, ShopClues, IndiaMART; word of mouth</td><td>"Non-violent" ghee (calf first); Kamdhenu Award 2017</td><td>Highest price in the market; minimal digital execution. Your direct local competitor.</td></tr>
+        <tr><td>9</td><td><strong>Vedic Ghee</strong> (Kesariya Farm)</td><td>Own farm</td><td>Gir · two-way hand-churned Bilona</td><td class="n">~2,000</td><td>Amazon India + US, Distacart, own site</td><td>Lab-certified; strong NRI / export listing</td><td>Export-oriented; good reference for the diaspora channel.</td></tr>
+        <tr><td>10</td><td><strong>Gau Amritam</strong></td><td>UP (Gangatiri belt)</td><td>Gangatiri / Kankrej · wooden mathni churn</td><td class="n">2,000+</td><td>Amazon India, Walmart US, own site</td><td>YouTuber Fit Tuber recommendation; Jain "maryadit" variant</td><td>Niche; shows how one creator mention drives Amazon sales.</td></tr>
+        <tr><td>11</td><td><strong>Pahadi Source</strong></td><td>Uttarakhand</td><td>Hill desi cow · Bilona</td><td class="n">~2,550 <span class="muted">(₹765/300 g)</span></td><td>Own site, Amazon</td><td>Himalayan origin story</td><td>Origin as the differentiator; small.</td></tr>
+        <tr><td>12</td><td><strong>Pushti Organics</strong></td><td>North India</td><td>Sahiwal · Bilona</td><td class="n">2,150</td><td>Own site, marketplaces</td><td>Sahiwal breed positioning</td><td>Small D2C.</td></tr>
+        <tr><td>13</td><td><strong>Alimente</strong></td><td>—</td><td>Sahiwal · Bilona</td><td class="n">2,900</td><td>Own site</td><td>Ultra-premium positioning</td><td>Price ceiling reference for D2C.</td></tr>
+        <tr><td>14</td><td><strong>Organic G</strong></td><td>Vadodara, Gujarat</td><td>Gir · 6 gaushalas</td><td class="n">n/a</td><td>D2C + <strong>white-label / bulk</strong></td><td>Private-label supplier</td><td>Fallback supply partner if SGVP gaushala volume is short.</td></tr>
+        <tr><td colspan="8" style="background:var(--surface-2);font-weight:700;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)">Mass cow ghee — not A2, but the price anchor</td></tr>
+        <tr><td>—</td><td><strong>Amul Cow Ghee</strong></td><td>Anand, Gujarat</td><td>Mixed herd · industrial</td><td class="n">689–705</td><td>Every kirana, q-commerce, modern trade, export</td><td>Trust by default in Gujarat</td><td>The number every sweet shop compares you to.</td></tr>
+        <tr><td>—</td><td><strong>Patanjali Cow Ghee</strong></td><td>Haridwar</td><td>Mixed · industrial</td><td class="n">685–800</td><td>Patanjali stores, kirana, q-commerce</td><td>Swadeshi / Ayurveda halo</td><td>Closest mass brand to an "Ayurvedic" position.</td></tr>
+        <tr><td>—</td><td><strong>Gowardhan (Parag)</strong></td><td>Pune</td><td>Mixed · industrial</td><td class="n">734–840</td><td>Modern trade, BigBasket, export</td><td>"Premium" cow ghee at mass price</td><td>Strong in Maharashtra modern trade.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin-top:26px">What the ranking says</h3>
+  <div class="grid g3" style="margin-top:10px">
+    <div class="tile"><h4>Price clusters</h4><ul><li><strong>₹1,600–1,800</strong>: GirOrganic, Barosi, Kapiva (q-com) — the "own-farm / value premium" band</li><li><strong>₹1,800–2,400</strong>: Anveshan, Two Brothers, Shahji, Rosier, Pushti, Vedic — the D2C startup band</li><li><strong>₹2,500–3,600</strong>: Pahadi, Alimente, Bansi Gir — origin or devotion premium</li></ul><p class="sub">An SGVP brand at ₹1,800–2,000 sits at the top of band 1 / bottom of band 2 with a better story than either.</p></div>
+    <div class="tile"><h4>Who owns which channel</h4><ul><li>Own website: Two Brothers, Anveshan</li><li>Quick-commerce: Anveshan, Kapiva, Two Brothers</li><li>Amazon: Shahji, GirOrganic, Rosier, Two Brothers</li><li>Pharmacy / 1mg: Kapiva only</li><li>Offline B2B, doctors, sweet shops: <strong>nobody</strong></li><li>Gujarat satsang / trust network: Bansi Gir (weakly)</li></ul></div>
+    <div class="tile"><h4>Proof each brand leans on</h4><ul><li>Lab reports per batch — Anveshan, Vedic Ghee</li><li>Government award — GirOrganic (Gopal Ratna), Bansi (Kamdhenu)</li><li>Own farm you can visit — GirOrganic, Two Brothers, Bansi, Barosi</li><li>Heritage year — Shahji (1957), GirOrganic (1990)</li><li>Creator endorsement — Gau Amritam</li></ul><p class="sub">SGVP can stack four of the five: farm, award (apply), lab reports, heritage. No competitor has all four.</p></div>
+  </div>
+  <div class="callout ok"><strong>Bottom line for the SGVP brand</strong>The top two brands prove there is ₹100 Cr+ of demand for lab-tested Bilona ghee sold online at ₹1,800–2,200. Neither owns cows, neither sells offline, neither is in Gujarat. GirOrganic shows an own-farm Gujarat brand can undercut them and still win on Amazon. Bansi Gir shows the trust story sells even at ₹3,600 — but leaves the whole digital and B2B field open. The position is clear: own-gaushala proof + Anveshan-grade transparency + a B2B channel none of them have, at ₹1,800–2,000.</div>
+</section>
+
 <!-- ===================== SOURCES ===================== -->
 <section id="sources" class="part">
   <div class="sec-head"><h2>Sources</h2><p>Public pages consulted, Sep 2026. Prices and figures were read at that time and will drift.</p></div>
@@ -747,6 +798,16 @@ footer{margin-top:40px;padding-top:16px;font-size:13px;color:var(--ink-3)}
     <li><a href="https://www.tradeindia.com/products/shahji-ghee-a2-sahiwal-cow-ghee-1-litre-9333182.html">TradeIndia — Shahji 1 L</a></li>
     <li><a href="https://twobrothersfood.com/blogs/all-blogs/top-6-best-a2-ghee-brands-on-amazon-2025-edition-ranked-by-quality-authenticity">Two Brothers — top A2 brands on Amazon</a></li>
     <li><a href="https://www.gavyamart.in/blogs/know-your-products/top-10-best-a2-cow-ghee-brands-in-india-2026-edition">Gavyamart — top 10 A2 brands 2026</a></li>
+    <li><a href="https://shop.barosi.in/blogs/blogs/best-ghee-in-india-2026">Barosi — best ghee in India 2026</a></li>
+    <li><a href="https://www.bigbasket.com/pd/40302893/barosi-a2-desi-cow-ghee-1-l/">BigBasket — Barosi A2 1 L</a></li>
+    <li><a href="https://www.amazon.in/ROSIER-Traditional-Bilona-Grassfed-Healthy/dp/B0BLW427G7">Amazon — Rosier A2 Gir 1 L</a></li>
+    <li><a href="https://blinkit.com/prn/amul-cow-ghee/prid/85130">Blinkit — Amul cow ghee 1 L</a></li>
+    <li><a href="https://blinkit.com/prn/patanjali-cow-ghee-1-l/prid/11196">Blinkit — Patanjali cow ghee 1 L</a></li>
+    <li><a href="https://www.bigbasket.com/pd/40005948/gowardhan-ghee-1-l-bottle/">BigBasket — Gowardhan ghee 1 L</a></li>
+    <li><a href="https://kesariyafarm.com/products/a2-vedic-ghee">Kesariya Farm — Vedic A2 ghee</a></li>
+    <li><a href="https://pahadisource.com/blogs/news/best-a2-bilona-ghee-brands-india">Pahadi Source — A2 Bilona brands guide</a></li>
+    <li><a href="https://www.heroveda.com/best-organic-a2-ghee-in-india/">HeroVeda — 13 organic A2 ghee brands</a></li>
+    <li><a href="https://nuclearfarm.com/blogs/news/top-5-a2-cow-ghee-brands-in-india-2026-purity-rankings">Nuclear Farm — top 5 A2 brands 2026</a></li>
   </ul>
   <footer>Maintained as a single self-contained HTML file. To add research: append a numbered section, add a row to the research log, add sources to this list, update the "Last updated" line in the header. No scripts, no external assets.</footer>
 </section>
