@@ -1,7 +1,7 @@
+*.log
+.DS_Store
 .blender-toolkit/
 .playwright-mcp/
-sgvp-growth-plan.html
-a2-ghee-launch-plan.html
-*.log
 Thumbs.db
-.DS_Store
+a2-ghee-launch-plan.html
+sgvp-growth-plan.html
