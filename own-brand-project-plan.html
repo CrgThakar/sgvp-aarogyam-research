@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Own Brand — Project Plan</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<style>
+:root{
+  --bg:#FAF8F3; --surface:#FFFFFF; --surface-2:#F2EEE5; --ink:#1E1B16; --ink-2:#5B554B; --ink-3:#8A8377;
+  --line:#E4DED2; --brand:#D8551F; --brand-ink:#9E3A10; --green:#2F7A3E; --green-soft:#E3F1E4;
+  --blue:#1F5F8B; --blue-soft:#E1ECF5; --amber:#B7791F; --amber-soft:#FBF0D9; --red:#B3261E; --red-soft:#F9E3E1;
+  --radius:10px; --w:1080px; --side:272px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15130F; --surface:#1E1B16; --surface-2:#26221B; --ink:#F1ECE2; --ink-2:#BDB5A6; --ink-3:#8A8377;
+    --line:#37322A; --brand:#F0733D; --brand-ink:#F8A77E; --green:#6CC07A; --green-soft:#1E3322;
+    --blue:#7FB3DC; --blue-soft:#1B2C3B; --amber:#E2A94B; --amber-soft:#3A2D14; --red:#F08B84; --red-soft:#3B1D1B;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15130F; --surface:#1E1B16; --surface-2:#26221B; --ink:#F1ECE2; --ink-2:#BDB5A6; --ink-3:#8A8377;
+  --line:#37322A; --brand:#F0733D; --brand-ink:#F8A77E; --green:#6CC07A; --green-soft:#1E3322;
+  --blue:#7FB3DC; --blue-soft:#1B2C3B; --amber:#E2A94B; --amber-soft:#3A2D14; --red:#F08B84; --red-soft:#3B1D1B;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.55;padding:0}
+h1,h2,h3,h4{font-family:"Bricolage Grotesque","Public Sans",system-ui,sans-serif;line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:clamp(30px,5vw,46px);font-weight:800;letter-spacing:-.01em}
+h2{font-size:clamp(22px,3vw,30px);font-weight:700;margin-bottom:6px}
+h3{font-size:19px;font-weight:700}
+h4{font-size:16px;font-weight:700}
+p{margin:0}
+a{color:var(--blue)}
+.wrap{max-width:none;margin:0}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--brand)}
+.lede{font-size:18px;color:var(--ink-2);max-width:68ch;margin-top:12px}
+header.top{padding-block:40px 28px;border-bottom:1px solid var(--line)}
+nav.toc{display:none}
+.shell{display:grid;grid-template-columns:var(--side) minmax(0,1fr);align-items:start;min-height:100vh}
+.side{position:sticky;top:0;height:100vh;overflow-y:auto;scrollbar-width:thin;background:var(--surface-2);border-right:1px solid var(--line);padding:26px 16px 22px;display:flex;flex-direction:column;gap:20px;z-index:20}
+.side-title{display:block;text-decoration:none;color:var(--ink);font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:17px;line-height:1.2;letter-spacing:-.01em}
+.side-title small{display:block;font-family:"Public Sans",sans-serif;font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--brand);margin-top:6px}
+.side-nav{display:grid;gap:2px;counter-reset:sn}
+.side-nav a{display:grid;grid-template-columns:20px 1fr;gap:9px;align-items:baseline;padding:7px 10px;border-radius:7px;font-size:14px;font-weight:600;color:var(--ink-2);text-decoration:none;line-height:1.3}
+.side-nav a::before{counter-increment:sn;content:counter(sn,decimal-leading-zero);font-family:"Bricolage Grotesque",sans-serif;font-size:10.5px;font-weight:700;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.side-nav a:hover,.side-nav a:focus-visible{background:var(--surface);color:var(--ink)}
+.side-nav a.active{background:var(--surface);color:var(--brand-ink);box-shadow:inset 3px 0 0 var(--brand)}
+.side-nav a.active::before{color:var(--brand)}
+.side-foot{margin-top:auto;font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--line);padding-top:14px;display:grid;gap:7px}
+.side-foot b{display:block;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
+.side-foot a{color:var(--ink-2);text-decoration:none;font-weight:600}
+.side-foot a:hover,.side-foot a:focus-visible{color:var(--brand)}
+.main{min-width:0;padding-inline:clamp(20px,3.2vw,52px);padding-bottom:64px}
+@media (max-width:980px){
+  :root{--side:0px}
+  .shell{grid-template-columns:minmax(0,1fr)}
+  .side{position:sticky;top:0;height:auto;min-width:0;max-width:100vw;flex-direction:row;align-items:center;gap:0;overflow:visible;padding:0;border-right:0;border-bottom:1px solid var(--line);background:var(--bg)}
+  .side-title,.side-foot{display:none}
+  .side-nav{display:flex;gap:4px;flex:1 1 auto;min-width:0;padding:9px 14px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior-x:contain}
+  .side-nav::-webkit-scrollbar{display:none}
+  .side-nav a{flex:0 0 auto;white-space:nowrap;grid-template-columns:1fr;padding:6px 11px;font-size:13.5px}
+  .side-nav a::before{display:none}
+  .side-nav a.active{box-shadow:none;background:var(--surface-2);color:var(--brand-ink)}
+  .main{padding-inline:16px}
+}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+section{padding-block:44px 8px;scroll-margin-top:16px}
+@media (max-width:980px){section{scroll-margin-top:72px}}
+.sec-head{margin-bottom:22px}
+.sec-head p{color:var(--ink-2);max-width:70ch}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
+.tile .num{font-family:"Bricolage Grotesque",sans-serif;font-size:34px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1}
+.tile .lbl{font-size:13px;color:var(--ink-2);margin-top:6px}
+.tile .sub{font-size:13px;color:var(--ink-3);margin-top:8px}
+.callout{border-left:4px solid var(--brand);background:var(--surface-2);padding:16px 20px;border-radius:0 var(--radius) var(--radius) 0;margin-block:18px}
+.callout.warn{border-color:var(--amber);background:var(--amber-soft)}
+.callout.ok{border-color:var(--green);background:var(--green-soft)}
+.callout.bad{border-color:var(--red);background:var(--red-soft)}
+.callout strong{display:block;margin-bottom:4px}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);background:var(--surface-2);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.n{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+th.n{text-align:right}
+.pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.p-crit{background:var(--red-soft);color:var(--red)}
+.p-high{background:var(--amber-soft);color:var(--amber)}
+.p-med{background:var(--blue-soft);color:var(--blue)}
+.p-ok{background:var(--green-soft);color:var(--green)}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.steps li{position:relative;padding-left:44px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding-block:14px;padding-right:18px}
+.steps li::before{counter-increment:s;content:counter(s);position:absolute;left:14px;top:14px;width:22px;height:22px;border-radius:50%;background:var(--brand);color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center;font-family:"Bricolage Grotesque",sans-serif}
+.steps li strong{display:block;margin-bottom:3px}
+.steps li p{color:var(--ink-2);font-size:14.5px}
+.timeline{display:grid;gap:14px}
+.phase{display:grid;grid-template-columns:150px 1fr;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
+.phase .when{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:18px;color:var(--brand)}
+.phase .when small{display:block;font-family:"Public Sans",sans-serif;font-size:12px;font-weight:600;color:var(--ink-3);margin-top:4px;text-transform:uppercase;letter-spacing:.05em}
+.phase ul{margin:8px 0 0;padding-left:18px;color:var(--ink-2);font-size:14.5px;display:grid;gap:4px}
+.phase .goal{font-size:14px;font-weight:600;margin-top:10px;color:var(--green)}
+@media (max-width:560px){.phase{grid-template-columns:1fr}}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:14.5px}
+.kv dt{color:var(--ink-3);font-weight:600}
+.kv dd{margin:0}
+.code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:var(--surface-2);padding:1px 6px;border-radius:4px}
+footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-3)}
+.muted{color:var(--ink-3);font-size:13px}
+@media (prefers-reduced-motion:no-preference){a{transition:color .15s}}
+.tile-list{margin:6px 0 0;padding-left:18px;font-size:14.5px;color:var(--ink-2);display:grid;gap:4px}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
+.box h4{margin-bottom:8px}
+.box ul{margin:0;padding-left:18px;color:var(--ink-2);font-size:14.5px;display:grid;gap:5px}
+.box p{color:var(--ink-2);font-size:14.5px}
+.arch{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;line-height:1.7;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;overflow-x:auto;white-space:pre;color:var(--ink-2)}
+.arch b{color:var(--brand);font-weight:700}
+.check{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;font-size:14.5px}
+.check input{margin-top:5px;accent-color:var(--brand)}
+.checklist{display:grid;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+<aside class="side">
+  <a class="side-title" href="#top">Own brand<small>Project plan</small></a>
+  <nav class="side-nav" aria-label="Sections">
+  <a href="#shape">The shape of it</a>
+  <a href="#decide">Decide this week</a>
+  <a href="#portfolio">The SKU ladder</a>
+  <a href="#money">The money</a>
+  <a href="#build">Build sequence</a>
+  <a href="#sgvp">The SGVP relationship</a>
+  <a href="#channels">Channels</a>
+  <a href="#digital">Digital build</a>
+  <a href="#risk">Risks</a>
+  <a href="#next">Next 30 days</a>
+  </nav>
+  <div class="side-foot">
+    <b>Related</b>
+    <a href="a2-ghee-launch-plan.html">A2 ghee launch plan</a>
+    <a href="sgvp-digital-growth-plan.html">SGVP digital growth plan</a>
+    <a href="sgvp-growth-plan.html">SGVP growth &amp; distribution</a>
+    <a href="index.html">Research index</a>
+  </div>
+</aside>
+
+<main class="main" id="top">
+<header class="top">
+  <div class="eyebrow">New house brand · manufactured by SGVP Aarogyam · project plan · 29 Sep 2026</div>
+  <h1 style="margin-top:10px">One brand, two engines — A2 ghee first, then the Ayurvedic range</h1>
+  <p class="lede">The research is done: the business model, the ghee market, the brand-name rounds and the architecture all sit in the research page. This is the plan that turns it into a company — what gets built in what order, what it costs, who owns it, and what has to be decided before the first rupee is spent. The ghee launch detail lives in its own page; this one is the project around it.</p>
+</header>
+
+
+<!-- ============ SHAPE ============ -->
+<section id="shape">
+  <div class="sec-head">
+    <h2>The shape of it, in one page</h2>
+    <p>A house brand in the Himalaya / Patanjali mould: a master name that describes no product, so it can carry ghee today and roughly thirty Ayurvedic SKUs later. Everything is made by SGVP Aarogyam under third-party manufacturing; the pack carries <em>"from SGVP Aarogyam, Ahmedabad"</em> as an endorser line, which is both legally required and an asset in Gujarat.</p>
+  </div>
+
+  <div class="grid g4">
+    <div class="tile"><div class="num">2</div><div class="lbl">engines</div><div class="sub">Food (ghee, Class 29, FSSAI) and Ayurveda (Class 5, AYUSH via SGVP)</div></div>
+    <div class="tile"><div class="num">~30</div><div class="lbl">SKUs at 24 months</div><div class="sub">Built in four waves, not all at once</div></div>
+    <div class="tile"><div class="num">₹28–37 L</div><div class="lbl">year-1 capital</div><div class="sub">Before working capital; ₹50–65 L to reach the full range</div></div>
+    <div class="tile"><div class="num">0</div><div class="lbl">factories you build</div><div class="sub">SGVP holds the licence, the premises and the QC</div></div>
+  </div>
+
+  <h3 style="margin-top:28px">Why ghee first, and why it is not the business</h3>
+  <div class="grid g2" style="margin-top:12px">
+    <div class="box">
+      <h4>What ghee does for the project</h4>
+      <ul>
+        <li><b>It is legal to advertise.</b> A food product can be marketed, photographed and boosted on Meta. An Ayurvedic medicine largely cannot — the Drugs &amp; Magic Remedies Act blocks almost every hook you would want to use.</li>
+        <li><b>It builds the brand cheaply.</b> The gaushala and Bilona video is the most-watched content in the category. Ghee earns the audience that the medicines will later sell to.</li>
+        <li><b>It opens the doors.</b> Ghee is the base of <em>ghritam</em>, <em>snehana</em> and <em>basti</em> — the Ayurvedic clinics that buy ghee are the same buyers who will later stock the tablets.</li>
+        <li><b>Fast to market.</b> FSSAI licence and a lab report, not a two-to-four-month proprietary-medicine approval.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h4>Why it cannot be the whole business</h4>
+      <ul>
+        <li>Margin is thin outside D2C. Bilona ghee at B2B prices barely breaks even even on own milk — see the unit economics in the ghee plan.</li>
+        <li>Amul launched Desi Gir Cow A2 Bilona ghee at roughly ₹1,400/L on statewide distribution. You cannot win Gujarat on price.</li>
+        <li>One product means one purchase reason and no basket. A house with thirty SKUs has a customer who comes back for something else.</li>
+        <li>Ayurvedic tablets carry a far better contribution per unit and are what SGVP is actually equipped to make at scale.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout ok">
+    <strong>The one-sentence strategy</strong>
+    Use ghee to buy an audience, a retail shelf and a set of clinic relationships in Gujarat within twelve months — then put thirty Ayurvedic SKUs on top of an audience that already trusts the name, instead of launching them cold.
+  </div>
+
+  <h3 style="margin-top:26px">Brand architecture</h3>
+  <div class="arch" style="margin-top:12px"><b>[HOUSE NAME]</b>          word + device mark · Classes 5 · 3 · 29 · 30 · 32 · 35
+  from SGVP Aarogyam, Ahmedabad      endorser line on every pack, front or back
+
+  ├── <b>Vatsalam</b>  — cow products line      Class 29 / 30
+  │     Dohan A2 Gir Cow Ghee · honey · cold-pressed oils · gaushala range
+  │
+  ├── <b>[House] Ayurveda</b>                   Class 5 · AYUSH licence via SGVP
+  │     Hero SKUs — coined, separately trademarked (digestion, liver,
+  │     joints, piles, women's health, immunity)
+  │     Range SKUs — descriptive names, cheap to add
+  │
+  └── <b>[House] Care</b>                       Class 3 · month 12+
+        toothpaste · hair oil · face pack · soap · baby care</div>
+  <p class="muted" style="margin-top:10px">Naming rule, from the Himalaya model: coined and trademarkable names for the hero medicines ("Liv.52", not "Liver Syrup"), descriptive names for the long tail. You can own a coined name; you cannot own a category word.</p>
+</section>
+
+<!-- ============ DECIDE ============ -->
+<section id="decide">
+  <div class="sec-head">
+    <h2>Decide this week — nothing below can start without these</h2>
+    <p>Four open questions are blocking the entire project. Three of them can be closed in a single meeting; the fourth is a phone call to the gaushala.</p>
+  </div>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>#</th><th>Decision</th><th>Options on the table</th><th>What it blocks</th><th>Owner</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><span class="pill p-crit">Blocking</span> <b>The house name</b></td>
+        <td>Round-6 Gujarati finalists: <b>Chhanyo</b> (shade / shelter — the strongest idea across six rounds) · <b>Sukhakari</b> (well-being) · <b>Maavjat</b> (nurturing care) · <b>Chokhu</b> (pure — strongest for the food line). Vatsalam becomes the cow line either way.</td>
+        <td>Domains, trademark filing, packaging design, social handles, Amazon Brand Registry — <em>everything</em></td>
+        <td>Founder</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><span class="pill p-crit">Blocking</span> <b>Milk source and method</b></td>
+        <td>Own gaushala vs bought milk; Bilona vs direct-cream, or both. Supply is confirmed sufficient; the litres per day and the method are not.</td>
+        <td>Cost sheet, MRP, the label claim ("from our own gaushala" vs "sourced from certified Gir farms"), which channels are profitable</td>
+        <td>Founder + SGVP gaushala</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><span class="pill p-high">High</span> <b>Terms with SGVP</b></td>
+        <td>Per-unit price at 1k / 5k / 10k, MOQ per SKU, whether "Manufactured by SGVP Aarogyam" carries a co-branding fee, access to the ~70 field people, exclusivity of any formula developed for you</td>
+        <td>Unit economics, the entire channel plan, the risk register</td>
+        <td>Founder + SGVP management</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><span class="pill p-high">High</span> <b>Front-of-pack or back-of-pack for SGVP</b></td>
+        <td>SGVP's name on the front is a strong asset in Gujarat and with doctors. On the back only, the brand travels better to Mumbai and export.</td>
+        <td>Packaging design — and it is expensive to change after the first print run</td>
+        <td>Founder</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout warn">
+    <strong>Recommendation on #1 — and a warning about delay</strong>
+    <b>Chhanyo</b>: shade is protection, rest and trust; it is neutral across medicines, foods and care; it ties to the Gurukul's trees and the gaushala; and it reads as a coined word outside Gujarat. <b>Sukhakari</b> is the safe second — it says "well-being" outright and needs no explaining. Whichever is chosen, register the bare .com plus .in and .co.in <em>the same day</em>, before the name is discussed outside the room. Six rounds of research found that every common word with a free .com is gone; losing a verified-free domain to a two-week delay would cost more than the whole naming exercise did.
+  </div>
+</section>
+
+<!-- ============ PORTFOLIO ============ -->
+<section id="portfolio">
+  <div class="sec-head">
+    <h2>The SKU ladder — four waves, not thirty launches</h2>
+    <p>Each wave has to earn the next. The gate is not a date; it is whether the previous wave sells through. Adding SKUs before the previous ones move is how new FMCG brands die with a warehouse full of stock.</p>
+  </div>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Wave</th><th>When</th><th>SKUs</th><th>Class / licence</th><th class="n">Units</th><th class="n">Capital</th><th>Gate to the next wave</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><b>0 · Ghee</b></td><td>Month 1–3</td>
+        <td>Bilona A2 ghee 500 ml, 1 L, 5 L tin, 1 gift box. Plus a direct-cream B2B SKU if milk is bought.</td>
+        <td>29 · FSSAI</td>
+        <td class="n">~750 L</td><td class="n">₹10–15 L</td>
+        <td>20–25 bottles/day and 30+ online reviews by month 3</td>
+      </tr>
+      <tr>
+        <td><b>1 · First six medicines</b></td><td>Month 4–8</td>
+        <td>Six hero SKUs, relabelled from SGVP's existing formulations — digestion, joints, liver, immunity, women's health, piles. Coined names, individually trademarked.</td>
+        <td>5 · AYUSH via SGVP</td>
+        <td class="n">6 × 2,000</td><td class="n">₹9–13 L</td>
+        <td>Two of the six reach 15 units/day; repeat rate above 25%</td>
+      </tr>
+      <tr>
+        <td><b>2 · Foods that travel with ghee</b></td><td>Month 6–12</td>
+        <td>Honey, cold-pressed oils, chyawanprash-type, a herbal tea. All under the Vatsalam cow/food line where they fit.</td>
+        <td>29 / 30 · FSSAI</td>
+        <td class="n">4–6 SKUs</td><td class="n">₹6–9 L</td>
+        <td>AOV rises above ₹1,200; basket size above 1.4 items</td>
+      </tr>
+      <tr>
+        <td><b>3 · Range fill + Care</b></td><td>Month 12–24</td>
+        <td>Remaining ~15 Ayurvedic SKUs with descriptive names, plus the first Care products (toothpaste, hair oil, soap).</td>
+        <td>5 · 3</td>
+        <td class="n">~20 SKUs</td><td class="n">₹18–25 L</td>
+        <td>—</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="grid g2" style="margin-top:18px">
+    <div class="box">
+      <h4>Relabelled vs own formulation</h4>
+      <ul>
+        <li><b>Relabelled</b> (SGVP's existing formulas, your name on the pack): 4–6 weeks, no new approval, lowest risk. This is how waves 1 and 3 should start.</li>
+        <li><b>Own formulation:</b> SGVP must get each proprietary medicine approved by the state licensing authority under Rule 158-B — adds 2–4 months per product.</li>
+        <li>Do own formulations only for the two or three products you intend to make the brand famous for, and only after wave 1 proves the brand can sell anything at all.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h4>Pack and label — Rule 161, get it right once</h4>
+      <ul>
+        <li>Name, ingredients with quantities and the classical reference text, "Ayurvedic Proprietary Medicine"</li>
+        <li>Net content, batch, mfg/exp, licence number, manufacturer <em>and</em> marketer name and address, MRP, AYUSH warnings</li>
+        <li>No "cure / permanent / control" wording anywhere on pack or carton</li>
+        <li>A QR on every pack → batch COA, dosage, WhatsApp, reorder. This is what turns an offline sale into an online customer.</li>
+        <li>Ghee additionally: veg mark, nutrition panel, FSSAI number and logo, customer-care contact</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MONEY ============ -->
+<section id="money">
+  <div class="sec-head">
+    <h2>The money — capital, contribution, break-even</h2>
+    <p>Planning estimates. Every figure here should be replaced with a real quotation from SGVP, a real packaging quote and a real milk cost before anything is committed. The purpose of the table is to show the <em>shape</em> of the cash requirement, which is front-loaded and larger than most people expect.</p>
+  </div>
+
+  <h3>Capital by phase</h3>
+  <div class="table-wrap" style="margin-top:10px">
+  <table>
+    <thead><tr><th>Phase</th><th>Line</th><th class="n">Low</th><th class="n">High</th></tr></thead>
+    <tbody>
+      <tr><td rowspan="5"><b>0 · Setup</b><br><span class="muted">Month 0–1</span></td><td>Pvt Ltd / LLP, GST, CA, bank</td><td class="n">₹25,000</td><td class="n">₹40,000</td></tr>
+      <tr><td>Trademark — word + device across Classes 5, 29, 30, 3, 35, with an attorney</td><td class="n">₹60,000</td><td class="n">₹90,000</td></tr>
+      <tr><td>Domains (.com / .in / .co.in + defensive holds)</td><td class="n">₹8,000</td><td class="n">₹15,000</td></tr>
+      <tr><td>FSSAI State licence + consultant</td><td class="n">₹5,000</td><td class="n">₹12,000</td></tr>
+      <tr><td>Logo, brand identity, packaging design for 4 ghee SKUs + gift box</td><td class="n">₹1,50,000</td><td class="n">₹2,50,000</td></tr>
+      <tr><td rowspan="6"><b>1 · Ghee launch</b><br><span class="muted">Month 1–3</span></td><td>First production ~750 L</td><td class="n">₹8,00,000</td><td class="n">₹12,00,000</td></tr>
+      <tr><td>Glass jars, tins, labels, cartons, gift boxes — at MOQ</td><td class="n">₹1,20,000</td><td class="n">₹2,00,000</td></tr>
+      <tr><td>Lab: A2 beta-casein, adulteration, fat profile, stability study</td><td class="n">₹60,000</td><td class="n">₹1,00,000</td></tr>
+      <tr><td>Gaushala + Bilona film, product photography</td><td class="n">₹1,00,000</td><td class="n">₹1,50,000</td></tr>
+      <tr><td>Shopify build, apps, domain year 1</td><td class="n">₹60,000</td><td class="n">₹90,000</td></tr>
+      <tr><td>Launch marketing, 3 months</td><td class="n">₹2,25,000</td><td class="n">₹3,00,000</td></tr>
+      <tr><td rowspan="3"><b>2 · First six medicines</b><br><span class="muted">Month 4–8</span></td><td>6 SKUs × 2,000 units, ex-factory ≈ 30% of MRP</td><td class="n">₹8,00,000</td><td class="n">₹12,00,000</td></tr>
+      <tr><td>Artwork, plates, print runs, 6 SKUs</td><td class="n">₹1,00,000</td><td class="n">₹1,50,000</td></tr>
+      <tr><td>Marketing, 5 months</td><td class="n">₹1,50,000</td><td class="n">₹2,50,000</td></tr>
+      <tr><td><b>Year 1 total</b></td><td>Excluding working capital and salaries</td><td class="n"><b>≈ ₹27 L</b></td><td class="n"><b>≈ ₹40 L</b></td></tr>
+      <tr><td><b>Waves 2–3</b></td><td>Month 9–24, to the full ~30-SKU range</td><td class="n">₹24,00,000</td><td class="n">₹34,00,000</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout bad">
+    <strong>The line most new brands miss: working capital</strong>
+    Distributors take 21–30 days of credit. Ghee ties up raw material for about 45 days. Retailers reorder on 15-day terms. Add stock in transit and at the depot, and you need roughly <b>90 days of cost of goods funded and sitting still</b> on top of the capital above — on the order of ₹8–12 L once the ghee and the first six medicines are both running. A brand that spends its last rupee on the launch batch cannot fund the reorder it just earned. Ring-fence this before wave 1 ships.
+  </div>
+
+  <h3 style="margin-top:26px">Contribution per unit — where the profit actually is</h3>
+  <div class="table-wrap" style="margin-top:10px">
+  <table>
+    <thead><tr><th>Product</th><th>Channel</th><th class="n">Realised</th><th class="n">Landed cost</th><th class="n">Contribution</th><th>Read</th></tr></thead>
+    <tbody>
+      <tr><td rowspan="4">Bilona A2 ghee, 1 L</td><td>Own site</td><td class="n">₹1,800</td><td class="n">₹1,150</td><td class="n">₹650 · 36%</td><td>The only channel that really pays on ghee</td></tr>
+      <tr><td>Gifting</td><td class="n">₹1,500</td><td class="n">₹1,150</td><td class="n">₹350 · 23%</td><td>Seasonal, but volume arrives in one order</td></tr>
+      <tr><td>Marketplace after ~30% fees</td><td class="n">₹1,260</td><td class="n">₹1,150</td><td class="n">₹110 · 9%</td><td>A reviews-and-discovery channel, not a profit one</td></tr>
+      <tr><td>Ayurvedic B2B, 5 L</td><td class="n">₹1,250</td><td class="n">₹1,150</td><td class="n">₹100 · 8%</td><td>Use a direct-cream SKU here, not Bilona</td></tr>
+      <tr><td rowspan="3">Ayurvedic tablet, MRP ₹250</td><td>Own site</td><td class="n">₹250</td><td class="n">₹75</td><td class="n">₹175 · 70%</td><td>Five times the ghee margin on a tenth of the cash</td></tr>
+      <tr><td>Marketplace after ~30%</td><td class="n">₹175</td><td class="n">₹75</td><td class="n">₹100 · 57%</td><td>Still strong — marketplaces work for medicines</td></tr>
+      <tr><td>Distributor</td><td class="n">₹150</td><td class="n">₹75</td><td class="n">₹75 · 50%</td><td>Where the volume eventually comes from</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout">
+    <strong>What this table is telling you</strong>
+    Ghee is the marketing budget; medicines are the business. A litre of ghee ties up ₹1,150 of cash to earn ₹350 blended. A tablet pack ties up ₹75 to earn ₹100–175. Do not let ghee volume grow so fast that it consumes the working capital that wave 1 needs — and price the ghee jar so that a marketplace listing at ₹1,999 with a 10% coupon still leaves something, rather than discounting off ₹1,800.
+  </div>
+
+  <h3 style="margin-top:26px">Break-even</h3>
+  <div class="grid g3" style="margin-top:12px">
+    <div class="tile"><div class="num">₹2.4 L</div><div class="lbl">monthly fixed cost</div><div class="sub">Two salaries, marketing, platform, logistics overhead</div></div>
+    <div class="tile"><div class="num">₹300</div><div class="lbl">blended contribution per unit</div><div class="sub">Mix of ghee and medicines across all channels</div></div>
+    <div class="tile"><div class="num">~27/day</div><div class="lbl">units to cover fixed cost</div><div class="sub">≈ 800 units/month · operational break-even, month 6–8</div></div>
+  </div>
+  <p class="muted" style="margin-top:10px">Payback on the ~₹30 L of year-1 capital is a separate and much later question: at roughly 200 units a day and the contribution above, month 14–18. Treat any projection beyond month 12 as a sketch.</p>
+</section>
+
+<!-- ============ BUILD ============ -->
+<section id="build">
+  <div class="sec-head">
+    <h2>Build sequence — twelve months</h2>
+    <p>Four phases. Each one ends on a gate that is a number, not a date.</p>
+  </div>
+
+  <div class="timeline">
+    <div class="phase">
+      <div class="when">Phase 0<small>Month 0–1 · exist</small></div>
+      <div>
+        <ul>
+          <li>House name chosen; .com / .in / .co.in registered the same day; social handles and Amazon Brand Registry name claimed</li>
+          <li>Trademark filed — word and device, Classes 5, 29, 30, 3, 35, with Gujarati and Devanagari script variants. ™ is usable from the filing date.</li>
+          <li>Company incorporated, GST, current account, FSSAI application in</li>
+          <li>Manufacturing agreement with SGVP signed — see the clause list below</li>
+          <li>Milk source and method confirmed in litres per day; first batch to a NABL lab</li>
+          <li>Brand identity and packaging brief out to a designer</li>
+        </ul>
+        <div class="goal">Gate: the brand legally exists and nobody else can take the name.</div>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="when">Phase 1<small>Month 1–3 · ghee to market</small></div>
+      <div>
+        <ul>
+          <li>Packaging printed; first production of ~750 L; batch COAs in hand</li>
+          <li>One shoot: gaushala, the Bilona process, the product, the founder. This footage runs for a year.</li>
+          <li>Site live — product page with the film, the batch lab report, FAQ and a WhatsApp button. GA4, Search Console, Merchant Center connected from day one.</li>
+          <li>Amazon listing with Brand Registry; first 50 reviews seeded honestly from the SGVP community</li>
+          <li>Ayurvedic clinics and panchakarma centres approached first — the fastest channel to open and the one that leads into wave 1</li>
+          <li>Gifting pitched to corporates and trusts <b>before 10 October</b> if Diwali 2026 is to be caught at all</li>
+        </ul>
+        <div class="goal">Gate: 20–25 bottles/day, 30+ reviews, at least 20 clinic accounts.</div>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="when">Phase 2<small>Month 4–8 · the medicines</small></div>
+      <div>
+        <ul>
+          <li>Six hero SKUs finalised with SGVP; coined names cleared and filed; artwork through Rule 161 review</li>
+          <li>First production 2,000 units each; COAs and stability data</li>
+          <li>Product pages built to the same standard as the ghee page — composition table, classical reference, contraindications, COA download</li>
+          <li>The ghee customer list is the launch audience: a WhatsApp broadcast to people who already bought and trust the name</li>
+          <li>Ayurvedic clinics that buy ghee are offered the tablets — same buyer, same visit, no new relationship needed</li>
+          <li>Distributor conversations begin in Ahmedabad, Surat, Rajkot, Vadodara</li>
+        </ul>
+        <div class="goal">Gate: two of six SKUs at 15 units/day; repeat rate above 25%.</div>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="when">Phase 3<small>Month 9–12 · make it a house</small></div>
+      <div>
+        <ul>
+          <li>Foods wave: honey, cold-pressed oils, a chyawanprash-type product — bought together with ghee, so they lift AOV without new traffic</li>
+          <li>Quick-commerce in Ahmedabad for the fast-moving SKUs; modern-trade listing conversations</li>
+          <li>Subscriptions on both ghee and the chronic-use medicines</li>
+          <li>Export groundwork if D2C holds: APEDA registration, FSSAI export certificate, an importer conversation in Dubai</li>
+          <li>Decide wave 3 and whether any own formulation is worth the Rule 158-B wait</li>
+        </ul>
+        <div class="goal">Gate: operationally break-even; a customer list worth more than the stock.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SGVP RELATIONSHIP ============ -->
+<section id="sgvp">
+  <div class="sec-head">
+    <h2>The SGVP relationship — the biggest asset and the biggest risk</h2>
+    <p>SGVP holds the licence, the premises, the QC, the gaushala, the institutional reputation and roughly seventy field people. Every one of those is borrowed, not owned. The agreement is therefore the most important document in the project, and it should be written while everyone is enthusiastic rather than when something has gone wrong.</p>
+  </div>
+
+  <div class="grid g2">
+    <div class="box">
+      <h4>Clauses the manufacturing agreement must carry</h4>
+      <ul>
+        <li><b>Brand ownership</b> — the mark, artwork and all creative are yours, unconditionally and on termination</li>
+        <li><b>Exclusivity</b> — SGVP will not supply the same relabelled formulation to another marketer in your territory</li>
+        <li><b>Formula confidentiality</b> for anything developed for you</li>
+        <li><b>Quality specs + a batch COA with every consignment</b>; retained samples; a 12-month stability study</li>
+        <li><b>MOQ, price at 1k / 5k / 10k, and a price-revision notice period</b> — so a cost increase cannot land mid-campaign</li>
+        <li><b>Lead time commitment</b> and a remedy if it slips; 30–45 days from artwork approval is the normal expectation</li>
+        <li><b>Product-complaint and recall liability</b>, clearly allocated</li>
+        <li><b>Exit</b> — notice period, transfer of artwork and stability data, right to move to another factory</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h4>Ask explicitly, in the first meeting</h4>
+      <ul>
+        <li>Which licences are held — is there GMP under Schedule T? Copies will be needed for Amazon, 1mg and every distributor.</li>
+        <li>Do they already manufacture for other brands, and for whom?</li>
+        <li>Is there a co-branding fee for "Manufactured by SGVP Aarogyam" on the pack?</li>
+        <li>Will they issue the premises consent letter later, for a loan licence?</li>
+        <li>Who owns stability data and the shelf-life declaration?</li>
+        <li><b>The field team.</b> Can the ~70 people carry your brand, on what commission, and is that written down? Assume the answer is no until it is in the agreement.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <strong>Channel conflict — settle it before the first pack is printed</strong>
+    SGVP Aarogyam sells 47 SKUs of its own under its own name, to the same doctors, the same pharmacies and, eventually, the same distributors. Your brand will sit on that shelf next to theirs, made in the same building. Agree the separation in writing and in the positioning: SGVP's own range stays <em>institutional and prescription-led</em>, sold through doctors and stockists; the new brand is <em>consumer-led</em>, sold through retail, online and modern trade, at different pack sizes and a different price band. Overlapping formulations in the same territory at different prices is the fastest way to damage both brands and the relationship at once.
+  </div>
+</section>
+
+<!-- ============ CHANNELS ============ -->
+<section id="channels">
+  <div class="sec-head">
+    <h2>Where the brand sells</h2>
+    <p>The detailed ghee channel plan — clinics, sweet shops, gifting, distributors, marketplaces, export, with volumes per channel — lives in the ghee launch plan. What follows is how the channel mix should differ between the two engines, because they do not sell the same way.</p>
+  </div>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Channel</th><th>Ghee &amp; foods</th><th>Ayurvedic medicines</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td>Own site + WhatsApp</td><td><span class="pill p-ok">Primary</span> 36% margin, and the only place ghee really pays</td><td><span class="pill p-med">Important</span> highest margin, but low traffic alone</td><td>The one channel that gives you the customer's phone number</td></tr>
+      <tr><td>Ayurvedic clinics &amp; panchakarma</td><td><span class="pill p-ok">Primary</span> ghee is the base of ghritam and basti</td><td><span class="pill p-ok">Primary</span> same buyer, same visit</td><td>The bridge between the two engines. Open it with ghee, monetise it with medicines.</td></tr>
+      <tr><td>Marketplaces</td><td><span class="pill p-med">Reviews</span> 9% margin — a proof channel</td><td><span class="pill p-ok">Primary</span> 57% margin even after fees</td><td>Marketplaces are a cost for ghee and a profit for tablets</td></tr>
+      <tr><td>Gifting &amp; corporate</td><td><span class="pill p-ok">Primary</span> Diwali, weddings, trusts, NRI</td><td><span class="pill p-crit">Avoid</span></td><td>Nobody gifts medicine. Hampers can carry ghee, honey and a food SKU.</td></tr>
+      <tr><td>Sweet shops, hotels, kitchens</td><td><span class="pill p-med">Volume</span> direct-cream SKU only</td><td><span class="pill p-crit">N/A</span></td><td>Co-branded counter standee is the real pull, not the price</td></tr>
+      <tr><td>Distributors &amp; retail</td><td><span class="pill p-med">Later</span> after reviews exist</td><td><span class="pill p-ok">Primary at scale</span></td><td>Distributors google you first. Build the online proof before the trade pitch.</td></tr>
+      <tr><td>Quick-commerce</td><td><span class="pill p-med">Metro</span> ghee is a top grocery SKU</td><td><span class="pill p-med">Selective</span> only impulse SKUs</td><td>Ahmedabad dark stores first, Mumbai later</td></tr>
+      <tr><td>Export</td><td><span class="pill p-med">Month 12+</span> diaspora pays ₹2,500–3,500/L equivalent</td><td><span class="pill p-crit">Much later</span> registration is a different problem</td><td>UAE first — largest Gujarati diaspora, no FDA</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout">
+    <strong>The rule that holds it together</strong>
+    One price list everywhere. Same MRP online and offline, same trade margin for distributors and for marketplaces. If a retailer sees Blinkit cheaper than his landing cost, he stops stocking you — and in year two the retailer network will be worth more than the marketplace order.
+  </div>
+</section>
+
+<!-- ============ DIGITAL ============ -->
+<section id="digital">
+  <div class="sec-head">
+    <h2>The digital build — deliberately small</h2>
+    <p>A 5–10 SKU brand does not need the apparatus of a 47-SKU one. It needs one store, one story told well, and proof. Everything here should be live before the first bottle ships, because a distributor or a clinic will look you up the same evening they meet you.</p>
+  </div>
+
+  <div class="grid g2">
+    <div class="box">
+      <h4>The stack</h4>
+      <ul>
+        <li><b>One Shopify store</b>, Dawn or Sense theme, six apps maximum. No headless build — there is nothing to be gained from it at this size.</li>
+        <li>Razorpay with UPI first, COD capped, Shiprocket, GST invoicing</li>
+        <li>WhatsApp Business with a catalogue from day one; the API later, past 2,000 contacts</li>
+        <li>GA4, Search Console, Merchant Center, Meta Pixel + Conversions API — all connected before launch, not after</li>
+        <li>Judge.me or similar for reviews, on the product page from the first order</li>
+        <li>Separate ad accounts, analytics and social handles from SGVP Aarogyam's. Do not share pixels between two brands.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h4>The five pages that do all the work</h4>
+      <ul>
+        <li><b>The product page</b> — the gaushala film, the batch lab report as a download, three sizes, subscription toggle, FAQ, reviews, WhatsApp button</li>
+        <li><b>The story page</b> — SGVP, the Gurukul, the gaushala, the people. This is what a gifting buyer and a distributor read.</li>
+        <li><b>The proof page</b> — FSSAI, AYUSH licence, GMP, every batch COA, photos of the plant. Linked from every product.</li>
+        <li><b>The trade page</b> — margins, MOQ, territory, a six-field enquiry form, WhatsApp. One page, and it will pay for the site.</li>
+        <li><b>The gifting page</b> — box options, MOQ 100, lead time, a form that goes to WhatsApp. Live by mid-October or it is a 2027 page.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout ok">
+    <strong>The one piece of content that matters most</strong>
+    A single well-made 60-second film of the Bilona process — curd setting, the wooden churner, the makkhan, the slow cooking, the cows it came from — is the most-watched content in this category and outperforms a year of advertising. Shoot it properly, once, in phase 1. Everything else can be a phone.
+  </div>
+
+  <p class="muted" style="margin-top:14px">Detailed campaign structure, budgets, content pillars and the social calendar are in the SGVP digital growth plan — the mechanics transfer directly; only the phrase bank changes, because a food brand may say things an Ayurvedic medicine may not.</p>
+</section>
+
+<!-- ============ RISK ============ -->
+<section id="risk">
+  <div class="sec-head">
+    <h2>Risk register</h2>
+    <p>Ranked by what would actually stop the project, not by what is most likely.</p>
+  </div>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Risk</th><th>Severity</th><th>What it looks like</th><th>Mitigation</th></tr></thead>
+    <tbody>
+      <tr><td>Dependence on one manufacturer</td><td><span class="pill p-crit">Critical</span></td><td>SGVP raises prices, reprioritises its own SKUs, or the relationship sours. The brand has no factory.</td><td>Written agreement with notice periods and price-revision terms; identify a second Gujarat AYUSH contract manufacturer by month 6 and qualify one SKU with them</td></tr>
+      <tr><td>Working capital exhausted</td><td><span class="pill p-crit">Critical</span></td><td>The launch sells, and there is no cash to fund the reorder plus 30 days of distributor credit</td><td>Ring-fence 90 days of COGS before wave 1 ships; prefer prepaid online orders; stage territory releases</td></tr>
+      <tr><td>One bad batch</td><td><span class="pill p-crit">Critical</span></td><td>A gaushala-and-purity brand does not survive an adulteration story going viral in Gujarat</td><td>Batch COA on every consignment, retained samples, a written recall procedure, and the COA published on the site as a habit rather than a response</td></tr>
+      <tr><td>Trademark refused or opposed</td><td><span class="pill p-high">High</span></td><td>Packaging is printed, then the mark is objected to</td><td>Attorney search before filing; ™ from filing; do not print more than a first run until the examination report is seen</td></tr>
+      <tr><td>Amul A2 at ~₹1,400/L</td><td><span class="pill p-high">High</span></td><td>Statewide distribution, a trusted name, and a price you cannot match</td><td>Do not compete on price. Three lines on the <em>front</em> of the pack: from our own gaushala · every batch lab-tested · Bilona, 25 L of milk per litre</td></tr>
+      <tr><td>Claims and regulatory</td><td><span class="pill p-high">High</span></td><td>A notice under the Drugs &amp; Magic Remedies Act, or FSSAI questioning an unsupported "A2" claim</td><td>Lawyer-approved phrase bank before any marketing; beta-casein report on file per milk source; nobody publishes outside the bank</td></tr>
+      <tr><td>Channel conflict with SGVP's own brand</td><td><span class="pill p-med">Medium</span></td><td>Two brands from one building chasing the same doctor with overlapping products</td><td>Positioning separation agreed in writing; different pack sizes and price bands; different primary channels</td></tr>
+      <tr><td>Launching too many SKUs</td><td><span class="pill p-med">Medium</span></td><td>Thirty products, no sell-through, cash locked in a warehouse</td><td>The wave gates in the SKU ladder. No wave starts until the previous one hits its number.</td></tr>
+      <tr><td>Key-person concentration</td><td><span class="pill p-med">Medium</span></td><td>The founder is the brand, the sales team and the marketing department</td><td>Two hires by month 4 — one commercial, one content. Document the phrase bank, the price list and the SOPs early.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ============ NEXT ============ -->
+<section id="next">
+  <div class="sec-head">
+    <h2>The next 30 days</h2>
+    <p>Nothing here needs capital beyond about ₹1.5 L, and everything below unblocks something downstream. The order matters.</p>
+  </div>
+
+  <div class="checklist">
+    <label class="check"><input type="checkbox"><span><b>Choose the house name</b> — Chhanyo / Sukhakari / Maavjat / Chokhu. Say each aloud to ten Gujarati and ten Hindi speakers first. One meeting, one decision.</span></label>
+    <label class="check"><input type="checkbox"><span><b>Register the domains the same day</b> — bare .com, .in, .co.in, plus one spelling variant. Before the name leaves the room.</span></label>
+    <label class="check"><input type="checkbox"><span><b>Claim the handles</b> — Instagram, YouTube, Facebook, WhatsApp Business display name, and reserve the name for Amazon Brand Registry.</span></label>
+    <label class="check"><input type="checkbox"><span><b>Trademark attorney engaged</b> — search, then file word + device across Classes 5, 29, 30, 3, 35 including script variants.</span></label>
+    <label class="check"><input type="checkbox"><span><b>Confirm milk litres per day and the method</b> with the gaushala. This decides the cost sheet, the MRP and the label claim.</span></label>
+    <label class="check"><input type="checkbox"><span><b>First SGVP meeting</b> with the question list in the relationship section. Get pricing at 1k / 5k / 10k in writing.</span></label>
+    <label class="check"><input type="checkbox"><span><b>Incorporate</b> — Pvt Ltd or LLP, GST, current account. Start now; it takes longer than expected.</span></label>
+    <label class="check"><input type="checkbox"><span><b>FSSAI application filed</b> in the brand owner's name.</span></label>
+    <label class="check"><input type="checkbox"><span><b>First milk batch to a NABL lab</b> — A2 beta-casein, adulteration, fat profile. You cannot print "A2" without it.</span></label>
+    <label class="check"><input type="checkbox"><span><b>Packaging brief to a designer</b> — 500 ml, 1 L, 5 L tin, gift box; and decide front-of-pack vs back-of-pack for the SGVP endorsement.</span></label>
+    <label class="check"><input type="checkbox"><span><b>Lawyer briefed</b> on the claim phrase bank for both a food product and, later, Ayurvedic medicines.</span></label>
+    <label class="check"><input type="checkbox"><span><b>Book the shoot day</b> — gaushala, the Bilona process, product, founder. One day of footage that runs for a year.</span></label>
+    <label class="check"><input type="checkbox"><span><b>Write the corporate gifting deck</b> and identify 50 targets. If Diwali 2026 is in scope, this has to go out in the first half of October.</span></label>
+  </div>
+
+  <div class="callout warn" style="margin-top:22px">
+    <strong>A note on Diwali 2026</strong>
+    Diwali falls on 8 November 2026 and corporate gifting orders close by the end of October. From a standing start today, catching it means a house name this week, packaging at the printer within three weeks, and product in hand by mid-October. That is possible but tight, and it only works if the gifting SKU is the priority. If the name slips past mid-October, plan the launch properly for winter — chyawanprash and immunity season runs November to January and is the second-best window of the year — rather than shipping a compromised first impression into the busiest gifting fortnight in the market.
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Own brand — project plan · 29 Sep 2026 · Companion to <a href="a2-ghee-launch-plan.html">a2-ghee-launch-plan.html</a> (ghee market, competitors, unit economics, channel volumes), <a href="sgvp-digital-growth-plan.html">sgvp-digital-growth-plan.html</a> (digital mechanics that transfer to this brand) and <a href="index.html">index.html</a> (research: business model §1, brand names §14, architecture §15).<br>
+    All costs, margins and timelines are planning estimates. Replace each with a real quotation before committing capital.
+  </div>
+</footer>
+</main>
+
+</div>
+
+<script>
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.side-nav a'));
+  var secs=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1))}).filter(Boolean);
+  if(!secs.length)return;
+  var nav=document.querySelector('.side-nav');
+  function set(id){
+    links.forEach(function(a){
+      var on=a.getAttribute('href')==='#'+id;
+      a.classList.toggle('active',on);
+      if(on&&window.innerWidth<=980&&nav){nav.scrollLeft=a.offsetLeft-nav.clientWidth/2+a.clientWidth/2}
+    });
+  }
+  var raf=0;
+  function update(){
+    raf=0;
+    var cur=secs[0].id;
+    for(var i=0;i<secs.length;i++){if(secs[i].getBoundingClientRect().top<=140)cur=secs[i].id}
+    if(window.innerHeight+window.scrollY>=document.body.scrollHeight-4)cur=secs[secs.length-1].id;
+    set(cur);
+  }
+  function onScroll(){if(!raf)raf=requestAnimationFrame(update)}
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  update();
+})();
+</script>
+
+</body>
+</html>

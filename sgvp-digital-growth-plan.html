@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SGVP Aarogyam — Digital Growth Plan</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<style>
+:root{
+  --bg:#FAF8F3; --surface:#FFFFFF; --surface-2:#F2EEE5; --ink:#1E1B16; --ink-2:#5B554B; --ink-3:#8A8377;
+  --line:#E4DED2; --brand:#D8551F; --brand-ink:#9E3A10; --green:#2F7A3E; --green-soft:#E3F1E4;
+  --blue:#1F5F8B; --blue-soft:#E1ECF5; --amber:#B7791F; --amber-soft:#FBF0D9; --red:#B3261E; --red-soft:#F9E3E1;
+  --radius:10px; --w:1080px; --side:272px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15130F; --surface:#1E1B16; --surface-2:#26221B; --ink:#F1ECE2; --ink-2:#BDB5A6; --ink-3:#8A8377;
+    --line:#37322A; --brand:#F0733D; --brand-ink:#F8A77E; --green:#6CC07A; --green-soft:#1E3322;
+    --blue:#7FB3DC; --blue-soft:#1B2C3B; --amber:#E2A94B; --amber-soft:#3A2D14; --red:#F08B84; --red-soft:#3B1D1B;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15130F; --surface:#1E1B16; --surface-2:#26221B; --ink:#F1ECE2; --ink-2:#BDB5A6; --ink-3:#8A8377;
+  --line:#37322A; --brand:#F0733D; --brand-ink:#F8A77E; --green:#6CC07A; --green-soft:#1E3322;
+  --blue:#7FB3DC; --blue-soft:#1B2C3B; --amber:#E2A94B; --amber-soft:#3A2D14; --red:#F08B84; --red-soft:#3B1D1B;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.55;padding:0}
+h1,h2,h3,h4{font-family:"Bricolage Grotesque","Public Sans",system-ui,sans-serif;line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:clamp(30px,5vw,46px);font-weight:800;letter-spacing:-.01em}
+h2{font-size:clamp(22px,3vw,30px);font-weight:700;margin-bottom:6px}
+h3{font-size:19px;font-weight:700}
+h4{font-size:16px;font-weight:700}
+p{margin:0}
+a{color:var(--blue)}
+.wrap{max-width:none;margin:0}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--brand)}
+.lede{font-size:18px;color:var(--ink-2);max-width:68ch;margin-top:12px}
+header.top{padding-block:40px 28px;border-bottom:1px solid var(--line)}
+nav.toc{display:none}
+.shell{display:grid;grid-template-columns:var(--side) minmax(0,1fr);align-items:start;min-height:100vh}
+.side{position:sticky;top:0;height:100vh;overflow-y:auto;scrollbar-width:thin;background:var(--surface-2);border-right:1px solid var(--line);padding:26px 16px 22px;display:flex;flex-direction:column;gap:20px;z-index:20}
+.side-title{display:block;text-decoration:none;color:var(--ink);font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:17px;line-height:1.2;letter-spacing:-.01em}
+.side-title small{display:block;font-family:"Public Sans",sans-serif;font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--brand);margin-top:6px}
+.side-nav{display:grid;gap:2px;counter-reset:sn}
+.side-nav a{display:grid;grid-template-columns:20px 1fr;gap:9px;align-items:baseline;padding:7px 10px;border-radius:7px;font-size:14px;font-weight:600;color:var(--ink-2);text-decoration:none;line-height:1.3}
+.side-nav a::before{counter-increment:sn;content:counter(sn,decimal-leading-zero);font-family:"Bricolage Grotesque",sans-serif;font-size:10.5px;font-weight:700;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.side-nav a:hover,.side-nav a:focus-visible{background:var(--surface);color:var(--ink)}
+.side-nav a.active{background:var(--surface);color:var(--brand-ink);box-shadow:inset 3px 0 0 var(--brand)}
+.side-nav a.active::before{color:var(--brand)}
+.side-foot{margin-top:auto;font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--line);padding-top:14px;display:grid;gap:7px}
+.side-foot b{display:block;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
+.side-foot a{color:var(--ink-2);text-decoration:none;font-weight:600}
+.side-foot a:hover,.side-foot a:focus-visible{color:var(--brand)}
+.main{min-width:0;padding-inline:clamp(20px,3.2vw,52px);padding-bottom:64px}
+@media (max-width:980px){
+  :root{--side:0px}
+  .shell{grid-template-columns:minmax(0,1fr)}
+  .side{position:sticky;top:0;height:auto;min-width:0;max-width:100vw;flex-direction:row;align-items:center;gap:0;overflow:visible;padding:0;border-right:0;border-bottom:1px solid var(--line);background:var(--bg)}
+  .side-title,.side-foot{display:none}
+  .side-nav{display:flex;gap:4px;flex:1 1 auto;min-width:0;padding:9px 14px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior-x:contain}
+  .side-nav::-webkit-scrollbar{display:none}
+  .side-nav a{flex:0 0 auto;white-space:nowrap;grid-template-columns:1fr;padding:6px 11px;font-size:13.5px}
+  .side-nav a::before{display:none}
+  .side-nav a.active{box-shadow:none;background:var(--surface-2);color:var(--brand-ink)}
+  .main{padding-inline:16px}
+}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+section{padding-block:44px 8px;scroll-margin-top:16px}
+@media (max-width:980px){section{scroll-margin-top:72px}}
+.sec-head{margin-bottom:22px}
+.sec-head p{color:var(--ink-2);max-width:70ch}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
+.tile .num{font-family:"Bricolage Grotesque",sans-serif;font-size:34px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1}
+.tile .lbl{font-size:13px;color:var(--ink-2);margin-top:6px}
+.tile .sub{font-size:13px;color:var(--ink-3);margin-top:8px}
+.callout{border-left:4px solid var(--brand);background:var(--surface-2);padding:16px 20px;border-radius:0 var(--radius) var(--radius) 0;margin-block:18px}
+.callout.warn{border-color:var(--amber);background:var(--amber-soft)}
+.callout.ok{border-color:var(--green);background:var(--green-soft)}
+.callout strong{display:block;margin-bottom:4px}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);background:var(--surface-2);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.n{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+th.n{text-align:right}
+.pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.p-crit{background:var(--red-soft);color:var(--red)}
+.p-high{background:var(--amber-soft);color:var(--amber)}
+.p-med{background:var(--blue-soft);color:var(--blue)}
+.p-ok{background:var(--green-soft);color:var(--green)}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.steps li{position:relative;padding-left:44px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding-block:14px;padding-right:18px}
+.steps li::before{counter-increment:s;content:counter(s);position:absolute;left:14px;top:14px;width:22px;height:22px;border-radius:50%;background:var(--brand);color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center;font-family:"Bricolage Grotesque",sans-serif}
+.steps li strong{display:block;margin-bottom:3px}
+.steps li p{color:var(--ink-2);font-size:14.5px}
+.chan{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;display:flex;flex-direction:column;gap:10px}
+.chan .share{font-family:"Bricolage Grotesque",sans-serif;font-size:26px;font-weight:800;color:var(--brand);letter-spacing:-.01em;line-height:1}
+.chan .share small{font-family:"Public Sans",sans-serif;font-size:12px;font-weight:600;color:var(--ink-3);letter-spacing:.05em;text-transform:uppercase;margin-left:6px}
+.chan ul{margin:0;padding-left:18px;color:var(--ink-2);font-size:14.5px;display:grid;gap:4px}
+.chan .why{font-size:14px;color:var(--ink-2)}
+.timeline{display:grid;gap:14px}
+.phase{display:grid;grid-template-columns:130px 1fr;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
+.phase .when{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:18px;color:var(--brand)}
+.phase .when small{display:block;font-family:"Public Sans",sans-serif;font-size:12px;font-weight:600;color:var(--ink-3);margin-top:4px;text-transform:uppercase;letter-spacing:.05em}
+.phase ul{margin:8px 0 0;padding-left:18px;color:var(--ink-2);font-size:14.5px;display:grid;gap:4px}
+.phase .goal{font-size:14px;font-weight:600;margin-top:10px;color:var(--green)}
+@media (max-width:560px){.phase{grid-template-columns:1fr}}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:14.5px}
+.kv dt{color:var(--ink-3);font-weight:600}
+.kv dd{margin:0}
+.code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:var(--surface-2);padding:1px 6px;border-radius:4px}
+footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-3)}
+.muted{color:var(--ink-3);font-size:13px}
+@media (prefers-reduced-motion:no-preference){a{transition:color .15s}}
+.tile-list{margin:6px 0 0;padding-left:18px;font-size:14.5px;color:var(--ink-2);display:grid;gap:4px}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
+.box h4{margin-bottom:8px}
+.box ul{margin:0;padding-left:18px;color:var(--ink-2);font-size:14.5px;display:grid;gap:5px}
+.box p{color:var(--ink-2);font-size:14.5px}
+.funnel{display:grid;gap:10px}
+.fstep{display:grid;grid-template-columns:120px 1fr;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px 18px}
+.fstep .stage{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:15px;color:var(--brand);line-height:1.25}
+.fstep .stage small{display:block;font-family:"Public Sans",sans-serif;font-size:12px;font-weight:600;color:var(--ink-3);margin-top:3px;text-transform:uppercase;letter-spacing:.05em}
+.fstep .leak{font-size:14.5px;color:var(--ink-2)}
+.fstep .leak b{color:var(--ink)}
+.fstep .do{font-size:14px;color:var(--ink-2);margin-top:6px;padding-top:6px;border-top:1px dashed var(--line)}
+@media (max-width:560px){.fstep{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+<aside class="side">
+  <a class="side-title" href="#top">SGVP Aarogyam<small>Digital growth plan</small></a>
+  <nav class="side-nav" aria-label="Sections">
+  <a href="#baseline">What digital can deliver</a>
+  <a href="#site">Revenue path</a>
+  <a href="#search">Search</a>
+  <a href="#market">Marketplaces</a>
+  <a href="#social">Social</a>
+  <a href="#campaigns">Campaigns</a>
+  <a href="#retention">Retention</a>
+  <a href="#measure">Measurement</a>
+  <a href="#budget">Budget &amp; 90 days</a>
+  <a href="#kpi">KPIs &amp; guardrails</a>
+  </nav>
+  <div class="side-foot">
+    <b>Related</b>
+    <a href="sgvp-growth-plan.html">Growth &amp; distribution plan</a>
+    <a href="a2-ghee-launch-plan.html">A2 ghee launch plan</a>
+    <a href="own-brand-project-plan.html">Own brand project plan</a>
+    <a href="index.html">Research index</a>
+  </div>
+</aside>
+
+<main class="main" id="top">
+<header class="top">
+  <div class="eyebrow">sgvpaarogyam.com · digital sales plan · 29 Sep 2026 · Diwali in ~6 weeks</div>
+  <h1 style="margin-top:10px">SGVP Aarogyam online — the store, the feed and the ad money</h1>
+  <p class="lede">The growth plan treats the website as one of six channels and spends most of its pages on doctors, stockists and distributors. This page does the opposite. It covers only what can be run from a laptop — the store, the content, the social accounts and the campaign calendar — what that part alone can be expected to deliver, and in what order to do it.</p>
+</header>
+
+
+<!-- ============ BASELINE ============ -->
+<section id="baseline">
+  <div class="sec-head">
+    <h2>What digital alone can be expected to deliver</h2>
+    <p>Digital will not move 4,700 units a day. In Indian Ayurvedic pharma it carries 10–20% of volume. But it is the 10–20% with the best margin, it is the only channel that gives you the customer's phone number, and it is the first thing every doctor, distributor and sweet-shop owner checks before agreeing to meet you. So it has two jobs, and both are counted below.</p>
+  </div>
+
+  <div class="grid g2">
+    <div class="box">
+      <h4>Job 1 — sell directly</h4>
+      <p>Own site + Amazon + quick-commerce. Measured in orders per day, AOV and repeat rate. This is the number in the table below.</p>
+    </div>
+    <div class="box">
+      <h4>Job 2 — make the other five channels close faster</h4>
+      <p>A doctor who searches your name finds a real brand; a distributor finds a margin page and a WhatsApp number; a pharmacist finds reviews. Measured in partner enquiries per month and in how many field visits end in a first order. Free to build, and worth more than the direct sales in year one.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:26px">The ramp</h3>
+  <p class="muted" style="margin-top:4px">Planning estimates. Average list price across the 47 SKUs is ~₹235, median ~₹210; AOV rises as bundles, free-shipping thresholds and subscriptions come in.</p>
+  <div class="table-wrap" style="margin-top:10px">
+  <table>
+    <thead><tr><th>Horizon</th><th class="n">Own-site orders/day</th><th class="n">Marketplace orders/day</th><th class="n">AOV</th><th class="n">Digital revenue / month</th><th>What has to be true</th></tr></thead>
+    <tbody>
+      <tr><td><b>Today</b> <span class="muted">(assumed — measure it)</span></td><td class="n">1–3</td><td class="n">0–2</td><td class="n">₹400–450</td><td class="n">₹40–70 k</td><td>Nothing. This is the site as the audit found it.</td></tr>
+      <tr><td><b>Month 3</b> · Dec 2026</td><td class="n">8</td><td class="n">6</td><td class="n">₹600</td><td class="n">≈ ₹2.5 L</td><td>8 hero SKUs have real product pages, Amazon live with 50+ reviews, ₹75 k/month ads running, Diwali executed</td></tr>
+      <tr><td><b>Month 6</b> · Mar 2027</td><td class="n">18</td><td class="n">15</td><td class="n">₹650</td><td class="n">≈ ₹6.4 L</td><td>30 k sessions/month, subscriptions live, WhatsApp list of 5 k, quick-commerce in Ahmedabad</td></tr>
+      <tr><td><b>Month 12</b> · Sep 2027</td><td class="n">40</td><td class="n">35</td><td class="n">₹700</td><td class="n">≈ ₹15.7 L</td><td>Organic is the largest source, repeat rate &gt; 35%, Gujarati/Hindi pages ranking, field QR codes feeding online</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3 style="margin-top:26px">The traffic that implies — month 6</h3>
+  <div class="table-wrap" style="margin-top:10px">
+  <table>
+    <thead><tr><th>Source</th><th class="n">Sessions / month</th><th>How it gets there</th><th class="n">Cost</th></tr></thead>
+    <tbody>
+      <tr><td>Organic search</td><td class="n">12,000</td><td>38 existing posts rewritten and re-linked + 40 new + Gujarati/Hindi versions of the top 10 + ingredient pages</td><td class="n">₹40–60 k/mo content</td></tr>
+      <tr><td>Paid search &amp; Shopping</td><td class="n">8,000</td><td>Brand, Shopping feed, intent keywords, Gujarati queries — ₹7–9 blended cost per session</td><td class="n">₹60–70 k/mo</td></tr>
+      <tr><td>Social (organic + boosted)</td><td class="n">5,000</td><td>4 reels + 2 carousels/week, doctor explainers, catalogue retargeting</td><td class="n">₹25 k/mo</td></tr>
+      <tr><td>Direct, WhatsApp, email, QR</td><td class="n">8,000</td><td>Repeat buyers, refill broadcasts, pack QR codes scanned in retail</td><td class="n">₹5 k/mo tooling</td></tr>
+      <tr><td><b>Total</b></td><td class="n"><b>≈ 33,000</b></td><td>At 1.5% conversion = ~500 orders/month = <b>~17/day</b></td><td class="n"><b>≈ ₹1.3–1.6 L</b></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout warn">
+    <strong>Do this before anything else in this plan</strong>
+    The audit found a Facebook Pixel but <em>no GA4 tag in the page source</em>. That means there is no reliable baseline for sessions, conversion rate, AOV or repeat rate — every number above is an assumption. Week 1: install GA4 via the Google &amp; YouTube channel, verify Search Console, and pull 30 days of Shopify Analytics (sessions, conversion rate, AOV, top products, returning-customer rate). In week 2, replace the "Today" row with real figures and re-scale the rest. Running ads without this is spending blind.
+  </div>
+</section>
+
+<!-- ============ REVENUE PATH ============ -->
+<section id="site">
+  <div class="sec-head">
+    <h2>Part 1 — The revenue path: seven screens, not 110 pages</h2>
+    <p>The audit lists what is broken. This lists what <em>earns</em>. A buyer passes through seven screens between seeing you and paying; money leaks at each one. Fix them in this order — the later screens are cheaper to fix and leak more.</p>
+  </div>
+
+  <div class="funnel">
+    <div class="fstep">
+      <div class="stage">1 · The ad or the search result<small>Impression</small></div>
+      <div><div class="leak"><b>Leak:</b> the listing looks like a generic Ayurvedic seller. No rating stars, no price, no "Made by SGVP".</div>
+      <div class="do"><b>Do:</b> Merchant Center free listings + product review feed so stars show in Shopping. Title format <span class="code">Product — what it supports | SGVP Aarogyam</span>. Sitelinks to /pages/quality and the doctor page.</div></div>
+    </div>
+    <div class="fstep">
+      <div class="stage">2 · The landing<small>First 3 seconds</small></div>
+      <div><div class="leak"><b>Leak:</b> the newsletter popup covers the hero, a 13-slide carousel with typos loads, and the certificate logos are broken images. This is the single largest loss in the funnel and it is free to fix.</div>
+      <div class="do"><b>Do:</b> popup to 20 s / exit intent, once per 30 days. Slider 13 → 4 slides, typos fixed. Re-upload GMP / FDCA / FSSAI images linked to real PDFs. Never land an ad on the homepage — land on the product or the condition collection.</div></div>
+    </div>
+    <div class="fstep">
+      <div class="stage">3 · The product page<small>Where the decision happens</small></div>
+      <div><div class="leak"><b>Leak:</b> 43 of 47 products have under 120 words and 1–2 images. A first-time buyer of an Ayurvedic medicine will not spend ₹250 on that.</div>
+      <div class="do"><b>Do:</b> the anatomy below. Start with the 8 hero SKUs only — a finished page on 8 products beats a thin page on 47.</div></div>
+    </div>
+    <div class="fstep">
+      <div class="stage">4 · Add to cart<small>Basket size</small></div>
+      <div><div class="leak"><b>Leak:</b> one ₹210 tablet pack, shipping eats the margin, no reason to add a second item.</div>
+      <div class="do"><b>Do:</b> free shipping over ₹599 (shown as a progress bar in the cart), a 2+1 pack option on the PDP, a "goes with this" block (e.g. digestion tablet + triphala), and a 3-month course pack priced 12% below 3×.</div></div>
+    </div>
+    <div class="fstep">
+      <div class="stage">5 · Checkout<small>Biggest silent loss</small></div>
+      <div><div class="leak"><b>Leak:</b> Indian D2C checkouts abandon at 60–75%. COD orders return at 15–30% and each return costs shipping both ways plus a broken seal.</div>
+      <div class="do"><b>Do:</b> Razorpay with UPI first; 5% prepaid discount shown as a line item; COD kept but capped (no COD above ₹2,000, no COD on first order to a new pincode after two RTOs); abandoned-checkout WhatsApp at 30 min and email at 24 h.</div></div>
+    </div>
+    <div class="fstep">
+      <div class="stage">6 · After the order<small>Where trust is made</small></div>
+      <div><div class="leak"><b>Leak:</b> silence until the parcel arrives, then nothing. No review, no second order.</div>
+      <div class="do"><b>Do:</b> Shiprocket tracking on WhatsApp, a "how to take this" message on day 2 (dosage, timing, what to avoid), review request on day 10, refill reminder on day 25.</div></div>
+    </div>
+    <div class="fstep">
+      <div class="stage">7 · The second order<small>All the profit</small></div>
+      <div><div class="leak"><b>Leak:</b> chronic-use products (Diabezeel, SG-Liv, Cardpro) are bought once when they should be bought twelve times.</div>
+      <div class="do"><b>Do:</b> Shopify Subscriptions on every chronic SKU at 8% off with free shipping; refill broadcast at day 25; a "your course" page showing what they bought and when to reorder.</div></div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:28px">Hero product page anatomy</h3>
+  <div class="grid g2" style="margin-top:12px">
+    <div class="box">
+      <h4>Above the fold</h4>
+      <ul>
+        <li>H1 = product name + what it supports (lawyer-approved wording only)</li>
+        <li>5–7 images: front, <b>back label with the ingredients panel</b>, pack size in hand, one lifestyle, one lab/COA shot</li>
+        <li>Price, pack options (60s / 3-month course / 500s hospital), subscription toggle</li>
+        <li>Trust strip: GMP · AYUSH licence no. · Made at SGVP Aarogyam, Ahmedabad · COD · 7-day return</li>
+        <li>Star rating from real reviews — add reviews <em>before</em> spending on ads</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h4>Below the fold</h4>
+      <ul>
+        <li>150–250 words: who it is for, how to take it, how long before it is judged</li>
+        <li>Composition table: each herb, quantity per tablet/5 ml, classical action, reference text</li>
+        <li>Contraindications, "consult a physician", pregnancy/child note</li>
+        <li>HSN code, GST rate, shelf life, batch COA download <span class="muted">— this also satisfies the B2B buyer</span></li>
+        <li>8–10 FAQs with FAQ schema — wins "People also ask" and is what AI answer engines quote</li>
+        <li>Medical disclaimer block on the template, not per product</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>One job, three results</strong>
+    The composition table, COA and FAQ block are written once and then serve the retail buyer (conversion), Google (thin-content fix), and the doctor or distributor evaluating you (Job 2). Budget two weeks of one person's time for the 8 hero SKUs and treat the remaining 39 as a month-4 task.
+  </div>
+
+  <h3 style="margin-top:26px">Ranked by return, not by ease</h3>
+  <div class="table-wrap" style="margin-top:10px">
+  <table>
+    <thead><tr><th>#</th><th>Impact</th><th>Fix</th><th>Effort</th><th>Why it pays</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><span class="pill p-crit">Highest</span></td><td>GA4 + Search Console + Merchant Center + conversion events</td><td>1 day</td><td>Nothing else in this plan can be judged without it</td></tr>
+      <tr><td>2</td><td><span class="pill p-crit">Highest</span></td><td>Popup delay, slider 13→4, typos, broken certificate images</td><td>1 hour</td><td>Recovers bounced traffic you are already paying for</td></tr>
+      <tr><td>3</td><td><span class="pill p-crit">Highest</span></td><td>Claim wording review under the Drugs &amp; Magic Remedies Act; medical disclaimer block</td><td>1 day + legal</td><td>Meta and Google reject ads on these pages today; also legal exposure</td></tr>
+      <tr><td>4</td><td><span class="pill p-high">High</span></td><td>8 hero product pages rebuilt to the anatomy above</td><td>2 weeks</td><td>Every rupee of ad spend lands here</td></tr>
+      <tr><td>5</td><td><span class="pill p-high">High</span></td><td>Reviews: WhatsApp/email every past buyer, target 10 per hero SKU</td><td>1 week</td><td>Conversion rate moves more on reviews than on any design change</td></tr>
+      <tr><td>6</td><td><span class="pill p-high">High</span></td><td>WhatsApp button + abandoned-cart flow</td><td>1 day</td><td>In India this recovers more carts than email</td></tr>
+      <tr><td>7</td><td><span class="pill p-med">Medium</span></td><td>Free-shipping bar, bundles, 3-month course packs</td><td>3 days</td><td>Raises AOV from ~₹450 to ~₹650 without new traffic</td></tr>
+      <tr><td>8</td><td><span class="pill p-med">Medium</span></td><td>Subscriptions on chronic SKUs</td><td>3 days</td><td>30–40% of D2C revenue for category leaders</td></tr>
+      <tr><td>9</td><td><span class="pill p-med">Medium</span></td><td>Prepaid discount + COD rules</td><td>1 day</td><td>Cuts RTO losses, which are pure margin</td></tr>
+      <tr><td>10</td><td><span class="pill p-ok">Later</span></td><td>Translate &amp; Adapt: Gujarati + Hindi on top 10 pages</td><td>1 week</td><td>Almost no competition on Gujarati queries</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="muted" style="margin-top:10px">Core Web Vitals were green in the audit (LCP 2.5 s, INP 113 ms, CLS 0) — speed is not the problem and does not need a replatform. Keep it that way: WebP under 150 KB, no homepage slider, no popup in the first 20 seconds, no more than six apps.</p>
+</section>
+
+<!-- ============ SEARCH ============ -->
+<section id="search">
+  <div class="sec-head">
+    <h2>Part 2 — Own the searches you can actually win</h2>
+    <p>You will not out-rank Dabur on "ayurvedic medicine for diabetes". You can own the long tail: ingredient questions, condition questions, safety questions, and almost the whole of Gujarati search. There are already 38 posts of 1,900–2,500 words on the site — refreshing and re-linking those beats writing new ones for the first three months.</p>
+  </div>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Page type</th><th>Example query</th><th>Intent</th><th>What to do</th></tr></thead>
+    <tbody>
+      <tr><td>Hero product page</td><td>"gudmar tablet for sugar control", "ayurvedic tablet for acidity"</td><td>Buy</td><td>The anatomy in Part 1. One page per hero SKU, internally linked from every related post.</td></tr>
+      <tr><td>Ingredient page</td><td>"gudmar benefits", "arjuna chhal uses", "punarnava kidney"</td><td>Learn → buy</td><td>10–15 new pages, 800–1,200 words, each linking to the one product that contains it. Cheapest ranking wins on the site.</td></tr>
+      <tr><td>Existing blog (38 posts)</td><td>Already written, mostly unlinked</td><td>Learn</td><td><b>Audit sprint, week 2–4:</b> add a named BAMS author with credentials and a date, fix the claim wording, add 3 internal links to products, add an FAQ block, re-submit. No new writing.</td></tr>
+      <tr><td>Safety / interaction</td><td>"is ashwagandha safe with thyroid medicine", "ayurvedic medicine with metformin"</td><td>Learn</td><td>High-trust, low-competition, and exactly what AI answer engines quote. 1 per week.</td></tr>
+      <tr><td>Comparison</td><td>"[SGVP product] vs Dabur [x]", "best ayurvedic [category] in India"</td><td>Decide</td><td>Honest comparison tables. Rank fast, convert well.</td></tr>
+      <tr><td>Gujarati / Hindi</td><td>સુગર માટે આયુર્વેદિક દવા · शुगर की आयुर्वेदिक दवा</td><td>Buy / learn</td><td>Translate &amp; Adapt (free) on the top 10 pages + hreflang. Almost no competition, and it is how your distributors' retailers actually search.</td></tr>
+      <tr><td>Local</td><td>"ayurvedic medicine shop ahmedabad", "panchakarma near me"</td><td>Visit</td><td>Google Business Profile claimed and filled, weekly posts, photos of the plant and clinic, a "where to buy" page built from the field team's stockist photos.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="grid g2" style="margin-top:18px">
+    <div class="box">
+      <h4>Cadence that works</h4>
+      <ul>
+        <li>Weeks 2–4: refresh the 38 existing posts (author, date, claims, links, FAQ). No new posts.</li>
+        <li>From week 5: 2 new posts/week, 1,500–2,200 words, each answering one question and linking to one product.</li>
+        <li>1 ingredient page/week until 15 exist.</li>
+        <li>Month 4: Gujarati + Hindi versions of the 10 best performers.</li>
+        <li>Target 200–3,000 searches/month, low difficulty. Validate in Keyword Planner before writing.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h4>Being quoted by AI answers (GEO)</h4>
+      <ul>
+        <li>Identical brand facts everywhere: name, AYUSH licence number, plant address, SGVP institution — site, Google Business Profile, Justdial, IndiaMART, Wikidata.</li>
+        <li>Dated, author-attributed content with a named BAMS doctor and real citations to classical texts.</li>
+        <li>Plain HTML tables for composition and dosage — not carousels, not images of text.</li>
+        <li>FAQ blocks that answer the question in the first sentence.</li>
+        <li>An <span class="code">llms.txt</span> at the root listing the brand facts and key pages.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARKETPLACES ============ -->
+<section id="market">
+  <div class="sec-head">
+    <h2>Part 3 — Marketplaces and quick-commerce</h2>
+    <p>Amazon is where a first-time buyer of an Ayurvedic brand they have never heard of is willing to try. Treat it as a review-and-discovery channel first and a profit channel second. Quick-commerce matters for anything a person wants today.</p>
+  </div>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Platform</th><th>What it is for</th><th class="n">Cost of sale</th><th>First step</th><th>Month-3 goal</th></tr></thead>
+    <tbody>
+      <tr><td><b>Amazon</b></td><td>Discovery, reviews, and the page a doctor checks. Non-negotiable.</td><td class="n">25–35%</td><td>Brand Registry (the logo already carries ™), A+ content on 8 hero SKUs, Subscribe &amp; Save on chronic products</td><td>50+ reviews on 3 SKUs, 6 orders/day</td></tr>
+      <tr><td><b>Flipkart</b></td><td>Tier-2/3 Gujarat and Rajasthan; lower competition in Ayurveda</td><td class="n">20–30%</td><td>List the same 8 SKUs once Amazon content exists — reuse the images</td><td>2 orders/day</td></tr>
+      <tr><td><b>1mg / PharmEasy / Netmeds</b></td><td>Buyers already taking allopathic medicines; highest intent for chronic SKUs</td><td class="n">25–40%</td><td>Seller onboarding needs the AYUSH licence and GMP certificate — have the PDFs ready</td><td>Listed, 1–2 orders/day</td></tr>
+      <tr><td><b>Blinkit / Zepto / Instamart</b></td><td>Impulse and urgent buys — churan, pain oil, cough, digestive. Not for ₹500 course packs.</td><td class="n">30–40% + listing</td><td>Brand-partner form; Ahmedabad dark stores only to start</td><td>3–4 SKUs live in Ahmedabad</td></tr>
+      <tr><td><b>IndiaMART / TradeIndia</b></td><td>Inbound distributor and bulk enquiries — this is Job 2, not D2C</td><td class="n">Fixed fee</td><td>One listing per category with the PCD/distributor page as the destination</td><td>10+ enquiries/month</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout warn">
+    <strong>One price everywhere</strong>
+    Same MRP online and offline. If a retailer finds Blinkit cheaper than his own landing cost, he stops stocking you — and the retailer network is worth more than the marketplace order. Fund marketplace discounting out of a coupon, not out of the listed price, so the MRP on the pack is never contradicted.
+  </div>
+
+  <h3 style="margin-top:22px">The review engine — do this before spending on ads</h3>
+  <div class="grid g3" style="margin-top:12px">
+    <div class="box"><h4>Past buyers</h4><p>Export every customer from Shopify. One WhatsApp and one email asking for a review, with the direct link. Target 10 reviews per hero SKU in two weeks.</p></div>
+    <div class="box"><h4>The SGVP community</h4><p>Gurukul alumni, satsang attendees, staff families. A genuine ask, never an incentivised one — Amazon removes incentivised reviews and can suspend the account.</p></div>
+    <div class="box"><h4>The field team</h4><p>~70 people on the ground. Three review requests per visit, via a QR code the retailer shows the customer. That is thousands of asks a month that no online-only competitor can match.</p></div>
+  </div>
+</section>
+
+<!-- ============ SOCIAL ============ -->
+<section id="social">
+  <div class="sec-head">
+    <h2>Part 4 — Social that feeds the funnel</h2>
+    <p>Social will not move 100 units a day on its own. It does two things that everything else depends on: it makes the doctor, distributor or pharmacist who just heard your name trust you within 30 seconds of looking you up, and it supplies the creative that paid campaigns run on. Every channel in the growth plan converts better when the profiles look alive.</p>
+  </div>
+
+  <div class="callout warn">
+    <strong>Read this before posting anything</strong>
+    Ayurvedic medicines fall under the Drugs &amp; Magic Remedies (Objectionable Advertisements) Act and ASCI's Ayurvedic code. Do not name Schedule J conditions — diabetes, sexual function, fertility, obesity, kidney-stone "removal", height increase — as things a product treats or cures. No before/after images, no "guaranteed", no "permanent". Meta and Google reject these ads too, so this is a commercial constraint as much as a legal one. Have a lawyer approve a <b>phrase bank</b> ("supports healthy digestion", "traditionally used for joint comfort", "consult your physician") and let no one post outside it. Every post carries: <em>Not a substitute for medical advice. Consult a qualified physician.</em>
+  </div>
+
+  <h3 style="margin-top:22px">What each channel is for</h3>
+  <div class="table-wrap" style="margin-top:10px">
+  <table>
+    <thead><tr><th>Channel</th><th>Audience</th><th>Its one job</th><th>Cadence</th><th>Language</th></tr></thead>
+    <tbody>
+      <tr><td><b>Instagram</b></td><td>25–45 retail buyers, wellness audience, doctors' younger patients</td><td>Make the brand look alive; feed catalogue retargeting; Instagram Shop synced from Shopify</td><td>4 reels + 2 carousels/week</td><td>Gujarati + English captions</td></tr>
+      <tr><td><b>YouTube</b></td><td>Anyone searching "arjun tablet benefits in gujarati"</td><td>Rank in Google as well as YouTube; the doctor explainer is the asset that converts B2B and B2C both</td><td>1 long + 3 Shorts/week</td><td>Gujarati &amp; Hindi, English subtitles</td></tr>
+      <tr><td><b>WhatsApp Business + Channel</b></td><td>Past buyers, retailers, distributors, doctors</td><td>Refills, order updates, trade schemes, new-batch COAs. The highest-ROI channel you own.</td><td>1 broadcast/week per list</td><td>Gujarati / Hindi</td></tr>
+      <tr><td><b>Facebook</b></td><td>40+ Gujarat, satsang and community groups, NRI family groups</td><td>Where the 40+ buyer of Ayurvedic medicine actually is. Don't skip it because it feels old.</td><td>Cross-post from Instagram + 1 native community post/week</td><td>Gujarati</td></tr>
+      <tr><td><b>LinkedIn</b></td><td>Distributors, corporate gifting buyers, institutional partners</td><td>Job 2 only — plant, certifications, "opening distributors in 3 states"</td><td>2 posts/week</td><td>English</td></tr>
+      <tr><td><b>Google Business Profile</b></td><td>"near me" searches in Ahmedabad</td><td>Map pack, photos, weekly posts, review replies</td><td>1 post/week</td><td>Gujarati + English</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3 style="margin-top:26px">Six content pillars, one repeating week</h3>
+  <div class="table-wrap" style="margin-top:10px">
+  <table>
+    <thead><tr><th>Day</th><th>Pillar</th><th>Format</th><th>Example</th><th>Where it goes next</th></tr></thead>
+    <tbody>
+      <tr><td>Mon</td><td><b>The plant</b> — proof you actually make it</td><td>Reel, 20–30 s</td><td>Tablet press running; herbs being weighed; the QC lab; a batch COA being signed</td><td>Becomes ad creative; embedded on /pages/quality</td></tr>
+      <tr><td>Tue</td><td><b>The doctor</b> — credibility</td><td>Talking head, 60–90 s</td><td>BAMS doctor answers one patient question, phrase-bank wording only</td><td>Cut from the monthly YouTube explainer; Shorts</td></tr>
+      <tr><td>Wed</td><td><b>The herb</b> — education</td><td>Carousel, 5 slides</td><td>"What Punarnava is and how Ayurveda uses it" — the ingredient page, resliced</td><td>Drives the ingredient page; saves and shares</td></tr>
+      <tr><td>Thu</td><td><b>The product</b> — sell</td><td>Reel + Shop tag</td><td>Product in hand, pack opened, dosage shown, price and link</td><td>Catalogue retargeting source</td></tr>
+      <tr><td>Fri</td><td><b>The person</b> — trust</td><td>UGC / review card</td><td>A real customer or retailer, filmed by the field team on a phone</td><td>Review widget on the PDP</td></tr>
+      <tr><td>Sat</td><td><b>The institution</b> — what only you have</td><td>Photo or reel</td><td>SGVP campus, gaushala, Gurukul, a CME or health camp</td><td>LinkedIn; the distributor pitch deck</td></tr>
+      <tr><td>Sun</td><td>Rest / repost the week's best to Facebook and the WhatsApp Channel</td><td>—</td><td>—</td><td>—</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="grid g2" style="margin-top:20px">
+    <div class="box">
+      <h4>One shoot day → a month of content</h4>
+      <ul>
+        <li><b>Morning:</b> 8 hero SKUs, studio-style — front, back label, in hand, pack opened, dosage. Feeds the website, Amazon A+, WhatsApp catalogue and ads all at once.</li>
+        <li><b>Midday:</b> plant B-roll — press, blending, QC lab, packing line, warehouse.</li>
+        <li><b>Afternoon:</b> the BAMS doctor records 8–12 answers in one sitting, one take each.</li>
+        <li><b>Output:</b> ~30 posts and 12 reels. Edited in CapCut and Canva by an in-house person, not an agency.</li>
+        <li>Repeat once a month. Never run out of footage; never pay per asset.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h4>Turn the field team into the content engine</h4>
+      <ul>
+        <li>A WhatsApp group where the ~70 field people drop 15-second clips: a retailer's shelf, a dispensary, a health camp, a happy customer.</li>
+        <li>A referral code per person; commission on online orders from their code so they push the site instead of resenting it.</li>
+        <li>A photo of every stockist → the "where to buy" page and Google Business posts, town by town.</li>
+        <li>Zero production cost, and it is the one thing Kapiva or Anveshan-style online brands cannot copy.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>Creators — small, local, and on retainer</strong>
+    Two micro-creators a month (10k–100k followers): one BAMS doctor creator, one Gujarati home/lifestyle creator. ₹5,000 plus product each, script from the phrase bank, a unique coupon code so the orders are attributable. This is cheaper and converts better in Gujarat than one large national creator.
+  </div>
+</section>
+
+<!-- ============ CAMPAIGNS ============ -->
+<section id="campaigns">
+  <div class="sec-head">
+    <h2>Part 5 — The campaign calendar</h2>
+    <p>Two layers: always-on campaigns that run every month and only get tuned, and seasonal pushes built around the calendar Indian households actually buy on. Diwali is roughly six weeks out — that pressure sets the order of everything in Part 1.</p>
+  </div>
+
+  <h3>Always-on — ₹75,000/month to start</h3>
+  <div class="table-wrap" style="margin-top:10px">
+  <table>
+    <thead><tr><th>Campaign</th><th>Platform &amp; type</th><th class="n">₹ / day</th><th>Targets</th><th>Lands on</th></tr></thead>
+    <tbody>
+      <tr><td>Brand defence</td><td>Google Search</td><td class="n">150</td><td>"sgvp aarogyam", "sgvp ayurvedic", product names</td><td>Home / product</td></tr>
+      <tr><td>Shopping</td><td>Standard Shopping — <em>not</em> PMax yet</td><td class="n">700</td><td>Merchant Center feed, all 8 hero SKUs</td><td>Product page</td></tr>
+      <tr><td>Intent search</td><td>Google Search, exact + phrase</td><td class="n">600</td><td>"ayurvedic tablet for acidity", "arjun tablet price", Gujarati queries</td><td>Product / condition collection</td></tr>
+      <tr><td>Catalogue retargeting</td><td>Meta Advantage+ catalogue</td><td class="n">500</td><td>Site visitors, cart abandoners, past buyers, QR scanners</td><td>Product page</td></tr>
+      <tr><td>Content boost</td><td>Instagram + Facebook</td><td class="n">350</td><td>Gujarat + Mumbai, 25–55, interests: Ayurveda, yoga, organic, satsang pages</td><td>Best organic reel of the week</td></tr>
+      <tr><td>B2B search</td><td>Google Search</td><td class="n">200</td><td>"ayurvedic pcd franchise gujarat", "ayurvedic medicine distributor"</td><td>/pages/distributors</td></tr>
+      <tr><td><b>Total</b></td><td></td><td class="n"><b>≈ 2,500</b></td><td colspan="2">≈ ₹75 k/month · Gujarat only in months 1–2, add Mumbai in month 3</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="grid g2" style="margin-top:16px">
+    <div class="box">
+      <h4>Rules from day one</h4>
+      <ul>
+        <li>Conversions imported from GA4: purchase, WhatsApp click, distributor form, doctor form. Not page views.</li>
+        <li>Target cost per purchase ≤ ₹400 by month 2; expect ₹600–800 in week 1 and don't panic.</li>
+        <li>Negatives: <span class="code">recipe</span>, <span class="code">how to make</span>, <span class="code">patanjali</span>, <span class="code">dabur</span>, <span class="code">free</span>, <span class="code">job</span>, <span class="code">salary</span>.</li>
+        <li>Move Shopping → Performance Max only after 50 recorded conversions.</li>
+        <li>Every ad lands on a page with reviews, the composition table and a WhatsApp button. Never the homepage.</li>
+        <li>Build ads around the herb, the routine and the institution — Meta's health policy blocks condition targeting and claims.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h4>Who runs it</h4>
+      <ul>
+        <li>One in-house e-commerce person, 3–4 hours a week inside Google Ads and Meta Ads.</li>
+        <li>An AI assistant for keyword lists, 15 headlines at a time, Gujarati/Hindi ad variants, and reading exported CSVs. It cannot log in, set bids or create campaigns.</li>
+        <li>Google Smart Bidding handles bids; a human supplies what it cannot know — margin, stock, which city just reordered.</li>
+        <li>No agency until spend crosses ₹2 L/month. Below that, fees eat the budget.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="margin-top:26px">Seasonal calendar — Oct 2026 to Mar 2027</h3>
+  <div class="table-wrap" style="margin-top:10px">
+  <table>
+    <thead><tr><th>When</th><th>Moment</th><th>What sells</th><th>The campaign</th><th class="n">Extra budget</th></tr></thead>
+    <tbody>
+      <tr><td>Oct</td><td>Navratri &amp; fasting</td><td>Digestives, energy, immunity; light fasting-friendly products</td><td>"Upvas-friendly" content series + a fasting-care bundle; Gujarati-first creative</td><td class="n">₹25 k</td></tr>
+      <tr><td>Oct 1–25</td><td><b>Diwali gifting — corporate</b></td><td>Gift boxes, wellness hampers, bulk</td><td>Outbound, not ads: a deck to 50 Gujarat corporates, CA firms, trusts and satsang mandals. <b>Corporate orders close by end of October</b> — this window shuts first.</td><td class="n">₹15 k (samples)</td></tr>
+      <tr><td>Oct 25 – Nov 8</td><td><b>Diwali — retail</b></td><td>Hampers, immunity, chyawanprash-type products, family packs</td><td>Full Diwali sprint below. The single biggest D2C window of the year.</td><td class="n">₹60 k</td></tr>
+      <tr><td>Nov–Dec</td><td>Winter</td><td>Chyawanprash, immunity, joint care, cough, oils</td><td>Seasonal collection page + "winter routine" content; the highest-intent season for Ayurveda</td><td class="n">₹40 k</td></tr>
+      <tr><td>Jan</td><td>New year / Uttarayan</td><td>Weight, digestion, detox, diabetes support</td><td>"Start the year" subscription push — best month of the year to sell a 3-month course</td><td class="n">₹35 k</td></tr>
+      <tr><td>Feb–Mar</td><td>Season change, exams</td><td>Immunity, brain/memory tonics, allergy</td><td>Ritucharya (seasonal regimen) content series — genuinely Ayurvedic and genuinely useful</td><td class="n">₹25 k</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="muted" style="margin-top:8px">Diwali dated 8 Nov 2026 per the ghee launch plan — confirm against the panchang before locking dispatch cut-offs. Festival dates drive courier cut-offs more than they drive ad dates.</p>
+
+  <h3 style="margin-top:26px">The Diwali sprint — six weeks, working backwards</h3>
+  <div class="timeline" style="margin-top:12px">
+    <div class="phase">
+      <div class="when">Week 1<small>29 Sep – 5 Oct</small></div>
+      <div>
+        <ul>
+          <li>GA4, Search Console, Merchant Center live; conversion events marked</li>
+          <li>Popup, slider, typos, broken certificate images fixed — one afternoon</li>
+          <li>Lawyer briefed on claim wording and the social phrase bank</li>
+          <li>Decide the 3 gift SKUs / hampers and get packaging quoted</li>
+          <li>Corporate gifting deck written and the first 20 emails sent</li>
+        </ul>
+        <div class="goal">Gate: you can see real traffic numbers for the first time.</div>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="when">Week 2<small>6 – 12 Oct</small></div>
+      <div>
+        <ul>
+          <li>Shoot day: 8 hero SKUs + hampers + plant B-roll + doctor answers</li>
+          <li>4 hero product pages rebuilt to the anatomy in Part 1</li>
+          <li>Review sprint to all past buyers by WhatsApp and email</li>
+          <li>Corporate outreach: remaining 30 companies, sample boxes couriered</li>
+        </ul>
+        <div class="goal">Gate: 20+ reviews live; corporate pipeline has 5 real conversations.</div>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="when">Week 3<small>13 – 19 Oct</small></div>
+      <div>
+        <ul>
+          <li>Remaining 4 hero pages; gift collection page live with a dispatch-cut-off banner</li>
+          <li>Always-on campaigns switched on at 60% budget to learn before the peak</li>
+          <li>Amazon A+ content and gift listings live</li>
+          <li>WhatsApp broadcast 1: Diwali hampers, to every past buyer</li>
+        </ul>
+        <div class="goal">Gate: ads have data; nothing new gets built after this week.</div>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="when">Week 4<small>20 – 26 Oct</small></div>
+      <div>
+        <ul>
+          <li>Budget to 100%; add the Diwali retail campaign and catalogue retargeting</li>
+          <li>Daily reels from the shoot; 2 creator posts go live</li>
+          <li><b>Corporate orders close.</b> Anything not confirmed by 31 Oct will not ship.</li>
+          <li>Stock check: do not advertise what you cannot dispatch</li>
+        </ul>
+        <div class="goal">Gate: corporate revenue booked; retail demand building.</div>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="when">Week 5<small>27 Oct – 2 Nov</small></div>
+      <div>
+        <ul>
+          <li>Peak spend. Retargeting at full weight; abandoned-cart flows running hard</li>
+          <li>WhatsApp broadcast 2 with a dated dispatch cut-off ("order by 3 Nov to receive before Diwali")</li>
+          <li>Daily 10-minute check: spend, orders, stock, courier pickups</li>
+        </ul>
+        <div class="goal">Gate: the biggest sales week of the plan so far.</div>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="when">Week 6<small>3 – 9 Nov</small></div>
+      <div>
+        <ul>
+          <li>Cut-off passes; switch creative from gifting to "for your own home this winter"</li>
+          <li>Shift budget to Shopping and winter categories</li>
+          <li>Review request to every Diwali buyer at day 10 — this cohort funds the next quarter</li>
+          <li>Write the post-mortem the same week, while the numbers are fresh</li>
+        </ul>
+        <div class="goal">Gate: a real, measured baseline for every campaign that follows.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RETENTION ============ -->
+<section id="retention">
+  <div class="sec-head">
+    <h2>Part 6 — The cheapest growth is the person who already bought</h2>
+    <p>Ayurvedic medicines are taken in courses. A 60-tablet pack at two a day is exactly one month. Every customer who does not get a reminder on day 25 is a lost order that cost you nothing to win. This is the highest-return section on the page and the one most often skipped.</p>
+  </div>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Trigger</th><th>Channel</th><th>Message</th><th>Timing</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr><td>Cart abandoned</td><td>WhatsApp, then email</td><td>Product image, the one review that sells it, link back. No discount on the first nudge.</td><td>30 min, then 24 h</td><td>Recovers 5–15% of abandoned carts in Indian D2C</td></tr>
+      <tr><td>Order placed</td><td>WhatsApp</td><td>Confirmation + tracking + "reply here if you have a question"</td><td>Immediate</td><td>Cuts "where is my order" calls; opens the conversation channel</td></tr>
+      <tr><td>Order delivered</td><td>WhatsApp</td><td><b>How to take it:</b> dosage, timing, with warm water / after food, what to avoid, when to expect a change</td><td>Day 2</td><td>The single highest-value message. It makes the course work, which makes the refill happen.</td></tr>
+      <tr><td>Mid-course</td><td>WhatsApp</td><td>"How are you feeling? Reply 1–5." Route low scores to the Vaidya.</td><td>Day 12</td><td>Catches the unhappy customer before the review, not after</td></tr>
+      <tr><td>Review request</td><td>Email + WhatsApp</td><td>Direct link to the product review form and the Amazon listing</td><td>Day 10</td><td>Feeds the review engine in Part 3</td></tr>
+      <tr><td><b>Refill</b></td><td>WhatsApp broadcast</td><td>"Your pack finishes around [date] — reorder in one tap" with a prefilled cart link</td><td>Day 25</td><td>The largest single lever on repeat revenue</td></tr>
+      <tr><td>Lapsed</td><td>WhatsApp + Meta retargeting</td><td>New batch, new COA, a doctor's note on continuing the course</td><td>Day 60 and day 120</td><td>Cheaper than acquiring a new customer by an order of magnitude</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="grid g3" style="margin-top:18px">
+    <div class="box"><h4>Subscriptions</h4><p>Shopify Subscriptions on every chronic SKU — Diabezeel, SG-Liv, Cardpro and the joint/digestion range. 8% off plus free shipping. For the category leaders this is 30–40% of D2C revenue, and it converts a ₹250 customer into a ₹3,000 one.</p></div>
+    <div class="box"><h4>The list is the asset</h4><p>WhatsApp Business app until 2,000 contacts, then the API via Interakt or Wati. Tag every contact: retail / doctor / retailer / distributor / lapsed. Never broadcast the same message to all four.</p></div>
+    <div class="box"><h4>Offline feeds it</h4><p>A QR on every pack and every retailer standee → a landing page with the batch COA, a WhatsApp button and "buy again". Every offline sale becomes an online customer you can reach for free, forever.</p></div>
+  </div>
+</section>
+
+<!-- ============ MEASUREMENT ============ -->
+<section id="measure">
+  <div class="sec-head">
+    <h2>Part 7 — Measurement and the weekly rhythm</h2>
+    <p>Eight numbers, one dashboard, one 45-minute meeting. Anything more gets ignored by week three.</p>
+  </div>
+
+  <div class="grid g2">
+    <div class="box">
+      <h4>Events to mark as conversions in GA4</h4>
+      <ul>
+        <li><span class="code">purchase</span> — with value and item, from the Shopify channel</li>
+        <li><span class="code">whatsapp_click</span> — the most common "conversion" on an Indian health site</li>
+        <li><span class="code">distributor_form</span> · <span class="code">doctor_form</span> · <span class="code">bulk_form</span></li>
+        <li><span class="code">coa_download</span> — a strong B2B intent signal</li>
+        <li><span class="code">subscribe_toggle</span> — tells you which SKUs to push subscriptions on</li>
+        <li>UTM or a source parameter per field-team referral code</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h4>The one dashboard</h4>
+      <ul>
+        <li>Orders/day and revenue, split own site vs marketplace</li>
+        <li>Sessions by source, and conversion rate by source</li>
+        <li>AOV and returning-customer rate</li>
+        <li>Cost per purchase and blended ROAS</li>
+        <li>Reviews collected this week</li>
+        <li>Partner enquiries this week (Job 2)</li>
+        <li>RTO rate on COD orders</li>
+        <li>Stock cover in days on the 8 hero SKUs</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout ok">
+    <strong>Monday, 45 minutes, four questions</strong>
+    1. What did last week's numbers do, against the eight above? &nbsp;2. Which campaign is furthest from its cost-per-purchase target, and what is the one change? &nbsp;3. What are we shooting and publishing this week? &nbsp;4. What is out of stock or about to be? — Ads off on anything that cannot ship. Nothing else on the agenda.
+  </div>
+</section>
+
+<!-- ============ BUDGET ============ -->
+<section id="budget">
+  <div class="sec-head">
+    <h2>Part 8 — Budget, team and the first 90 days</h2>
+    <p>Two columns: what this costs if run lean with existing staff, and what it costs run properly. The lean column is enough to execute everything above; the full column buys speed.</p>
+  </div>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Line</th><th>What it buys</th><th class="n">Lean / month</th><th class="n">Full / month</th></tr></thead>
+    <tbody>
+      <tr><td>E-commerce &amp; ads person</td><td>Runs the store, the campaigns, the dashboard. The one role that cannot be skipped.</td><td class="n">₹35,000</td><td class="n">₹50,000</td></tr>
+      <tr><td>Content person (Gujarati)</td><td>Shoots on a phone, edits in CapCut/Canva, writes captions and posts. In-house beats agency here.</td><td class="n">₹25,000</td><td class="n">₹35,000</td></tr>
+      <tr><td>BAMS doctor retainer</td><td>4 videos a month, reviews all medical copy, signs the blog as author</td><td class="n">₹15,000</td><td class="n">₹25,000</td></tr>
+      <tr><td>Blog / SEO writing</td><td>2 posts a week at 1,500–2,200 words, freelance</td><td class="n">₹20,000</td><td class="n">₹40,000</td></tr>
+      <tr><td>Paid media</td><td>The always-on table in Part 5</td><td class="n">₹75,000</td><td class="n">₹1,50,000</td></tr>
+      <tr><td>Creators</td><td>2 micro-creators + product</td><td class="n">₹10,000</td><td class="n">₹25,000</td></tr>
+      <tr><td>Tools &amp; apps</td><td>Shopify, reviews, WhatsApp API, subscriptions, translate, Shiprocket</td><td class="n">₹12,000</td><td class="n">₹20,000</td></tr>
+      <tr><td>Photo / video production</td><td>One shoot day a month; mostly phone, one paid shoot a quarter</td><td class="n">₹8,000</td><td class="n">₹25,000</td></tr>
+      <tr><td><b>Total</b></td><td>Excluding one-time legal review (₹25–50 k) and packaging design</td><td class="n"><b>₹2.0 L</b></td><td class="n"><b>₹3.7 L</b></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout">
+    <strong>What the lean column has to earn</strong>
+    ₹2.0 L/month of digital cost against the month-6 target of ₹6.4 L/month of digital revenue. At a 55–60% gross margin on D2C that is roughly break-even at month 6 and profitable from month 8 — before counting Job 2, the partner enquiries, which is where most of the real value sits. If month 6 revenue lands under ₹4 L, cut paid media first and keep content and retention, not the other way round.
+  </div>
+
+  <h3 style="margin-top:26px">The first 90 days</h3>
+  <div class="timeline" style="margin-top:12px">
+    <div class="phase">
+      <div class="when">Weeks 1–2<small>Oct · measure &amp; unblock</small></div>
+      <div>
+        <ul>
+          <li>GA4, Search Console, Merchant Center, conversion events; 30 days of Shopify Analytics pulled</li>
+          <li>All "Critical" audit items cleared: popup, slider, typos, certificate images, ₹0 product, indexed internal collections, 404s</li>
+          <li>Lawyer engaged for claim wording + the social phrase bank</li>
+          <li>Meta Business Suite, Instagram, Facebook, WhatsApp Business, YouTube, Google Business Profile all claimed and filled</li>
+          <li>Review sprint to past buyers begins</li>
+        </ul>
+        <div class="goal">Goal: real numbers exist, and nothing on the site is legally or visually embarrassing.</div>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="when">Weeks 3–6<small>Oct–Nov · build &amp; Diwali</small></div>
+      <div>
+        <ul>
+          <li>Shoot day; 8 hero product pages rebuilt; gift collection live</li>
+          <li>Amazon Brand Registry + A+ content; first 50 reviews</li>
+          <li>Always-on campaigns live; the Diwali sprint in Part 5 executed</li>
+          <li>WhatsApp flows built: abandoned cart, day-2 how-to-take, day-10 review, day-25 refill</li>
+          <li>38 existing blog posts refreshed — author, date, claims, internal links, FAQ</li>
+        </ul>
+        <div class="goal">Goal: 8 orders/day, 50+ reviews, Diwali revenue banked.</div>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="when">Weeks 7–13<small>Nov–Dec · compound</small></div>
+      <div>
+        <ul>
+          <li>2 posts + 1 ingredient page per week; winter collection and content</li>
+          <li>Subscriptions live on chronic SKUs; free-shipping bar and bundles live</li>
+          <li>Quick-commerce onboarding for 3–4 SKUs in Ahmedabad</li>
+          <li>Gujarati + Hindi on the top 10 pages</li>
+          <li>Field-team referral codes issued; pack QR codes designed for the next print run</li>
+          <li>Remaining 39 product pages brought to a minimum standard</li>
+        </ul>
+        <div class="goal">Goal: 14 orders/day across site + marketplace, organic traffic visibly rising, 15+ partner enquiries/month.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KPI ============ -->
+<section id="kpi">
+  <div class="sec-head">
+    <h2>KPIs and the guardrails</h2>
+  </div>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Metric</th><th class="n">Month 3</th><th class="n">Month 6</th><th class="n">Month 12</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td>Orders/day — own site</td><td class="n">8</td><td class="n">18</td><td class="n">40</td><td>The headline number</td></tr>
+      <tr><td>Orders/day — marketplaces</td><td class="n">6</td><td class="n">15</td><td class="n">35</td><td>Amazon leads, then quick-commerce</td></tr>
+      <tr><td>Sessions/month</td><td class="n">15,000</td><td class="n">33,000</td><td class="n">70,000</td><td>Organic should be the largest share by month 9</td></tr>
+      <tr><td>Conversion rate</td><td class="n">1.0%</td><td class="n">1.5%</td><td class="n">2.0%</td><td>Reviews and product pages move this more than design</td></tr>
+      <tr><td>AOV</td><td class="n">₹600</td><td class="n">₹650</td><td class="n">₹700</td><td>Bundles, free-shipping threshold, course packs</td></tr>
+      <tr><td>Returning-customer rate</td><td class="n">15%</td><td class="n">30%</td><td class="n">40%</td><td>Driven almost entirely by the day-25 refill message</td></tr>
+      <tr><td>Reviews on hero SKUs</td><td class="n">10 each</td><td class="n">30 each</td><td class="n">100 each</td><td>Site + Amazon combined</td></tr>
+      <tr><td>Blended ROAS</td><td class="n">1.5</td><td class="n">2.5</td><td class="n">3.5</td><td>Below 1.5 at month 3 is normal; below 2.0 at month 6 is a problem</td></tr>
+      <tr><td>Instagram followers</td><td class="n">5,000</td><td class="n">15,000</td><td class="n">40,000</td><td>30%+ should be from Gujarat</td></tr>
+      <tr><td>WhatsApp list</td><td class="n">2,000</td><td class="n">5,000</td><td class="n">15,000</td><td>The most valuable asset built in year one</td></tr>
+      <tr><td>Partner enquiries/month <span class="muted">(Job 2)</span></td><td class="n">15</td><td class="n">30</td><td class="n">60</td><td>From the site, LinkedIn and IndiaMART</td></tr>
+      <tr><td>RTO rate on COD</td><td class="n">&lt; 25%</td><td class="n">&lt; 18%</td><td class="n">&lt; 12%</td><td>Prepaid discount and COD rules do the work</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="grid g2" style="margin-top:20px">
+    <div class="box">
+      <h4>Guardrails — never break these</h4>
+      <ul>
+        <li>No claim outside the lawyer-approved phrase bank, on any page, post or ad.</li>
+        <li>No before/after images, no "cure", "permanent", "control", "guaranteed".</li>
+        <li>Same MRP online and offline, every channel, every month.</li>
+        <li>No advertising on a SKU with under two weeks of stock cover.</li>
+        <li>No incentivised reviews — it can cost the Amazon account.</li>
+        <li>Nothing goes live without a named medical reviewer on health content.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h4>Where this plan stops</h4>
+      <ul>
+        <li>Distributors, stockists, PCD franchise, doctor detailing, sweet-shop and hotel B2B — see the growth plan.</li>
+        <li>Headless Astro / Next.js and the partner portal — a Stage 2 decision, not a month-1 one. Nothing in this plan is blocked by the current Shopify theme.</li>
+        <li>The new own-brand project, including A2 ghee — see the own-brand project plan. Keep the two brands' social accounts, ad accounts and analytics separate from day one.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    SGVP Aarogyam — digital growth plan · 29 Sep 2026 · Companion to <a href="sgvp-growth-plan.html">sgvp-growth-plan.html</a> (distribution and B2B), <a href="own-brand-project-plan.html">own-brand-project-plan.html</a> (the new brand) and <a href="index.html">index.html</a> (research).<br>
+    Traffic, conversion and revenue figures are planning estimates built on the 18 Sep 2026 audit; the site had no GA4 tag at that time. Replace the baseline with measured data in week 2 and re-scale.
+  </div>
+</footer>
+</main>
+
+</div>
+
+<script>
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.side-nav a'));
+  var secs=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1))}).filter(Boolean);
+  if(!secs.length)return;
+  var nav=document.querySelector('.side-nav');
+  function set(id){
+    links.forEach(function(a){
+      var on=a.getAttribute('href')==='#'+id;
+      a.classList.toggle('active',on);
+      if(on&&window.innerWidth<=980&&nav){nav.scrollLeft=a.offsetLeft-nav.clientWidth/2+a.clientWidth/2}
+    });
+  }
+  var raf=0;
+  function update(){
+    raf=0;
+    var cur=secs[0].id;
+    for(var i=0;i<secs.length;i++){if(secs[i].getBoundingClientRect().top<=140)cur=secs[i].id}
+    if(window.innerHeight+window.scrollY>=document.body.scrollHeight-4)cur=secs[secs.length-1].id;
+    set(cur);
+  }
+  function onScroll(){if(!raf)raf=requestAnimationFrame(update)}
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  update();
+})();
+</script>
+
+</body>
+</html>
