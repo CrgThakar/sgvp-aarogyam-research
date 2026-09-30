@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SGVP Aarogyam - Website Audit</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<style>
+:root{
+  --bg:#FAF8F3; --surface:#FFFFFF; --surface-2:#F2EEE5; --ink:#1E1B16; --ink-2:#5B554B; --ink-3:#8A8377;
+  --line:#E4DED2; --brand:#D8551F; --brand-ink:#9E3A10; --green:#2F7A3E; --green-soft:#E3F1E4;
+  --blue:#1F5F8B; --blue-soft:#E1ECF5; --amber:#B7791F; --amber-soft:#FBF0D9; --red:#B3261E; --red-soft:#F9E3E1;
+  --radius:10px; --w:1080px; --side:272px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15130F; --surface:#1E1B16; --surface-2:#26221B; --ink:#F1ECE2; --ink-2:#BDB5A6; --ink-3:#8A8377;
+    --line:#37322A; --brand:#F0733D; --brand-ink:#F8A77E; --green:#6CC07A; --green-soft:#1E3322;
+    --blue:#7FB3DC; --blue-soft:#1B2C3B; --amber:#E2A94B; --amber-soft:#3A2D14; --red:#F08B84; --red-soft:#3B1D1B;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15130F; --surface:#1E1B16; --surface-2:#26221B; --ink:#F1ECE2; --ink-2:#BDB5A6; --ink-3:#8A8377;
+  --line:#37322A; --brand:#F0733D; --brand-ink:#F8A77E; --green:#6CC07A; --green-soft:#1E3322;
+  --blue:#7FB3DC; --blue-soft:#1B2C3B; --amber:#E2A94B; --amber-soft:#3A2D14; --red:#F08B84; --red-soft:#3B1D1B;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.55;padding:0}
+h1,h2,h3,h4{font-family:"Bricolage Grotesque","Public Sans",system-ui,sans-serif;line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:clamp(30px,5vw,46px);font-weight:800;letter-spacing:-.01em}
+h2{font-size:clamp(22px,3vw,30px);font-weight:700;margin-bottom:6px}
+h3{font-size:19px;font-weight:700}
+h4{font-size:16px;font-weight:700}
+p{margin:0}
+a{color:var(--blue)}
+.wrap{max-width:none;margin:0}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--brand)}
+.lede{font-size:18px;color:var(--ink-2);max-width:68ch;margin-top:12px}
+header.top{padding-block:40px 28px;border-bottom:1px solid var(--line)}
+nav.toc{display:none}
+.shell{display:grid;grid-template-columns:var(--side) minmax(0,1fr);align-items:start;min-height:100vh}
+.side{position:sticky;top:0;height:100vh;overflow-y:auto;scrollbar-width:thin;background:var(--surface-2);border-right:1px solid var(--line);padding:26px 16px 22px;display:flex;flex-direction:column;gap:20px;z-index:20}
+.side-title{display:block;text-decoration:none;color:var(--ink);font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:17px;line-height:1.2;letter-spacing:-.01em}
+.side-title small{display:block;font-family:"Public Sans",sans-serif;font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--brand);margin-top:6px}
+.side-nav{display:grid;gap:2px;counter-reset:sn}
+.side-nav a{display:grid;grid-template-columns:20px 1fr;gap:9px;align-items:baseline;padding:7px 10px;border-radius:7px;font-size:14px;font-weight:600;color:var(--ink-2);text-decoration:none;line-height:1.3}
+.side-nav a::before{counter-increment:sn;content:counter(sn,decimal-leading-zero);font-family:"Bricolage Grotesque",sans-serif;font-size:10.5px;font-weight:700;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.side-nav a:hover,.side-nav a:focus-visible{background:var(--surface);color:var(--ink)}
+.side-nav a.active{background:var(--surface);color:var(--brand-ink);box-shadow:inset 3px 0 0 var(--brand)}
+.side-nav a.active::before{color:var(--brand)}
+.side-foot{margin-top:auto;font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--line);padding-top:14px;display:grid;gap:7px}
+.side-foot b{display:block;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
+.side-foot a{color:var(--ink-2);text-decoration:none;font-weight:600}
+.side-foot a:hover,.side-foot a:focus-visible{color:var(--brand)}
+.main{min-width:0;padding-inline:clamp(20px,3.2vw,52px);padding-bottom:64px}
+@media (max-width:980px){
+  :root{--side:0px}
+  .shell{grid-template-columns:minmax(0,1fr)}
+  .side{position:sticky;top:0;height:auto;min-width:0;max-width:100vw;flex-direction:row;align-items:center;gap:0;overflow:visible;padding:0;border-right:0;border-bottom:1px solid var(--line);background:var(--bg)}
+  .side-title,.side-foot{display:none}
+  .side-nav{display:flex;gap:4px;flex:1 1 auto;min-width:0;padding:9px 14px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior-x:contain}
+  .side-nav::-webkit-scrollbar{display:none}
+  .side-nav a{flex:0 0 auto;white-space:nowrap;grid-template-columns:1fr;padding:6px 11px;font-size:13.5px}
+  .side-nav a::before{display:none}
+  .side-nav a.active{box-shadow:none;background:var(--surface-2);color:var(--brand-ink)}
+  .main{padding-inline:16px}
+}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+section{padding-block:44px 8px;scroll-margin-top:16px}
+@media (max-width:980px){section{scroll-margin-top:72px}}
+.sec-head{margin-bottom:22px}
+.sec-head p{color:var(--ink-2);max-width:70ch}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
+.tile .num{font-family:"Bricolage Grotesque",sans-serif;font-size:34px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1}
+.tile .lbl{font-size:13px;color:var(--ink-2);margin-top:6px}
+.tile .sub{font-size:13px;color:var(--ink-3);margin-top:8px}
+.callout{border-left:4px solid var(--brand);background:var(--surface-2);padding:16px 20px;border-radius:0 var(--radius) var(--radius) 0;margin-block:18px}
+.callout.warn{border-color:var(--amber);background:var(--amber-soft)}
+.callout.ok{border-color:var(--green);background:var(--green-soft)}
+.callout strong{display:block;margin-bottom:4px}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);background:var(--surface-2);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.n{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+th.n{text-align:right}
+.pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.p-crit{background:var(--red-soft);color:var(--red)}
+.p-high{background:var(--amber-soft);color:var(--amber)}
+.p-med{background:var(--blue-soft);color:var(--blue)}
+.p-ok{background:var(--green-soft);color:var(--green)}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.steps li{position:relative;padding-left:44px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding-block:14px;padding-right:18px}
+.steps li::before{counter-increment:s;content:counter(s);position:absolute;left:14px;top:14px;width:22px;height:22px;border-radius:50%;background:var(--brand);color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center;font-family:"Bricolage Grotesque",sans-serif}
+.steps li strong{display:block;margin-bottom:3px}
+.steps li p{color:var(--ink-2);font-size:14.5px}
+.chan{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;display:flex;flex-direction:column;gap:10px}
+.chan .share{font-family:"Bricolage Grotesque",sans-serif;font-size:26px;font-weight:800;color:var(--brand);letter-spacing:-.01em;line-height:1}
+.chan .share small{font-family:"Public Sans",sans-serif;font-size:12px;font-weight:600;color:var(--ink-3);letter-spacing:.05em;text-transform:uppercase;margin-left:6px}
+.chan ul{margin:0;padding-left:18px;color:var(--ink-2);font-size:14.5px;display:grid;gap:4px}
+.chan .why{font-size:14px;color:var(--ink-2)}
+.timeline{display:grid;gap:14px}
+.phase{display:grid;grid-template-columns:130px 1fr;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
+.phase .when{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:18px;color:var(--brand)}
+.phase .when small{display:block;font-family:"Public Sans",sans-serif;font-size:12px;font-weight:600;color:var(--ink-3);margin-top:4px;text-transform:uppercase;letter-spacing:.05em}
+.phase ul{margin:8px 0 0;padding-left:18px;color:var(--ink-2);font-size:14.5px;display:grid;gap:4px}
+.phase .goal{font-size:14px;font-weight:600;margin-top:10px;color:var(--green)}
+@media (max-width:560px){.phase{grid-template-columns:1fr}}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:14.5px}
+.kv dt{color:var(--ink-3);font-weight:600}
+.kv dd{margin:0}
+.code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:var(--surface-2);padding:1px 6px;border-radius:4px}
+footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-3)}
+.muted{color:var(--ink-3);font-size:13px}
+@media (prefers-reduced-motion:no-preference){a{transition:color .15s}}
+.tile-list{margin:6px 0 0;padding-left:18px;font-size:14.5px;color:var(--ink-2);display:grid;gap:4px}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
+.box h4{margin-bottom:8px}
+.box ul{margin:0;padding-left:18px;color:var(--ink-2);font-size:14.5px;display:grid;gap:5px}
+.box p{color:var(--ink-2);font-size:14.5px}
+.funnel{display:grid;gap:10px}
+.fstep{display:grid;grid-template-columns:120px 1fr;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px 18px}
+.fstep .stage{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:15px;color:var(--brand);line-height:1.25}
+.fstep .stage small{display:block;font-family:"Public Sans",sans-serif;font-size:12px;font-weight:600;color:var(--ink-3);margin-top:3px;text-transform:uppercase;letter-spacing:.05em}
+.fstep .leak{font-size:14.5px;color:var(--ink-2)}
+.fstep .leak b{color:var(--ink)}
+.fstep .do{font-size:14px;color:var(--ink-2);margin-top:6px;padding-top:6px;border-top:1px dashed var(--line)}
+@media (max-width:560px){.fstep{grid-template-columns:1fr}}
+
+.side-nav a::before{counter-increment:none;content:attr(data-n)}
+.side-nav .grp{font-size:10.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--brand);padding:15px 10px 5px;line-height:1.35}
+.side-nav .grp:first-child{padding-top:0}
+.side-nav .grp b{display:block;color:var(--ink-3);font-size:10px;letter-spacing:.08em;font-weight:700;margin-bottom:2px}
+.side-nav a{padding:6px 10px;font-size:13.5px}
+.side{padding-top:22px}
+.part{border-top:2px solid var(--brand);margin-top:60px;padding-top:26px;scroll-margin-top:16px}
+.part-first{margin-top:8px;border-top:0;padding-top:0}
+.part .pnum{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--brand)}
+.part h2{font-size:clamp(25px,3.4vw,36px);font-weight:800;letter-spacing:-.01em;margin-top:8px}
+.part .plede{font-size:17px;color:var(--ink-2);max-width:70ch;margin-top:12px}
+@media (max-width:980px){.side-nav .grp{display:none}.part{margin-top:36px;scroll-margin-top:72px}}
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+<aside class="side">
+  <a class="side-title" href="#top">Website audit<small>sgvpaarogyam.com &middot; 30 Sep 2026</small></a>
+  <nav class="side-nav" aria-label="Sections">
+  <div class="grp"><b>Part 1</b>B2C</div>
+  <a data-n="01" href="#b2c-verdict">Verdict</a>
+  <a data-n="02" href="#b2c-blockers">Critical blockers</a>
+  <a data-n="03" href="#b2c-product">Product pages</a>
+  <a data-n="04" href="#b2c-trust">Trust &amp; proof</a>
+  <a data-n="05" href="#b2c-capture">Capture &amp; follow-up</a>
+  <a data-n="06" href="#b2c-checkout">Cart &amp; checkout</a>
+  <a data-n="07" href="#b2c-claims">Claims risk</a>
+  <a data-n="08" href="#b2c-fixlist">Ranked fix list</a>
+  <a data-n="09" href="#b2c-plan">30-day plan</a>
+  <a data-n="10" href="#b2c-kpi">KPIs</a>
+  
+  <div class="grp"><b>Part 2</b>B2B</div>
+  <a data-n="01" href="#b2b-verdict">Verdict</a>
+  <a data-n="02" href="#b2b-evidence">What I measured</a>
+  <a data-n="03" href="#b2b-stockist">The stockist page</a>
+  <a data-n="04" href="#b2b-trust">Trust wall</a>
+  <a data-n="05" href="#b2b-buyers">Four buyers, four pages</a>
+  <a data-n="06" href="#b2b-forms">Enquiry forms</a>
+  <a data-n="07" href="#b2b-offsite">Off-site lead sources</a>
+  <a data-n="08" href="#b2b-fixlist">Ranked fix list</a>
+  <a data-n="09" href="#b2b-plan">90-day plan</a>
+  <a data-n="10" href="#b2b-kpi">KPIs</a>
+  
+  <div class="grp"><b>Part 3</b>SEO / AEO / GEO</div>
+  <a data-n="01" href="#seo-method">Method &amp; summary</a>
+  <a data-n="02" href="#seo-sitewide">Sitewide faults</a>
+  <a data-n="03" href="#seo-home">Homepage</a>
+  <a data-n="04" href="#seo-pages">Content pages</a>
+  <a data-n="05" href="#seo-collections">Collections</a>
+  <a data-n="06" href="#seo-products">Products</a>
+  <a data-n="07" href="#seo-blogs">Blog</a>
+  <a data-n="08" href="#seo-schema">Schema gaps</a>
+  <a data-n="09" href="#seo-aeo">AEO — answer engines</a>
+  <a data-n="10" href="#seo-geo">GEO — AI search</a>
+  <a data-n="11" href="#seo-language">Gujarati &amp; Hindi</a>
+  <a data-n="12" href="#seo-order">Do it in this order</a>
+  
+  </nav>
+  <div class="side-foot">
+    <b>Related</b>
+    <a href="sgvp-digital-growth-plan.html">Digital growth plan</a>
+    <a href="sgvp-growth-plan.html">Growth &amp; distribution plan</a>
+    <a href="own-brand-project-plan.html">Own brand project plan</a>
+    <a href="index.html">Research index</a>
+  </div>
+</aside>
+
+<main class="main" id="top">
+<header class="top">
+  <div class="eyebrow">sgvpaarogyam.com &middot; full website audit &middot; 111 live URLs crawled 30 Sep 2026</div>
+  <h1 style="margin-top:10px">What is wrong with the website, and how to fix it for B2B and B2C leads</h1>
+  <p class="lede">One audit in three parts, every finding measured on the live site on 30 September 2026 rather than carried over from the September review. Part 1 covers B2C: why visitors do not buy. Part 2 covers B2B: why the site produces no business enquiries at all. Part 3 goes page by page through all 111 URLs for search, answer engines and AI citation.</p>
+  <div class="grid g4" style="margin-top:26px">
+    <div class="tile"><div class="num" style="color:var(--red)">0</div><div class="lbl">analytics installed</div><div class="sub">No GA4, no Google Ads tracking. Nothing is measurable today.</div></div>
+    <div class="tile"><div class="num" style="color:var(--red)">0</div><div class="lbl">customer reviews site-wide</div><div class="sub">And no rating schema on any of the 111 pages</div></div>
+    <div class="tile"><div class="num" style="color:var(--red)">0</div><div class="lbl">B2B pages</div><div class="sub">The words AYUSH and GMP appear nowhere on the site</div></div>
+    <div class="tile"><div class="num" style="color:var(--red)">0</div><div class="lbl">pages with FAQ schema</div><div class="sub">Despite FAQ blocks being visible on product pages</div></div>
+  </div>
+</header>
+
+<div class="part part-first" id="part-b2c">
+  <div class="pnum">Part 1 &middot; sgvpaarogyam.com · B2C lead &amp; sales audit · live site checked 30 Sep 2026</div>
+  <h2>B2C — why the site is not turning visitors into buyers</h2>
+  <p class="plede">A fresh check of the live site, not a repeat of the September audit. Every finding below was measured on 30 September 2026 by loading the pages and reading the rendered HTML. The numbers in brackets are what the browser actually reported.</p>
+</div>
+
+
+<!-- ============ VERDICT ============ -->
+<section id="b2c-verdict">
+  <div class="sec-head">
+    <h2>Verdict</h2>
+    <p>The catalogue, the product content and the technical skeleton are in better shape than in September — descriptions have been expanded, FAQs added, a disclaimer added. What is missing is everything that turns a visitor into a buyer: proof, capture and measurement. Right now the site can take an order, but it cannot earn one, cannot follow one up, and cannot tell you where any of it came from.</p>
+  </div>
+
+  <div class="grid g4">
+    <div class="tile"><div class="num" style="color:var(--red)">0</div><div class="lbl">customer reviews on the whole site</div><div class="sub">Judge.me is installed; no page carries an AggregateRating. Zero star ratings anywhere.</div></div>
+    <div class="tile"><div class="num" style="color:var(--red)">0</div><div class="lbl">GA4 / Google Ads tracking</div><div class="sub">No measurement ID, no gtag, no GTM. Only a Meta Pixel. You are selling blind.</div></div>
+    <div class="tile"><div class="num" style="color:var(--red)">0</div><div class="lbl">WhatsApp links on the homepage</div><div class="sub">And zero <span class="code">tel:</span> links. The phone number is plain text you cannot tap.</div></div>
+    <div class="tile"><div class="num" style="color:var(--amber)">31<span style="font-size:18px">/59</span></div><div class="lbl">homepage images fail to load</div><div class="sub">Half the page is empty boxes on first paint.</div></div>
+  </div>
+
+  <div class="callout warn">
+    <strong>The most important thing on this page</strong>
+    Twelve days after the September audit listed them, the same "Critical" items are still live: the hero still reads <b>"Non-Hormornal"</b> and <b>"PMOS"</b>, the newsletter popup still covers the screen, the slider still has 14 slides, and <b>Hiponorm is still published at ₹0 and "Sold out"</b>. These are 15-minute fixes in Shopify admin. Nothing else in this report matters as much as establishing that the "Critical" list actually gets cleared.
+  </div>
+</section>
+
+<!-- ============ BLOCKERS ============ -->
+<section id="b2c-blockers">
+  <div class="sec-head">
+    <h2>Critical blockers — measured on the live site today</h2>
+    <p>Each of these is costing sales right now, and each is cheap to fix.</p>
+  </div>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>#</th><th>What I found</th><th>Evidence</th><th>Why it costs you sales</th><th>Fix</th><th>Effort</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><span class="pill p-crit">Critical</span> <b>No GA4 and no Google Ads conversion tracking</b></td><td>No <span class="code">G-XXXXXXX</span> measurement ID, no <span class="code">AW-</span> ID, no <span class="code">gtag()</span>, no GTM container in the homepage source. Only <span class="code">fbq()</span> (Meta Pixel).</td><td>You cannot see which product, ad, post or page produces a sale. You cannot run Google Ads or Shopping profitably. You cannot judge any change you make after reading this report.</td><td>Sales channels → Google &amp; YouTube → connect. Mark purchase, WhatsApp click and form submit as conversions.</td><td>1 day</td></tr>
+      <tr><td>2</td><td><span class="pill p-crit">Critical</span> <b>Zero reviews, site-wide</b></td><td>Judge.me is installed (27 script references on a product page) but <b>no page on the site carries AggregateRating</b>. No stars in Google, no stars on the page.</td><td>For an unknown Ayurvedic brand asking ₹250 for a tablet, reviews are the purchase decision. This is the single largest conversion gap on the site.</td><td>Export past customers; one WhatsApp + one email asking for a review. Target 10 per hero SKU before spending anything on ads.</td><td>1 week</td></tr>
+      <tr><td>3</td><td><span class="pill p-crit">Critical</span> <b>Popup covers the whole page</b></td><td>The "Join our mailing list" modal renders over the content with a dimmed backdrop and a small ✕. Confirmed on the live site today.</td><td>It interrupts before the visitor has seen a single product. On mobile the close button is the hardest thing on the screen to hit.</td><td>Theme settings → delay 20 s or exit-intent, show once per 30 days.</td><td>10 min</td></tr>
+      <tr><td>4</td><td><span class="pill p-crit">Critical</span> <b>Hero typos still live</b></td><td>Slide 1: "Non-<b>Hormornal</b> approach to irregular menstrual cycle &amp; <b>PMOS</b>". Should be "Non-Hormonal" and "PCOS".</td><td>A spelling mistake in 60-pixel type on a medicine brand's homepage. Also means nobody searching "PCOS" can match the page.</td><td>Customize → Home → Slideshow → slide 1.</td><td>15 min</td></tr>
+      <tr><td>5</td><td><span class="pill p-crit">Critical</span> <b>Hiponorm still live at ₹0, "Sold out"</b></td><td><span class="code">/products/hiponorm</span> returns 200, price 0, "Sold out", 21 words of content, and it is in the sitemap.</td><td>A free, out-of-stock, empty product page that Google can index and a customer can land on. It reads as an abandoned shop.</td><td>Set to Draft, or finish it.</td><td>5 min</td></tr>
+      <tr><td>6</td><td><span class="pill p-high">High</span> <b>Half the homepage images do not render</b></td><td>31 of 59 <span class="code">&lt;img&gt;</span> elements have <span class="code">naturalWidth === 0</span> — they resolve to an empty source. 32 images have no alt text.</td><td>First impression is empty rectangles. It also means Google sees almost none of your imagery.</td><td>Re-upload the icon and badge images; fill alt text while you are in there.</td><td>1 hour</td></tr>
+      <tr><td>7</td><td><span class="pill p-high">High</span> <b>No WhatsApp, and the phone is not tappable</b></td><td>0 <span class="code">wa.me</span> links and 0 <span class="code">tel:</span> links on the homepage. WhatsApp exists only on <span class="code">/pages/get-free-consultation</span>.</td><td>In India this is how health purchases get asked about. A customer with one question and no way to ask it does not buy.</td><td>Floating WhatsApp button site-wide, prefilled message; make every phone number a <span class="code">tel:</span> link.</td><td>30 min</td></tr>
+      <tr><td>8</td><td><span class="pill p-high">High</span> <b>Homepage has no H1</b></td><td>The rendered page contains one <span class="code">&lt;h1&gt;</span> and it is empty. Body copy is 242 words.</td><td>Google has nothing to read as the page's subject, and a screen reader has nothing to announce.</td><td>Add a real H1 to the hero section.</td><td>20 min</td></tr>
+      <tr><td>9</td><td><span class="pill p-med">Medium</span> <b>Slider is still 14 slides</b></td><td>14 pagination dots on the hero.</td><td>Nobody sees slide 4. It delays the largest element on the page and buries the actual offer.</td><td>Cut to 3–4. Put the strongest product first.</td><td>20 min</td></tr>
+      <tr><td>10</td><td><span class="pill p-med">Medium</span> <b>Footer says "Copyright 2025"</b></td><td>Read on the live footer today.</td><td>Small, but it is the signal a careful buyer uses to judge whether anyone is minding the shop.</td><td>One line in the theme.</td><td>2 min</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ============ PRODUCT ============ -->
+<section id="b2c-product">
+  <div class="sec-head">
+    <h2>The product page — better than in September, still not a selling page</h2>
+    <p>Checked in detail on <span class="code">/products/diabezeel-tablets-blood-sugar-management</span>, which is one of the better ones. Median product page is now 671 words, which is a real improvement. The gaps are consistent across the catalogue.</p>
+  </div>
+
+  <div class="grid g2">
+    <div class="box">
+      <h4 style="color:var(--green)">What is now present</h4>
+      <ul>
+        <li>Product title, price (₹250), pack size (60 tablets)</li>
+        <li>~120-word primary description plus ingredient descriptions</li>
+        <li>Dosage: "Adult :- 2 tablets 2-3 times daily"</li>
+        <li>A visible FAQ block with 6 questions</li>
+        <li>A medical disclaimer</li>
+        <li>Product, Offer and Brand schema on all 47 products</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h4 style="color:var(--red)">What is missing on every product</h4>
+      <ul>
+        <li><b>Reviews — zero.</b> No social proof of any kind</li>
+        <li><b>Only 2 images.</b> No back label / ingredients panel, no pack-in-hand, no lifestyle shot</li>
+        <li><b>No composition table with quantities</b> — ingredients are described but not quantified per tablet</li>
+        <li><b>No contraindications</b> — who should not take it, interactions, pregnancy</li>
+        <li>No "how long before I see a change" — the question every first-time buyer has</li>
+        <li>No HSN code, no batch/COA download</li>
+        <li>No certificate badges rendering near the buy button</li>
+        <li>No bundle, no 3-month course pack, no subscription option</li>
+        <li>FAQ is visible but <b>not marked up as FAQPage schema</b> — see the SEO report</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>The one change with the biggest effect</strong>
+    Add the <b>back-label photograph</b> to all 47 products. It is a single photo per product, it answers the composition question that the text does not, and for Ayurvedic medicines it is the image buyers zoom into before deciding. Pair it with 10 reviews per hero SKU and the conversion rate moves more than any redesign would.
+  </div>
+
+  <h3 style="margin-top:24px">Thinnest product pages — fix these first</h3>
+  <div class="table-wrap" style="margin-top:10px">
+  <table>
+    <thead><tr><th>Product</th><th class="n">Words</th><th>Problem</th></tr></thead>
+    <tbody>
+      <tr><td><span class="code">/products/hiponorm</span></td><td class="n">21</td><td>Unfinished, ₹0, sold out, indexed. Draft it today.</td></tr>
+      <tr><td>Aarogyam Shallaki tablets</td><td class="n">444</td><td>Below the catalogue standard; no differentiation from Rumarath (also joint pain)</td></tr>
+      <tr><td>Arjun tablets</td><td class="n">531</td><td>Highest-search-volume herb you sell, one of the thinnest pages</td></tr>
+      <tr><td>SG-Cid tablet &amp; syrup</td><td class="n">564 / 567</td><td>Acidity is a high-volume, high-repeat category — worth the most content, currently has the least</td></tr>
+      <tr><td>Hadjod, Godhooli toothpaste, Godhooli balm, SG-Lax</td><td class="n">566–578</td><td>Consumer products that should out-explain, not under-explain</td></tr>
+      <tr><td><span class="muted">memcog-tablet, doron-tablet, bph-52-tablet</span></td><td class="n">—</td><td>Slugs have no descriptive text at all, unlike the other 44 — likely unfinished listings</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ============ TRUST ============ -->
+<section id="b2c-trust">
+  <div class="sec-head">
+    <h2>Trust and proof — the weakest part of the site</h2>
+    <p>You are an institutional Ayurvedic pharmacy attached to a Gurukul and a gaushala. Almost none of that reaches the visitor.</p>
+  </div>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Signal</th><th>Status today</th><th>What it should be</th></tr></thead>
+    <tbody>
+      <tr><td>Customer reviews</td><td><span class="pill p-crit">None</span> Zero on every page</td><td>10+ per hero SKU on the site, plus Amazon. Reviews first, ads second.</td></tr>
+      <tr><td>Certificates</td><td><span class="pill p-high">Weak</span> Three ~30 px logos in the footer (a GMP-style mark, a second mark, FSSAI). Not labelled, not clickable, no PDF behind them.</td><td>A <span class="code">/pages/quality</span> page: each certificate full-size and downloadable, AYUSH manufacturing licence number in text, FSSAI number, lab testing, plant photos. Linked from every product.</td></tr>
+      <tr><td>AYUSH / GMP licence number</td><td><span class="pill p-crit">Absent</span> The words "AYUSH" and "GMP" do not appear anywhere on the site</td><td>Licence number in the footer and on every product page. This is what a cautious buyer searches for.</td></tr>
+      <tr><td>Who makes it</td><td><span class="pill p-high">Weak</span> About Us is 421 words and has no H1. <span class="code">/pages/from-the-desk-of-ceo</span> returns <b>404</b> and is still listed in the sitemap.</td><td>Restore the CEO/leadership page. Put the SGVP institution, the campus and the people on the About page with photographs.</td></tr>
+      <tr><td>Payment reassurance</td><td><span class="pill p-med">Mismatched</span> Footer shows Visa, Mastercard, Maestro, Amex, GPay</td><td>Indian buyers look for <b>UPI and Cash on Delivery</b>. Show those, plus "7-day return" and "GST invoice".</td></tr>
+      <tr><td>Doctor / author credibility</td><td><span class="pill p-high">Absent</span> No named BAMS author on any of the 40 blog posts</td><td>A named, credentialed Ayurvedic doctor as author with a bio. Required for health content to be trusted by readers, Google and AI answer engines alike.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ============ CAPTURE ============ -->
+<section id="b2c-capture">
+  <div class="sec-head">
+    <h2>Capture and follow-up — currently almost nothing</h2>
+    <p>Around 98% of first-time visitors will not buy. Today the site has one way to keep any of them: an email popup that most people close.</p>
+  </div>
+
+  <div class="grid g3">
+    <div class="box">
+      <h4>What exists</h4>
+      <ul>
+        <li>Email newsletter popup (intrusive, fires too early)</li>
+        <li>A contact form on <span class="code">/pages/contact</span> — 50 words of page copy around it</li>
+        <li>A consultation form on <span class="code">/pages/get-free-consultation</span> with a WhatsApp button — <b>the best lead page on the site</b>, and it is not promoted anywhere</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h4>What is missing</h4>
+      <ul>
+        <li>Floating WhatsApp button on every page</li>
+        <li>Abandoned-cart recovery by WhatsApp and email</li>
+        <li>Post-purchase "how to take this" message on day 2</li>
+        <li>Review request on day 10</li>
+        <li><b>Refill reminder on day 25</b> — a 60-tablet pack at 2/day is exactly one month</li>
+        <li>Subscriptions on chronic-use products</li>
+        <li>Any reason to give an email other than "discounts"</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h4>Do this instead of the popup</h4>
+      <ul>
+        <li>Promote <b>"Talk to our Vaidya on WhatsApp — free"</b> as the primary capture offer. You already have the page; it just needs to be in the header and on every product page.</li>
+        <li>It converts far better than a discount popup for medicine, it produces a phone number rather than an email, and it starts a conversation you can close.</li>
+        <li>Keep the email popup, but at 20 seconds and once a month.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHECKOUT ============ -->
+<section id="b2c-checkout">
+  <div class="sec-head">
+    <h2>Basket and checkout</h2>
+    <p>Not directly inspectable without placing an order, but the catalogue structure shows what is missing.</p>
+  </div>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Gap</th><th>Effect</th><th>Fix</th></tr></thead>
+    <tbody>
+      <tr><td>No bundles, no course packs, no subscriptions</td><td>Average order is one ₹210–250 pack; shipping eats the margin</td><td>3-month course pack at ~12% off 3×; "goes with this" block; Shopify Subscriptions on Diabezeel, SG-Liv, Cardpro</td></tr>
+      <tr><td>No free-shipping threshold shown</td><td>Nothing encourages a second item</td><td>Free shipping over ₹599 with a progress bar in the cart</td></tr>
+      <tr><td>No prepaid incentive visible</td><td>COD share stays high; RTO returns destroy margin</td><td>5% prepaid discount shown as a line item; cap COD above ₹2,000</td></tr>
+      <tr><td>No stock/urgency or delivery estimate</td><td>No reason to order today</td><td>"Delivered in 3–5 days in Gujarat" on the product page</td></tr>
+      <tr><td>Sold-out products still purchasable-looking</td><td>Dead ends mid-funnel</td><td>Hide or draft out-of-stock SKUs; add back-in-stock capture</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ============ CLAIMS ============ -->
+<section id="b2c-claims">
+  <div class="sec-head">
+    <h2>Claims — this is blocking your paid advertising</h2>
+    <p>Not a legal opinion, but a commercial warning. <b>17 of the 111 pages</b> carry disease or cure wording in the page title or meta description, including the homepage itself.</p>
+  </div>
+
+  <div class="callout bad" style="border-left:4px solid var(--red);background:var(--red-soft)">
+    <strong>The homepage meta description names three conditions</strong>
+    "Discover trusted Ayurvedic medicines for <b>diabetes, kidney stones</b>, digestion, and pain relief." That is the sentence Google prints under your name in search results, and it is the kind of claim that gets an ad account rejected.
+  </div>
+
+  <div class="table-wrap" style="margin-top:8px">
+  <table>
+    <thead><tr><th>Where</th><th>Wording found</th><th>Why it matters for B2C</th></tr></thead>
+    <tbody>
+      <tr><td>Homepage meta description</td><td>"diabetes, kidney stones"</td><td rowspan="6">Diabetes, sexual function, fertility and stone "removal" are the hardest categories to advertise in India. <b>Meta and Google will reject these ads</b>, so paid traffic cannot be turned on until the wording changes — quite apart from exposure under the Drugs &amp; Magic Remedies (Objectionable Advertisements) Act and ASCI's Ayurvedic code.</td></tr>
+      <tr><td>Product titles</td><td>"<b>kidney stone removal</b>", "hypertension", "blood sugar management", "<b>male fertility and sperm count</b>", "men's stamina", "leucorrhea"</td></tr>
+      <tr><td>Product URLs</td><td>The claims are in the slugs themselves, e.g. <span class="code">crushtone-tablets-kidney-stone-removal</span></td></tr>
+      <tr><td>Collection pages</td><td><span class="code">/collections/shop</span> and <span class="code">/collections/tablet</span> both name diabetes</td></tr>
+      <tr><td>Blog</td><td>"the ultimate guide to <b>permanent comfort</b>", "natural treatment of kidney stones", "best treatment for leucorrhea"</td></tr>
+      <tr><td>Diabezeel page body</td><td>"management of Type II Diabetes and newly detected NIDDM"  <span class="muted">(also spelled "Diabetese")</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout warn">
+    <strong>What to do — and the trap to avoid</strong>
+    Get a lawyer to approve a <b>phrase bank</b> ("supports healthy blood sugar", "traditionally used for urinary comfort", "consult your physician") and rewrite titles, meta descriptions and blog headlines to it. <b>Do not change the URLs without 301 redirects</b> — those slugs are earning whatever rankings you currently have, and changing 47 product URLs carelessly would cost more traffic than the rewording saves. Change the visible title and meta first; migrate slugs later, with redirects, one batch at a time.
+  </div>
+</section>
+
+<!-- ============ FIX LIST ============ -->
+<section id="b2c-fixlist">
+  <div class="sec-head">
+    <h2>Ranked fix list</h2>
+    <p>Ordered by return per hour of work, not by how the site is organised.</p>
+  </div>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>#</th><th>Fix</th><th>Effort</th><th>Impact</th><th>Owner</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Install GA4 + Search Console + Merchant Center; mark purchase, WhatsApp click and form submit as conversions</td><td>1 day</td><td><span class="pill p-crit">Foundational</span></td><td>Developer</td></tr>
+      <tr><td>2</td><td>Clear the September "Critical" list: typos, popup timing, slider to 4, Hiponorm to draft, footer year, broken images</td><td>2 hours</td><td><span class="pill p-crit">Critical</span></td><td>Store manager</td></tr>
+      <tr><td>3</td><td>Review sprint — WhatsApp and email every past buyer; 10 reviews per hero SKU</td><td>1 week</td><td><span class="pill p-crit">Critical</span></td><td>Marketing</td></tr>
+      <tr><td>4</td><td>Floating WhatsApp button site-wide; every phone number as <span class="code">tel:</span></td><td>30 min</td><td><span class="pill p-high">High</span></td><td>Developer</td></tr>
+      <tr><td>5</td><td>Promote "Free Vaidya consultation on WhatsApp" in the header and on every product page</td><td>2 hours</td><td><span class="pill p-high">High</span></td><td>Marketing</td></tr>
+      <tr><td>6</td><td>Back-label photograph + 3 more images on the 8 hero SKUs</td><td>1 shoot day</td><td><span class="pill p-high">High</span></td><td>Content</td></tr>
+      <tr><td>7</td><td>Build <span class="code">/pages/quality</span>: certificates full size, AYUSH and FSSAI numbers in text, plant photos</td><td>3 days</td><td><span class="pill p-high">High</span></td><td>Marketing + QA</td></tr>
+      <tr><td>8</td><td>Composition table with quantities + contraindications on the 8 hero SKUs</td><td>1 week</td><td><span class="pill p-high">High</span></td><td>Ayurvedic doctor</td></tr>
+      <tr><td>9</td><td>Rewrite titles and meta descriptions to the lawyer-approved phrase bank (no URL changes yet)</td><td>3 days + legal</td><td><span class="pill p-high">High</span></td><td>Marketing + legal</td></tr>
+      <tr><td>10</td><td>WhatsApp flows: abandoned cart, day-2 how-to-take, day-10 review, day-25 refill</td><td>3 days</td><td><span class="pill p-high">High</span></td><td>Marketing</td></tr>
+      <tr><td>11</td><td>Free-shipping bar at ₹599, 3-month course packs, subscriptions on chronic SKUs</td><td>3 days</td><td><span class="pill p-med">Medium</span></td><td>Store manager</td></tr>
+      <tr><td>12</td><td>Named BAMS author with bio on all 40 blog posts</td><td>2 days</td><td><span class="pill p-med">Medium</span></td><td>Content</td></tr>
+      <tr><td>13</td><td>Alt text on all images; real H1 on the homepage</td><td>1 day</td><td><span class="pill p-med">Medium</span></td><td>Developer</td></tr>
+      <tr><td>14</td><td>Finish or draft memcog, doron, bph-52; fix the "Diabetese" typo</td><td>2 hours</td><td><span class="pill p-med">Medium</span></td><td>Store manager</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ============ PLAN ============ -->
+<section id="b2c-plan">
+  <div class="sec-head">
+    <h2>First 30 days</h2>
+  </div>
+  <div class="timeline">
+    <div class="phase">
+      <div class="when">Week 1<small>Measure &amp; unblock</small></div>
+      <div>
+        <ul>
+          <li>GA4, Search Console, Merchant Center connected; conversion events marked</li>
+          <li>Every item on the September "Critical" list cleared — it is about two hours of work in total</li>
+          <li>Floating WhatsApp button live; phone numbers made tappable</li>
+          <li>Lawyer briefed on the claims phrase bank</li>
+          <li>Past-customer list exported; review sprint begins</li>
+        </ul>
+        <div class="goal">Gate: you can see real traffic and conversion numbers for the first time.</div>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="when">Week 2<small>Proof</small></div>
+      <div>
+        <ul>
+          <li>Shoot day: back labels and 3 extra images for the 8 hero SKUs</li>
+          <li><span class="code">/pages/quality</span> built and linked from every product</li>
+          <li>First reviews landing; target 10 per hero SKU</li>
+          <li>Composition tables and contraindications drafted by the Ayurvedic doctor</li>
+        </ul>
+        <div class="goal">Gate: a first-time visitor can verify who you are and what is in the pack.</div>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="when">Weeks 3–4<small>Capture &amp; basket</small></div>
+      <div>
+        <ul>
+          <li>WhatsApp flows live: abandoned cart, day-2, day-10, day-25</li>
+          <li>Free-shipping bar, course packs, subscriptions on chronic SKUs</li>
+          <li>Titles and meta descriptions rewritten to the phrase bank</li>
+          <li>Consultation offer promoted in the header</li>
+          <li>Only now: switch on paid traffic — see the digital growth plan for the campaign structure</li>
+        </ul>
+        <div class="goal">Gate: repeat purchases begin; ads can run without being rejected.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KPI ============ -->
+<section id="b2c-kpi">
+  <div class="sec-head">
+    <h2>What to measure</h2>
+    <p>Baselines are unknown because there is no GA4. Fill the "today" column in week 2 and re-scale.</p>
+  </div>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Metric</th><th class="n">Today</th><th class="n">Day 30</th><th class="n">Day 90</th></tr></thead>
+    <tbody>
+      <tr><td>Reviews across hero SKUs</td><td class="n">0</td><td class="n">80</td><td class="n">200</td></tr>
+      <tr><td>Products with a back-label image</td><td class="n">0</td><td class="n">8</td><td class="n">47</td></tr>
+      <tr><td>Conversion rate</td><td class="n">unknown</td><td class="n">measured</td><td class="n">1.0%+</td></tr>
+      <tr><td>Average order value</td><td class="n">unknown</td><td class="n">measured</td><td class="n">₹600</td></tr>
+      <tr><td>WhatsApp conversations started / week</td><td class="n">~0</td><td class="n">25</td><td class="n">100</td></tr>
+      <tr><td>Returning-customer rate</td><td class="n">unknown</td><td class="n">measured</td><td class="n">15%</td></tr>
+      <tr><td>Pages with disease claims in title/meta</td><td class="n">17</td><td class="n">0</td><td class="n">0</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+
+
+
+<div class="part" id="part-b2b">
+  <div class="pnum">Part 2 &middot; sgvpaarogyam.com · B2B lead-generation audit · live site checked 30 Sep 2026</div>
+  <h2>B2B — there is no business funnel on this website</h2>
+  <p class="plede">This is not an exaggeration or a figure of speech. I searched the live site for the vocabulary every Indian pharma B2B buyer uses — distributor, dealer, stockist appointment, franchise, PCD, wholesale, bulk, MOQ, margin, drug licence, GMP, AYUSH. Across the homepage, About, Contact, Store Locator and Stockist pages, the only matches were four instances of the word "DISTRIBUTOR" inside the company names of existing stockists.</p>
+</div>
+
+
+<!-- ============ VERDICT ============ -->
+<section id="b2b-verdict">
+  <div class="sec-head">
+    <h2>Verdict</h2>
+    <p>For a company whose growth plan depends on doctors, stockists and distributors for 80–90% of volume, the website currently does nothing for any of them. A distributor who hears your name at a trade meeting, searches you, and lands here finds a consumer shop with no way to start a conversation, no proof of licensing, and — worse — a page that hands him the names and phone numbers of your existing distribution network.</p>
+  </div>
+
+  <div class="grid g4">
+    <div class="tile"><div class="num" style="color:var(--red)">0</div><div class="lbl">B2B pages on the site</div><div class="sub">No distributor, dealer, PCD, franchise, doctor or bulk-order page exists</div></div>
+    <div class="tile"><div class="num" style="color:var(--red)">0</div><div class="lbl">mentions of AYUSH or GMP</div><div class="sub">The first thing a pharmacy or distributor checks is entirely absent</div></div>
+    <div class="tile"><div class="num" style="color:var(--red)">1</div><div class="lbl">enquiry form, and it is generic</div><div class="sub">Name, phone, email, message. No enquiry type, no business route</div></div>
+    <div class="tile"><div class="num" style="color:var(--amber)">~30</div><div class="lbl">of your distributors published</div><div class="sub">With addresses and mobile numbers, free for any competitor to copy</div></div>
+  </div>
+
+  <div class="callout warn">
+    <strong>The asymmetry worth noticing</strong>
+    You have roughly 70 people in the field. They are creating B2B interest every day. Every one of those conversations ends with the buyer looking you up — and the website then fails to convert the interest your field team already paid to create. Fixing this is cheaper than any other growth activity available to you, because the demand already exists.
+  </div>
+</section>
+
+<!-- ============ EVIDENCE ============ -->
+<section id="b2b-evidence">
+  <div class="sec-head">
+    <h2>What I measured</h2>
+    <p>Method: fetched every URL in the sitemap (111 live pages), stripped the markup and searched the text.</p>
+  </div>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>What a B2B buyer looks for</th><th>Present?</th><th>Where it should be</th></tr></thead>
+    <tbody>
+      <tr><td>A "For Business" / "Partner with us" entry in the main navigation</td><td><span class="pill p-crit">No</span> Nav is Home · Shop · Medicine · Wellness · Lifestyle Disorder · About Us · Contact Us</td><td>Header, top level. If it is not in the nav it does not exist.</td></tr>
+      <tr><td>A page explaining how to become a distributor or stockist</td><td><span class="pill p-crit">No</span></td><td><span class="code">/pages/distributors</span></td></tr>
+      <tr><td>PCD / franchise information</td><td><span class="pill p-crit">No</span></td><td><span class="code">/pages/pcd-franchise</span></td></tr>
+      <tr><td>A doctor-facing page (samples, prescribing information, dosage charts)</td><td><span class="pill p-crit">No</span></td><td><span class="code">/pages/doctors</span></td></tr>
+      <tr><td>Bulk / institutional / corporate gifting enquiry</td><td><span class="pill p-crit">No</span></td><td><span class="code">/pages/bulk-orders</span></td></tr>
+      <tr><td>AYUSH manufacturing licence number</td><td><span class="pill p-crit">No</span> word "AYUSH" appears nowhere on the site</td><td>Footer, quality page, every product page</td></tr>
+      <tr><td>GMP certification statement</td><td><span class="pill p-crit">No</span> word "GMP" appears nowhere</td><td>Quality page + footer</td></tr>
+      <tr><td>Downloadable certificates (GMP, FDCA, FSSAI, ISO)</td><td><span class="pill p-high">Weak</span> three ~30 px logos in the footer, not labelled, not clickable, no PDFs</td><td>Full-size, downloadable, with numbers in text</td></tr>
+      <tr><td>Composition with quantities per tablet / 5 ml</td><td><span class="pill p-high">No</span> ingredients are described, never quantified</td><td>Every product page — a professional buyer cannot evaluate without it</td></tr>
+      <tr><td>Batch COA / test reports</td><td><span class="pill p-crit">No</span></td><td>Downloadable per batch</td></tr>
+      <tr><td>HSN code and GST rate per product</td><td><span class="pill p-crit">No</span></td><td>Every product page — the distributor needs it to quote</td></tr>
+      <tr><td>Hospital / institutional pack sizes (e.g. 500s)</td><td><span class="pill p-crit">No</span> only retail packs listed</td><td>Product page variant</td></tr>
+      <tr><td>Price list or catalogue PDF</td><td><span class="pill p-crit">No</span></td><td>Gated behind a short form — the single best lead magnet you have</td></tr>
+      <tr><td>MOQ, trade margin, territory, scheme information</td><td><span class="pill p-crit">No</span></td><td>Distributor page</td></tr>
+      <tr><td>WhatsApp — where Indian B2B enquiries actually happen</td><td><span class="pill p-crit">No</span> zero <span class="code">wa.me</span> links on the homepage; one on the consultation page only</td><td>Every page, and prominently on all B2B pages</td></tr>
+      <tr><td>Tappable phone number</td><td><span class="pill p-crit">No</span> zero <span class="code">tel:</span> links on the homepage</td><td>Header and footer</td></tr>
+      <tr><td>Leadership / institution credibility page</td><td><span class="pill p-crit">Broken</span> <span class="code">/pages/from-the-desk-of-ceo</span> returns <b>404</b> and is still in the sitemap</td><td>Restore it. For an institutional buyer this page does real work.</td></tr>
+      <tr><td>Office hours and response commitment</td><td><span class="pill p-med">Partial</span> hours listed (Mon–Sat 9–6); no response-time promise</td><td>"We reply to business enquiries within one working day"</td></tr>
+      <tr><td>Map / directions to the plant</td><td><span class="pill p-med">No</span> no embedded map on the contact page</td><td>Contact page — distributors do visit</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ============ STOCKIST ============ -->
+<section id="b2b-stockist">
+  <div class="sec-head">
+    <h2>The stockist page is working against you</h2>
+    <p><span class="code">/pages/stockist</span> — 479 words, no H1, no meta description, 44 sub-headings.</p>
+  </div>
+
+  <div class="grid g2">
+    <div class="box">
+      <h4>What it actually contains</h4>
+      <ul>
+        <li>A "Stockist Search" heading and a list of roughly 30 existing distributors</li>
+        <li>For each: <b>company name, full address and a mobile number</b></li>
+        <li>Mostly Gujarat, some Rajasthan and Haryana</li>
+        <li>One entry reads "Address Not Available"</li>
+        <li><b>No form. No application process. No way to become a stockist.</b></li>
+      </ul>
+    </div>
+    <div class="box">
+      <h4>Why this is a problem</h4>
+      <ul>
+        <li><b>It is a competitor's shopping list.</b> A rival Ayurvedic brand's field manager can lift your entire Gujarat distribution network — names, towns, phone numbers — in one minute, and start calling them tomorrow.</li>
+        <li>It publishes partners' contact details, which they very likely did not expect to be indexed by Google.</li>
+        <li>The page occupies the exact URL a prospective distributor would click, and then offers him nothing to do.</li>
+        <li>It has no H1 and no meta description, so it does not even rank for the searches it might win.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>What to do instead — split it into two pages</strong>
+    <b>1. A public "Where to buy" page</b> for consumers: city and pincode search showing shop name and area only, no phone numbers, no full addresses — enough for a patient to find stock, not enough for a competitor to poach. <b>2. A private partner list</b> behind login for your field team and approved partners. <b>3.</b> Point <span class="code">/pages/stockist</span> itself at a new <b>"Become a stockist"</b> page with the application form. That single change converts your biggest B2B liability into your main B2B lead source.
+  </div>
+</section>
+
+<!-- ============ TRUST ============ -->
+<section id="b2b-trust">
+  <div class="sec-head">
+    <h2>The trust wall you are missing</h2>
+    <p>A distributor, a chemist and a hospital buyer all run the same mental checklist before the first order. Today the site answers none of it.</p>
+  </div>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Their question</th><th>Answered today?</th><th>What the page must show</th></tr></thead>
+    <tbody>
+      <tr><td>"Are you actually licensed to make this?"</td><td><span class="pill p-crit">No</span></td><td>AYUSH manufacturing licence number, Gujarat FDCA licence, GMP under Schedule T — numbers in text, certificates as downloadable PDFs</td></tr>
+      <tr><td>"Do you have a real factory?"</td><td><span class="pill p-crit">No</span></td><td>Photographs of the plant, the QC lab, the packing line, the warehouse. Video is better.</td></tr>
+      <tr><td>"Who is behind this?"</td><td><span class="pill p-high">Weak</span> About Us is 421 words with no H1; the CEO page 404s</td><td>The SGVP institution, the trust, the leadership, the Gurukul and gaushala context. This is your strongest card and it is not being played.</td></tr>
+      <tr><td>"Will quality be consistent?"</td><td><span class="pill p-crit">No</span></td><td>Batch COA downloads, retained-sample policy, stability data, the testing you do per batch</td></tr>
+      <tr><td>"What exactly is in it?"</td><td><span class="pill p-high">Partial</span> ingredients named, never quantified</td><td>Composition table with mg per tablet / per 5 ml, classical reference text, indications, contraindications</td></tr>
+      <tr><td>"What will I make on it?"</td><td><span class="pill p-crit">No</span></td><td>Distributor and retailer margin bands, launch scheme, MOQ, credit terms, territory policy</td></tr>
+      <tr><td>"Is anyone else selling it successfully?"</td><td><span class="pill p-crit">No</span></td><td>Named stockist testimonials, "available in X towns", doctor endorsements, and — critically — consumer reviews, of which the site currently has <b>zero</b></td></tr>
+      <tr><td>"How fast can I get stock?"</td><td><span class="pill p-crit">No</span></td><td>Lead time, dispatch policy, minimum order value, who my contact is</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ============ BUYERS ============ -->
+<section id="b2b-buyers">
+  <div class="sec-head">
+    <h2>Four buyers, four pages — build these</h2>
+    <p>One generic "business enquiry" page converts badly because each of these buyers wants a different thing. Four focused pages, each with its own form and its own WhatsApp link, is about two weeks of work.</p>
+  </div>
+
+  <div class="grid g2">
+    <div class="chan">
+      <div class="share">1<small>/pages/distributors</small></div>
+      <div class="why"><b>Distributors &amp; stockists</b> — the volume channel.</div>
+      <ul>
+        <li>Territory availability by district, stated plainly</li>
+        <li>Margin structure: distributor %, retailer %, launch scheme (e.g. 10+1)</li>
+        <li>MOQ, credit terms, dispatch lead time, returns policy</li>
+        <li>What you require: drug licence number, GST number, godown, existing lines carried</li>
+        <li>Downloadable price list and product catalogue (gated behind the form)</li>
+        <li>"Apply for a territory" form + WhatsApp button</li>
+      </ul>
+    </div>
+    <div class="chan">
+      <div class="share">2<small>/pages/doctors</small></div>
+      <div class="why"><b>Vaidyas, BAMS practitioners, panchakarma centres</b> — the prescription engine.</div>
+      <ul>
+        <li>Prescribing information per product: composition, indications, dosage, contraindications</li>
+        <li>Downloadable dosage charts and patient leaflets in Gujarati, Hindi and English</li>
+        <li>Sample request form</li>
+        <li>Classical text references — this is what earns a vaidya's respect</li>
+        <li>Clinic supply pricing and hospital pack sizes</li>
+        <li>CME / health-camp calendar</li>
+      </ul>
+    </div>
+    <div class="chan">
+      <div class="share">3<small>/pages/pcd-franchise</small></div>
+      <div class="why"><b>PCD / monopoly franchise partners</b> — the fastest-growing model in Indian Ayurvedic pharma, and the highest-intent search traffic available to you.</div>
+      <ul>
+        <li>What monopoly rights you offer, and over what area</li>
+        <li>Investment required and expected returns</li>
+        <li>Promotional support: visual aids, samples, literature, MR support</li>
+        <li>Product list available for PCD</li>
+        <li>Application form: name, firm, city, drug licence no., GST no., phone</li>
+      </ul>
+    </div>
+    <div class="chan">
+      <div class="share">4<small>/pages/bulk-orders</small></div>
+      <div class="why"><b>Institutions, corporates, trusts, gifting</b> — lumpy but large orders.</div>
+      <ul>
+        <li>Corporate wellness hampers and Diwali gifting packs</li>
+        <li>Hospital and trust supply, tender participation</li>
+        <li>MOQ 100, custom branding options, lead time</li>
+        <li>Simple form that routes straight to WhatsApp</li>
+        <li>Seasonal: this page needs to be live by mid-October to catch Diwali gifting at all</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FORMS ============ -->
+<section id="b2b-forms">
+  <div class="sec-head">
+    <h2>The enquiry form — what is wrong with the one you have</h2>
+    <p><span class="code">/pages/contact</span> has one form: Full Name, Phone Number, Email Address, Your Message, "Submit Message". The page itself is 50 words.</p>
+  </div>
+
+  <div class="grid g2">
+    <div class="box">
+      <h4>Problems</h4>
+      <ul>
+        <li>No enquiry-type selector, so a distributor enquiry lands in the same inbox as "where is my order"</li>
+        <li>No qualifying fields — you cannot tell a serious distributor from a curious consumer</li>
+        <li>No WhatsApp option, which is how this buyer actually prefers to talk</li>
+        <li>No response-time promise</li>
+        <li>No confirmation of what happens next</li>
+        <li>No map, so a buyer who wants to visit the plant cannot</li>
+        <li>Submissions are almost certainly not tracked as conversions — there is no GA4 on the site at all</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h4>The six-field B2B form that works</h4>
+      <ul>
+        <li>Name · Firm name · City / district</li>
+        <li><b>Drug licence number</b> — the single best qualifier; time-wasters do not have one</li>
+        <li><b>GST number</b></li>
+        <li>Phone (WhatsApp) · What are you interested in: <span class="muted">distribution / PCD / clinic supply / bulk</span></li>
+        <li>Keep it to six fields. Every extra field costs roughly 10% of submissions.</li>
+        <li>On submit: a WhatsApp deep link, a downloadable catalogue, and "we reply within one working day".</li>
+        <li>Route to a Google Sheet or free HubSpot CRM, and mark it as a GA4 conversion.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OFFSITE ============ -->
+<section id="b2b-offsite">
+  <div class="sec-head">
+    <h2>Off-site — where B2B leads actually come from</h2>
+    <p>The website is where the enquiry is closed. It is rarely where it starts.</p>
+  </div>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Source</th><th>Status</th><th>What to do</th><th>Effort</th></tr></thead>
+    <tbody>
+      <tr><td><b>IndiaMART / TradeIndia</b></td><td><span class="pill p-crit">Not present</span></td><td>The default place an Indian distributor searches. One listing per category, all pointing at <span class="code">/pages/distributors</span>. Expect enquiries within days.</td><td>2 days</td></tr>
+      <tr><td><b>Google Business Profile</b></td><td>Not verified in this check</td><td>Claim, fill, add plant photos, post weekly. Wins "ayurvedic manufacturer in ahmedabad" style searches.</td><td>1 day</td></tr>
+      <tr><td><b>Google Search — PCD keywords</b></td><td><span class="pill p-crit">No pages to rank</span></td><td>"ayurvedic pcd franchise gujarat", "ayurvedic products distributorship" are high-intent, low-cost B2B searches. You currently have no page that could rank or advertise for them.</td><td>After the pages exist</td></tr>
+      <tr><td><b>LinkedIn</b></td><td>Not linked from the site <span class="muted">(only Facebook and Instagram are)</span></td><td>Where corporate gifting and institutional buyers are. Two posts a week: plant, certifications, territory openings.</td><td>Ongoing</td></tr>
+      <tr><td><b>WhatsApp Business catalogue</b></td><td><span class="pill p-crit">Not present</span></td><td>Retailers reorder by chat. A catalogue plus auto-replies is B2B ordering with zero software.</td><td>2 days</td></tr>
+      <tr><td><b>The 70-person field team</b></td><td>Not connected to the site in any way</td><td>QR on every pack and standee → a landing page with the COA and a reorder button. A referral code per person. This is the biggest unexploited asset in the whole business.</td><td>Next print run</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ============ FIX LIST ============ -->
+<section id="b2b-fixlist">
+  <div class="sec-head">
+    <h2>Ranked fix list</h2>
+  </div>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>#</th><th>Fix</th><th>Effort</th><th>Impact</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><b>Take the distributor phone numbers and addresses off the public stockist page</b> and replace it with a "Become a stockist" page</td><td>1 day</td><td><span class="pill p-crit">Critical</span></td></tr>
+      <tr><td>2</td><td>Add "For Business" to the main navigation</td><td>15 min</td><td><span class="pill p-crit">Critical</span></td></tr>
+      <tr><td>3</td><td>Build <span class="code">/pages/quality</span> — AYUSH licence number, GMP, FDCA, FSSAI, downloadable certificates, plant photos</td><td>3 days</td><td><span class="pill p-crit">Critical</span></td></tr>
+      <tr><td>4</td><td>Build the four buyer pages with six-field forms + WhatsApp</td><td>1–2 weeks</td><td><span class="pill p-crit">Critical</span></td></tr>
+      <tr><td>5</td><td>Floating WhatsApp button site-wide; make phone numbers tappable</td><td>30 min</td><td><span class="pill p-high">High</span></td></tr>
+      <tr><td>6</td><td>Gated price list / product catalogue PDF as the lead magnet</td><td>3 days</td><td><span class="pill p-high">High</span></td></tr>
+      <tr><td>7</td><td>Composition tables with quantities, HSN, GST rate, pack sizes, COA on the 8 hero SKUs</td><td>2 weeks</td><td><span class="pill p-high">High</span></td></tr>
+      <tr><td>8</td><td>Restore <span class="code">/pages/from-the-desk-of-ceo</span> (currently 404 and still in the sitemap)</td><td>1 day</td><td><span class="pill p-high">High</span></td></tr>
+      <tr><td>9</td><td>List on IndiaMART and TradeIndia</td><td>2 days</td><td><span class="pill p-high">High</span></td></tr>
+      <tr><td>10</td><td>GA4 + form conversion tracking so B2B leads are countable</td><td>1 day</td><td><span class="pill p-high">High</span></td></tr>
+      <tr><td>11</td><td>Rewrite About Us with an H1, the institution story and photographs</td><td>2 days</td><td><span class="pill p-med">Medium</span></td></tr>
+      <tr><td>12</td><td>Map, office hours and a response-time promise on the contact page</td><td>2 hours</td><td><span class="pill p-med">Medium</span></td></tr>
+      <tr><td>13</td><td>WhatsApp Business catalogue for retailer reorders</td><td>2 days</td><td><span class="pill p-med">Medium</span></td></tr>
+      <tr><td>14</td><td>Gujarati versions of the distributor and doctor pages</td><td>3 days</td><td><span class="pill p-med">Medium</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ============ PLAN ============ -->
+<section id="b2b-plan">
+  <div class="sec-head">
+    <h2>90 days</h2>
+  </div>
+  <div class="timeline">
+    <div class="phase">
+      <div class="when">Weeks 1–2<small>Stop the leak, open the door</small></div>
+      <div>
+        <ul>
+          <li>Stockist page: strip the phone numbers and addresses; publish "Become a stockist" with a form</li>
+          <li>"For Business" added to the navigation</li>
+          <li>Floating WhatsApp button; tappable phone numbers</li>
+          <li>GA4 installed and form submits marked as conversions</li>
+          <li>Collect the certificate PDFs and licence numbers from the QA team</li>
+        </ul>
+        <div class="goal">Gate: a distributor who searches you can start a conversation in one tap.</div>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="when">Weeks 3–6<small>Build the four pages</small></div>
+      <div>
+        <ul>
+          <li><span class="code">/pages/quality</span> live and linked from every product</li>
+          <li>Distributor, doctor, PCD and bulk pages live with six-field forms</li>
+          <li>Price list and catalogue PDF gated behind the form</li>
+          <li>Composition tables, HSN, GST and pack sizes on the 8 hero SKUs</li>
+          <li>CEO page restored; About Us rewritten</li>
+          <li>IndiaMART and TradeIndia listings live</li>
+        </ul>
+        <div class="goal">Gate: 10+ qualified business enquiries in the month.</div>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="when">Weeks 7–13<small>Feed it</small></div>
+      <div>
+        <ul>
+          <li>Google Search campaign on PCD and distributorship keywords, landing on the new pages</li>
+          <li>LinkedIn: two posts a week — plant, certifications, territory openings</li>
+          <li>WhatsApp Business catalogue for retailer reorders</li>
+          <li>Field team issued referral codes; QR designed into the next packaging print run</li>
+          <li>Gujarati versions of the distributor and doctor pages</li>
+          <li>Doctor page extended with downloadable prescribing information and a sample request</li>
+        </ul>
+        <div class="goal">Gate: 30+ enquiries a month, and the first distributor appointed from a web lead.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KPI ============ -->
+<section id="b2b-kpi">
+  <div class="sec-head">
+    <h2>What to measure</h2>
+    <p>None of this is currently countable, because there is no analytics on the site.</p>
+  </div>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Metric</th><th class="n">Today</th><th class="n">Month 1</th><th class="n">Month 3</th><th class="n">Month 6</th></tr></thead>
+    <tbody>
+      <tr><td>B2B pages live</td><td class="n">0</td><td class="n">2</td><td class="n">5</td><td class="n">5</td></tr>
+      <tr><td>Business enquiries / month</td><td class="n">not tracked</td><td class="n">10</td><td class="n">30</td><td class="n">60</td></tr>
+      <tr><td>Enquiries with a drug licence number</td><td class="n">0</td><td class="n">5</td><td class="n">18</td><td class="n">40</td></tr>
+      <tr><td>Catalogue / price-list downloads</td><td class="n">0</td><td class="n">25</td><td class="n">80</td><td class="n">200</td></tr>
+      <tr><td>Distributors appointed from web leads</td><td class="n">0</td><td class="n">0</td><td class="n">3</td><td class="n">10</td></tr>
+      <tr><td>Doctor sample requests / month</td><td class="n">0</td><td class="n">5</td><td class="n">20</td><td class="n">50</td></tr>
+      <tr><td>IndiaMART enquiries / month</td><td class="n">0</td><td class="n">5</td><td class="n">15</td><td class="n">30</td></tr>
+      <tr><td>Partner phone numbers publicly exposed</td><td class="n" style="color:var(--red)">~30</td><td class="n">0</td><td class="n">0</td><td class="n">0</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+
+
+
+<div class="part" id="part-seo">
+  <div class="pnum">Part 3 &middot; sgvpaarogyam.com · 111 live pages crawled · 30 Sep 2026</div>
+  <h2>What every page is missing to rank — in Google, in answer boxes, and in AI answers</h2>
+  <p class="plede">I fetched all 111 URLs in the sitemap and extracted the title, meta description, headings, word count, canonical, schema types and image alt coverage for each. This page reports what is actually missing, page type by page type — then covers AEO (being the quoted answer) and GEO (being cited by AI search), which need different work from classic SEO.</p>
+</div>
+
+
+<!-- ============ METHOD ============ -->
+<section id="seo-method">
+  <div class="sec-head">
+    <h2>Method and headline numbers</h2>
+    <p>Crawled every URL in <span class="code">sitemap.xml</span> on 30 September 2026: 1 homepage, 13 content pages, 10 collections, 47 products, 40 blog posts.</p>
+  </div>
+
+  <div class="grid g4">
+    <div class="tile"><div class="num" style="color:var(--red)">0</div><div class="lbl">pages with FAQ schema</div><div class="sub">Out of 111 — even the pages that display a visible FAQ</div></div>
+    <div class="tile"><div class="num" style="color:var(--red)">0</div><div class="lbl">pages with review/rating schema</div><div class="sub">No star ratings can appear in any search result</div></div>
+    <div class="tile"><div class="num" style="color:var(--amber)">58</div><div class="lbl">titles too long for Google</div><div class="sub">23 of 47 products, 35 of 40 blog posts — truncated in results</div></div>
+    <div class="tile"><div class="num" style="color:var(--amber)">16</div><div class="lbl">pages missing a meta description</div><div class="sub">11 of 13 content pages, 5 of 10 collections</div></div>
+  </div>
+
+  <div class="callout ok">
+    <strong>The good news first, because it changes the priorities</strong>
+    The technical skeleton is sound. Organization schema is on all 111 pages, BreadcrumbList on 96, Product+Offer+Brand on all 47 products, Article on 39 blog posts, CollectionPage on all 10 collections. Product pages now run a median of <b>671 words</b> and blog posts <b>1,346 words</b> — that is genuinely good depth. You do not need a replatform or a rebuild. The gaps are specific, cheap and mostly configuration.
+  </div>
+</section>
+
+<!-- ============ SITEWIDE ============ -->
+<section id="seo-sitewide">
+  <div class="sec-head">
+    <h2>Faults that affect every page</h2>
+  </div>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>#</th><th>Fault</th><th>Measured</th><th>Effect on ranking</th><th>Fix</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><span class="pill p-crit">Critical</span> <b>No Google Analytics 4</b></td><td>No <span class="code">G-</span> ID, no <span class="code">gtag()</span>, no GTM anywhere</td><td>Not a ranking factor directly — but you cannot see which queries, pages or fixes produce anything, so every decision below is guesswork until it is installed</td><td>Sales channels → Google &amp; YouTube. Also confirm Search Console is a <b>Domain property</b>.</td></tr>
+      <tr><td>2</td><td><span class="pill p-crit">Critical</span> <b>Zero FAQ schema</b></td><td>0 of 111 pages, despite product pages showing 6-question FAQ blocks on screen</td><td>You are giving Google the answers and not letting it use them. FAQ markup is the cheapest route into "People also ask" and into AI answers.</td><td>Add FAQPage JSON-LD to the product template and to blog posts.</td></tr>
+      <tr><td>3</td><td><span class="pill p-crit">Critical</span> <b>Zero AggregateRating</b></td><td>0 of 111</td><td>No star ratings in search results. In a health category where every competitor shows stars, this alone suppresses click-through badly.</td><td>Collect reviews first (see the B2C audit), then the markup follows automatically from Judge.me.</td></tr>
+      <tr><td>4</td><td><span class="pill p-high">High</span> <b>Two dead URLs still in the sitemap</b></td><td><span class="code">/pages/from-the-desk-of-ceo</span> and <span class="code">/pages/html-sitemap</span> both return <b>404</b> and both are still submitted</td><td>Wastes crawl budget and signals neglect. The CEO page is also a trust asset you are simply not using.</td><td>Restore the CEO page; remove html-sitemap from the sitemap or add a redirect.</td></tr>
+      <tr><td>5</td><td><span class="pill p-high">High</span> <b>Internal tax collections are indexable</b></td><td><span class="code">/collections/12-gst</span> and <span class="code">/collections/tablets-5-gst</span> are live, in the sitemap, and have no meta description</td><td>Duplicate thin catalogue pages competing with your real collections. Nobody searches "12 gst".</td><td>Collections → Sales channels → untick Online Store.</td></tr>
+      <tr><td>6</td><td><span class="pill p-high">High</span> <b>Placeholder page indexed</b></td><td><span class="code">/pages/mypage</span> — 68 words, no H1, no meta description, live and in the sitemap</td><td>A visible sign of an unmaintained site, to both Google and any buyer who finds it</td><td>Delete it.</td></tr>
+      <tr><td>7</td><td><span class="pill p-high">High</span> <b>Image alt text largely missing</b></td><td>33 images on the homepage alone have no alt attribute; 31 of 59 also fail to load at all</td><td>No image search traffic, no context for Google, and an accessibility problem</td><td>Alt text on every product and content image; re-upload the broken ones.</td></tr>
+      <tr><td>8</td><td><span class="pill p-med">Medium</span> <b>Titles exceed the display limit</b></td><td>23 products and 35 blog posts over 60 characters; the longest product title is 80</td><td>Google truncates them mid-phrase, so the part that would earn the click is cut off</td><td>Front-load the keyword; move the descriptive tail into the meta description.</td></tr>
+      <tr><td>9</td><td><span class="pill p-med">Medium</span> <b>Claim wording in titles and meta</b></td><td>17 of 111 pages, including the homepage meta description</td><td>Not a Google penalty, but it blocks paid search entirely and carries regulatory exposure — see the B2C audit</td><td>Rewrite visible titles and meta first; migrate URLs later with 301s.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ============ HOMEPAGE ============ -->
+<section id="seo-home">
+  <div class="sec-head">
+    <h2>Homepage</h2>
+  </div>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Element</th><th>Found</th><th>Verdict</th><th>Fix</th></tr></thead>
+    <tbody>
+      <tr><td>Title</td><td>"SGVP Aarogyam | Authentic Ayurveda &amp; Holistic Healing" <span class="muted">(53 chars)</span></td><td><span class="pill p-ok">OK</span></td><td>Consider adding "Ahmedabad" for local relevance</td></tr>
+      <tr><td>Meta description</td><td>"Discover trusted Ayurvedic medicines for diabetes, kidney stones, digestion, and pain relief…"</td><td><span class="pill p-crit">Rewrite</span></td><td>Names three conditions in the sentence Google prints under your brand. Replace with institution + range + location wording.</td></tr>
+      <tr><td><b>H1</b></td><td><b>Empty.</b> One <span class="code">&lt;h1&gt;</span> element containing no text</td><td><span class="pill p-crit">Critical</span></td><td>Add a real H1: who you are, what you make, where. This is the single most basic on-page signal and it is blank.</td></tr>
+      <tr><td>Body content</td><td>242 words</td><td><span class="pill p-high">Thin</span></td><td>400–600 words of real copy: the institution, the manufacturing, the range, the certifications, links to key collections.</td></tr>
+      <tr><td>Images</td><td>59 total · 31 fail to load · 33 without alt</td><td><span class="pill p-crit">Critical</span></td><td>Re-upload and caption.</td></tr>
+      <tr><td>Schema</td><td>Organization, WebSite, SearchAction present</td><td><span class="pill p-ok">Good</span></td><td>Add LocalBusiness with the campus address, hours and phone.</td></tr>
+      <tr><td>Internal linking</td><td>Slider dominates; 14 slides</td><td><span class="pill p-med">Weak</span></td><td>Cut to 4 slides and add a text section linking to the 8 hero products and the main collections.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ============ PAGES ============ -->
+<section id="seo-pages">
+  <div class="sec-head">
+    <h2>Content pages — 13 crawled, 11 missing meta descriptions</h2>
+    <p>This is the weakest page type on the site. Four have no H1 at all.</p>
+  </div>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Page</th><th class="n">Words</th><th>Meta desc</th><th>H1</th><th>What it needs</th></tr></thead>
+    <tbody>
+      <tr><td><span class="code">/pages/from-the-desk-of-ceo</span></td><td class="n">—</td><td><span class="pill p-crit">404</span></td><td>—</td><td><b>Dead page still in the sitemap.</b> Restore it — leadership pages carry real weight for institutional and B2B trust.</td></tr>
+      <tr><td><span class="code">/pages/html-sitemap</span></td><td class="n">—</td><td><span class="pill p-crit">404</span></td><td>—</td><td>Remove from the sitemap or rebuild.</td></tr>
+      <tr><td><span class="code">/pages/mypage</span></td><td class="n">68</td><td><span class="pill p-crit">None</span></td><td><span class="pill p-crit">None</span></td><td>Placeholder. Delete.</td></tr>
+      <tr><td><span class="code">/pages/contact</span></td><td class="n">50</td><td><span class="pill p-ok">Yes</span></td><td><span class="pill p-ok">Yes</span></td><td>Far too thin for a page that should win "ayurvedic medicine company ahmedabad". Add the address in text, a map, hours, department routing, and <b>LocalBusiness schema</b>.</td></tr>
+      <tr><td><span class="code">/pages/vision-mission-values</span></td><td class="n">63</td><td><span class="pill p-crit">None</span></td><td><span class="pill p-crit">None</span></td><td>63 words is not a page. Either expand to 400+ with substance or fold into About Us and redirect.</td></tr>
+      <tr><td><span class="code">/pages/store-locator</span></td><td class="n">105</td><td><span class="pill p-crit">None</span></td><td><span class="pill p-ok">Yes</span></td><td>Should be a strong local-SEO asset. Needs city pages, structured store data, and a meta description. Currently near-empty.</td></tr>
+      <tr><td><span class="code">/pages/get-free-consultation</span></td><td class="n">321</td><td><span class="pill p-crit">None</span></td><td><span class="pill p-ok">Yes</span></td><td><b>Your best lead page and it has no meta description.</b> Add one, add FAQ schema, name the consulting Vaidya with credentials, and link it from the header and every product.</td></tr>
+      <tr><td><span class="code">/pages/about-us</span></td><td class="n">421</td><td><span class="pill p-ok">Yes</span></td><td><span class="pill p-crit">None</span></td><td>No H1 on your main credibility page. Add one, expand to 800+ words, add the institution story, plant photos, licence numbers and named people.</td></tr>
+      <tr><td><span class="code">/pages/stockist</span></td><td class="n">479</td><td><span class="pill p-crit">None</span></td><td><span class="pill p-crit">None</span></td><td>44 sub-headings of distributor contact details. See the B2B audit — this should become "Become a stockist" plus a privacy-safe "Where to buy".</td></tr>
+      <tr><td><span class="code">/pages/terms-of-use</span> &amp; <span class="code">/pages/website-terms</span></td><td class="n">342 each</td><td><span class="pill p-crit">None</span></td><td><span class="pill p-ok">Yes</span></td><td><b>Two pages with identical content</b> — duplicate content. Keep one, 301 the other.</td></tr>
+      <tr><td><span class="code">/pages/terms-and-conditions</span></td><td class="n">630</td><td><span class="pill p-crit">None</span></td><td><span class="pill p-ok">Yes</span></td><td>A third overlapping terms page. Consolidate all three into one.</td></tr>
+      <tr><td><span class="code">/pages/privacy-policy</span></td><td class="n">2,648</td><td><span class="pill p-crit">None</span></td><td><span class="pill p-ok">Yes</span></td><td>Fine as is. Add a meta description; consider noindex.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout warn">
+    <strong>Pages that should exist and do not</strong>
+    <span class="code">/pages/quality</span> (certifications, AYUSH licence number, lab testing) · <span class="code">/pages/distributors</span> · <span class="code">/pages/doctors</span> · <span class="code">/pages/pcd-franchise</span> · <span class="code">/pages/bulk-orders</span> · and 10–15 <b>ingredient pages</b> (<span class="code">/pages/ingredients/gudmar</span>, <span class="code">/arjuna</span>, <span class="code">/punarnava</span>…). Ingredient pages are the cheapest ranking wins available to you: low competition, high relevance, and each one links to the product that contains that herb.
+  </div>
+</section>
+
+<!-- ============ COLLECTIONS ============ -->
+<section id="seo-collections">
+  <div class="sec-head">
+    <h2>Collections — 10 crawled</h2>
+    <p>Median 1,179 words, which is healthy. The problem is which collections exist and which have descriptions.</p>
+  </div>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Collection</th><th class="n">Words</th><th>Meta desc</th><th>Action</th></tr></thead>
+    <tbody>
+      <tr><td><span class="code">/collections/12-gst</span></td><td class="n">492</td><td><span class="pill p-crit">None</span></td><td><b>Remove from the Online Store channel.</b> Internal tax grouping, no search value, dilutes the catalogue.</td></tr>
+      <tr><td><span class="code">/collections/tablets-5-gst</span></td><td class="n">848</td><td><span class="pill p-crit">None</span></td><td><b>Remove from the Online Store channel.</b></td></tr>
+      <tr><td><span class="code">/collections/cosmetics</span></td><td class="n">1,613</td><td><span class="pill p-crit">None</span></td><td>Add a meta description and an intro paragraph.</td></tr>
+      <tr><td><span class="code">/collections/lifestyle-disorder</span></td><td class="n">1,143</td><td><span class="pill p-crit">None</span></td><td>Add meta description. Strong commercial term — worth real copy.</td></tr>
+      <tr><td><span class="code">/collections/seasonal-collection</span></td><td class="n">1,179</td><td><span class="pill p-crit">None</span></td><td>Add meta description; tie to winter/immunity content in Nov–Jan.</td></tr>
+      <tr><td><span class="code">/collections/shop</span>, <span class="code">/tablet</span>, <span class="code">/syrup</span>, <span class="code">/wellness</span>, <span class="code">/pharmaceutical-range</span></td><td class="n">—</td><td><span class="pill p-ok">Yes</span></td><td><span class="code">/shop</span> and <span class="code">/tablet</span> both name diabetes in the metadata — rewrite to the phrase bank.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout">
+    <strong>The collections you are missing</strong>
+    You have collections organised by <em>dosage form</em> (tablet, syrup) and by <em>tax rate</em>. You have almost none organised by <em>what the customer is searching for</em>. Condition-led collections — digestive care, joint care, liver care, women's health, immunity, respiratory — are how people search and how they should be able to browse. Each is a page that can rank, with lawyer-approved wording.
+  </div>
+</section>
+
+<!-- ============ PRODUCTS ============ -->
+<section id="seo-products">
+  <div class="sec-head">
+    <h2>Products — 47 crawled</h2>
+    <p>Median 671 words, Product + Offer + Brand schema on all of them. Content depth is no longer the main problem; presentation and markup are.</p>
+  </div>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Issue</th><th>Count</th><th>Fix</th></tr></thead>
+    <tbody>
+      <tr><td>No FAQ schema, despite a visible FAQ block on the page</td><td class="n">47 / 47</td><td>Add FAQPage JSON-LD to the product template. Highest-value single change in this report.</td></tr>
+      <tr><td>No AggregateRating — no stars possible in results</td><td class="n">47 / 47</td><td>Collect reviews, then the markup follows.</td></tr>
+      <tr><td>Title longer than 60 characters</td><td class="n">23 / 47</td><td>Shorten to "Product — primary benefit | SGVP Aarogyam". Longest is 80 characters.</td></tr>
+      <tr><td>Under 600 words</td><td class="n">10 / 47</td><td>Bring to the 671-word catalogue median.</td></tr>
+      <tr><td>Under 300 words</td><td class="n">1 <span class="muted">(hiponorm, 21 words)</span></td><td>Draft it or finish it.</td></tr>
+      <tr><td>Claim wording in title or URL slug</td><td class="n">~9</td><td>"kidney stone removal", "male fertility and sperm count", "men's stamina", "hypertension", "leucorrhea". Rewrite titles now, migrate slugs later with 301 redirects.</td></tr>
+      <tr><td>No composition table with quantities</td><td class="n">47 / 47</td><td>Plain HTML table — readable by buyers, by Google, and by AI answer engines.</td></tr>
+      <tr><td>Slugs with no descriptive text</td><td class="n">4 <span class="muted">(hiponorm, memcog, doron, bph-52)</span></td><td>Unlike the other 43. Finish these or unpublish.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="muted" style="margin-top:10px">Thinnest, in order: hiponorm (21), Aarogyam Shallaki (444), Arjun (531), SG-Cid tablet (564), Hadjod (566), SG-Cid syrup (567), Godhooli toothpaste (571), Godhooli balm (573), SG-Lax (578), SG-Koff lozenges (596). Arjun is the highest-search-volume herb in the range and one of the thinnest pages — fix that one first.</p>
+</section>
+
+<!-- ============ BLOGS ============ -->
+<section id="seo-blogs">
+  <div class="sec-head">
+    <h2>Blog — 40 posts</h2>
+    <p>Median 1,346 words with Article schema on 39 of them. The writing investment has been made; the finishing has not.</p>
+  </div>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Issue</th><th>Count</th><th>Fix</th></tr></thead>
+    <tbody>
+      <tr><td>Title over 60 characters</td><td class="n">35 / 40</td><td>Truncated in results. Shorten the front of the title; the long tail belongs in the meta description.</td></tr>
+      <tr><td>No named author with credentials</td><td class="n">40 / 40</td><td><b>The biggest gap on the blog.</b> Health content without a credentialed named author is discounted by Google and largely ignored by AI answer engines. Add a BAMS doctor byline with a real bio page and Person schema.</td></tr>
+      <tr><td>No FAQ schema</td><td class="n">40 / 40</td><td>Add 4–6 questions with markup to every post.</td></tr>
+      <tr><td>Meta description over 160 characters</td><td class="n">3</td><td>Trim.</td></tr>
+      <tr><td>Missing meta description</td><td class="n">1</td><td>Add.</td></tr>
+      <tr><td>Claim wording in the headline</td><td class="n">~7</td><td>Including "the ultimate guide to <b>permanent comfort</b>", "natural treatment of kidney stones", "best treatment for leucorrhea".</td></tr>
+      <tr><td>No visible review/update date</td><td class="n">40 / 40</td><td>"Reviewed by Dr X on [date]" — freshness and authorship together are what earn citations.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout ok">
+    <strong>Do this before writing a single new post</strong>
+    Forty posts averaging 1,346 words is a real asset that is currently under-performing for want of four small things per post: a named credentialed author, a review date, an FAQ block with schema, and three internal links to the relevant product. That is roughly 20 minutes per post — about two weeks of part-time work for all 40 — and it will do more than three months of new writing.
+  </div>
+</section>
+
+<!-- ============ SCHEMA ============ -->
+<section id="seo-schema">
+  <div class="sec-head">
+    <h2>Structured data — what you have and what is missing</h2>
+  </div>
+  <div class="grid g2">
+    <div class="box">
+      <h4 style="color:var(--green)">Present</h4>
+      <ul>
+        <li>Organization — 111 pages</li>
+        <li>BreadcrumbList + ListItem — 96 pages</li>
+        <li>Product + Offer + Brand — 47 products</li>
+        <li>Article — 39 blog posts</li>
+        <li>CollectionPage — 10 collections</li>
+        <li>WebSite + SearchAction — homepage</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h4 style="color:var(--red)">Missing — in priority order</h4>
+      <ul>
+        <li><b>FAQPage</b> — 0 pages. The content already exists on screen. Highest return of anything here.</li>
+        <li><b>AggregateRating / Review</b> — 0 pages. Needs reviews first.</li>
+        <li><b>LocalBusiness</b> — 0 pages. Campus address, hours, phone. Wins the Ahmedabad map pack.</li>
+        <li><b>Person</b> for the medical author — 0 pages. Underpins both trust and AI citation.</li>
+        <li><b>ImageObject</b> with captions on product images</li>
+        <li><b>HowTo</b> where a post genuinely describes a procedure or routine</li>
+        <li>Organization enrichment: add <span class="code">sameAs</span> (Facebook, Instagram, LinkedIn, Google Business), licence identifiers, founding date</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AEO ============ -->
+<section id="seo-aeo">
+  <div class="sec-head">
+    <h2>AEO — being the answer, not just a result</h2>
+    <p>Answer Engine Optimisation is about winning featured snippets, "People also ask", and voice answers. It is largely a formatting discipline, and the site currently does almost none of it.</p>
+  </div>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Rule</th><th>Status today</th><th>What to do</th></tr></thead>
+    <tbody>
+      <tr><td><b>Answer in the first 40–60 words</b>, then explain</td><td><span class="pill p-crit">Not done</span> Posts open with context and background</td><td>Rewrite the opening of all 40 posts so the direct answer comes first. Google lifts snippets from the first paragraph far more often than from anywhere else.</td></tr>
+      <tr><td><b>One question per heading</b>, phrased the way people ask it</td><td><span class="pill p-med">Partial</span> Headings are topical, not interrogative</td><td>Convert H2s to questions: "How long does Arjun take to work?" rather than "Duration of use".</td></tr>
+      <tr><td><b>FAQ schema on every page that has questions</b></td><td><span class="pill p-crit">0 of 111</span></td><td>The product FAQs are already written and displayed. Marking them up is a template change, done once.</td></tr>
+      <tr><td><b>Plain HTML tables</b> for dosage, composition, comparison</td><td><span class="pill p-high">Missing</span> No composition tables anywhere</td><td>Answer engines lift tables directly. Never put this data in an image or a carousel.</td></tr>
+      <tr><td><b>Definition sentences</b> — "X is a …"</td><td><span class="pill p-med">Partial</span></td><td>Every ingredient and product page should contain one clean, quotable definition sentence.</td></tr>
+      <tr><td><b>Named expert reviewer with a date</b></td><td><span class="pill p-crit">Absent</span></td><td>"Medically reviewed by Dr [name], BAMS, on [date]" — for health queries this materially affects whether you are used as the answer.</td></tr>
+      <tr><td><b>Lists with 5–8 short items</b></td><td><span class="pill p-med">Partial</span></td><td>Snippet-friendly formatting: short numbered or bulleted lists directly under a question heading.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout">
+    <strong>The highest-value AEO target you have</strong>
+    Safety and interaction questions: <em>"can I take ashwagandha with thyroid medicine"</em>, <em>"is Ayurvedic medicine safe with metformin"</em>, <em>"how long before Arjun shows results"</em>. They are low-competition, they are asked constantly, they suit an Ayurvedic pharmacy with real doctors, and they are exactly the shape of question answer engines want to quote. One post a week on this pattern, properly formatted, will outperform general category content.
+  </div>
+</section>
+
+<!-- ============ GEO ============ -->
+<section id="seo-geo">
+  <div class="sec-head">
+    <h2>GEO — being cited by ChatGPT, Gemini, Perplexity and AI Overviews</h2>
+    <p>Generative engines do not rank pages; they assemble answers from sources they consider consistent and verifiable, and cite a handful. Being citable is a different job from ranking, and for a brand like yours it is winnable — because consistency and institutional provenance matter more than domain authority.</p>
+  </div>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>What AI engines reward</th><th>Status today</th><th>What to do</th></tr></thead>
+    <tbody>
+      <tr><td><b>Identical brand facts everywhere</b> — name, address, phone, licence numbers, founding, parent institution</td><td><span class="pill p-high">Inconsistent</span> Two different email addresses on the homepage (<span class="code">aarogyam@sgvp.org</span> and <span class="code">contact@sgvpaarogyam.com</span>); no licence numbers anywhere</td><td>Write one canonical fact block. Use it verbatim on the site, Google Business Profile, Justdial, IndiaMART, LinkedIn and Wikidata. Contradictions are the main reason a brand gets dropped from an AI answer.</td></tr>
+      <tr><td><b>Verifiable credentials</b></td><td><span class="pill p-crit">Absent</span> "AYUSH" and "GMP" appear nowhere on the site</td><td>Publish the AYUSH manufacturing licence number, FDCA licence, FSSAI number and GMP status in plain text on <span class="code">/pages/quality</span>. Numbers in text, not inside images.</td></tr>
+      <tr><td><b>Named human expertise</b></td><td><span class="pill p-crit">Absent</span> No author on any of 40 posts</td><td>A named BAMS doctor with a bio page and Person schema, cited as reviewer on every health page.</td></tr>
+      <tr><td><b>Citations to authoritative sources</b></td><td><span class="pill p-med">Weak</span></td><td>Cite classical texts by name and verse (Charaka Samhita, Bhaishajya Ratnavali) and any published research. Engines favour content that itself cites.</td></tr>
+      <tr><td><b>Third-party corroboration</b></td><td><span class="pill p-high">Thin</span> Zero reviews; limited off-site presence</td><td>Reviews, Google Business Profile, IndiaMART, Justdial, a Wikidata entry, press mentions. AI answers are assembled from the wider web, not only from your site.</td></tr>
+      <tr><td><b>Clean, extractable structure</b></td><td><span class="pill p-med">Partial</span> Content is good; markup is thin</td><td>Semantic headings, HTML tables, FAQ schema, no key facts locked inside images or sliders.</td></tr>
+      <tr><td><b>Crawlability by AI agents</b></td><td><span class="pill p-med">Unknown</span> Shopify serves a <span class="code">sitemap_agentic_discovery.xml</span>, which is a good sign</td><td>Check <span class="code">robots.txt</span> does not block GPTBot, PerplexityBot, ClaudeBot or Google-Extended unless you intend to. Add an <span class="code">llms.txt</span> at the root with the brand facts and key page list.</td></tr>
+      <tr><td><b>Freshness</b></td><td><span class="pill p-high">Poor signal</span> Footer still reads "Copyright 2025"</td><td>Visible published and updated dates on all content; fix the footer year.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout ok">
+    <strong>Why GEO is a real opportunity here, not a buzzword</strong>
+    When someone asks an AI "which Ayurvedic brands are actually licensed manufacturers in Gujarat", the answer is assembled from whoever states their credentials clearly and consistently. Most of your competitors are D2C brands with a story and no licence numbers. You are an institutional manufacturer attached to a Gurukul, with real licences and real doctors — and you currently publish none of it. Publishing the verifiable facts is a week of work and it is the one area where you start ahead.
+  </div>
+</section>
+
+<!-- ============ LANGUAGE ============ -->
+<section id="seo-language">
+  <div class="sec-head">
+    <h2>Gujarati and Hindi — completely unserved</h2>
+  </div>
+  <div class="grid g2">
+    <div class="box">
+      <h4>What I found</h4>
+      <ul>
+        <li><span class="code">&lt;html lang="en"&gt;</span> and nothing else</li>
+        <li><b>No hreflang tags at all</b></li>
+        <li>No Gujarati or Hindi version of any page</li>
+        <li>Judging by the 111 pages crawled, the site is English-only</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h4>Why this matters more for you than for most</h4>
+      <ul>
+        <li>You are an Ahmedabad brand selling primarily into Gujarat</li>
+        <li>Your distributors' retailers, and a large share of patients, search in Gujarati</li>
+        <li>Queries like <span class="code">સુગર માટે આયુર્વેદિક દવા</span> and <span class="code">शुगर की आयुर्वेदिक दवा</span> have almost no competition</li>
+        <li>Shopify's <b>Translate &amp; Adapt is free</b>. Start with the top 10 pages plus the distributor and doctor pages.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ORDER ============ -->
+<section id="seo-order">
+  <div class="sec-head">
+    <h2>Do it in this order</h2>
+    <p>Sequenced by return per hour, and by what has to exist before the next thing can work.</p>
+  </div>
+  <ol class="steps">
+    <li><strong>Install GA4 and confirm Search Console as a Domain property</strong><p>One day. Nothing below is measurable without it.</p></li>
+    <li><strong>Add FAQPage schema to the product template and the blog template</strong><p>The questions and answers are already written and displayed. This is a template change, done once, that unlocks "People also ask" and AI citation across 87 pages.</p></li>
+    <li><strong>Clean the index</strong><p>Restore or remove the two 404s in the sitemap, delete <span class="code">/pages/mypage</span>, un-publish <span class="code">12-gst</span> and <span class="code">tablets-5-gst</span>, consolidate the three overlapping terms pages.</p></li>
+    <li><strong>Fix the homepage H1 and meta description</strong><p>Twenty minutes, and it is the page every other page links to.</p></li>
+    <li><strong>Write the 16 missing meta descriptions and 4 missing H1s</strong><p>Half a day of work across the content pages and collections.</p></li>
+    <li><strong>Publish the verifiable facts: <span class="code">/pages/quality</span></strong><p>AYUSH licence number, FDCA, GMP, FSSAI, lab testing, plant photos, in plain text. This is the foundation of both B2B trust and GEO citability.</p></li>
+    <li><strong>Add a named BAMS author with credentials and Person schema to all 40 posts</strong><p>Plus a review date and three internal product links each. Roughly 20 minutes a post.</p></li>
+    <li><strong>Rewrite over-long titles — 23 products and 35 blog posts</strong><p>Front-load the keyword, move the tail into the meta description, and clear the claim wording while you are in there. Do not change URLs yet.</p></li>
+    <li><strong>Run the review sprint</strong><p>Unlocks AggregateRating and star ratings in results. Nothing else gives that.</p></li>
+    <li><strong>Add composition tables and rewrite the first paragraph of every post to answer first</strong><p>The two changes that most affect whether you are quoted rather than merely listed.</p></li>
+    <li><strong>Build 10–15 ingredient pages</strong><p>Lowest-competition ranking wins available, and each one funnels to a product.</p></li>
+    <li><strong>Condition-led collections, then Gujarati and Hindi on the top 10 pages</strong><p>How customers actually search, in the language they actually search in.</p></li>
+  </ol>
+</section>
+
+
+
+
+<footer>
+  <div class="wrap">
+    SGVP Aarogyam website audit &middot; live site checked 30 Sep 2026 &middot; Companion to <a href="sgvp-digital-growth-plan.html">sgvp-digital-growth-plan.html</a>, <a href="sgvp-growth-plan.html">sgvp-growth-plan.html</a> and <a href="index.html">index.html</a>.<br>
+    Findings were produced by fetching all 111 URLs in the sitemap and by loading key pages in a browser and reading the rendered DOM. Titles, meta descriptions, headings, word counts, JSON-LD types and image alt coverage were parsed from the live HTML. Rankings and traffic were not measured, because the site has no analytics installed. Claim-wording notes are commercial observations about advertising acceptance, not legal advice.
+  </div>
+</footer>
+</main>
+
+</div>
+
+<script>
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.side-nav a'));
+  var secs=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1))}).filter(Boolean);
+  if(!secs.length)return;
+  var nav=document.querySelector('.side-nav');
+  var side=document.querySelector('.side');
+  function set(id){
+    links.forEach(function(a){
+      var on=a.getAttribute('href')==='#'+id;
+      a.classList.toggle('active',on);
+      if(!on)return;
+      if(window.innerWidth<=980){if(nav)nav.scrollLeft=a.offsetLeft-nav.clientWidth/2+a.clientWidth/2}
+      else if(side){
+        var t=a.offsetTop,b=t+a.offsetHeight;
+        if(t<side.scrollTop+8)side.scrollTop=t-8;
+        else if(b>side.scrollTop+side.clientHeight-8)side.scrollTop=b-side.clientHeight+8;
+      }
+    });
+  }
+  var raf=0;
+  function update(){
+    raf=0;
+    var cur=secs[0].id;
+    for(var i=0;i<secs.length;i++){if(secs[i].getBoundingClientRect().top<=140)cur=secs[i].id}
+    if(window.innerHeight+window.scrollY>=document.body.scrollHeight-4)cur=secs[secs.length-1].id;
+    set(cur);
+  }
+  function onScroll(){if(!raf)raf=requestAnimationFrame(update)}
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  update();
+})();
+</script>
+
+</body>
+</html>
