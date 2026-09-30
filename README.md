@@ -20,3 +20,4 @@ Standalone plans that draw on the research in `index.html`. Same self-contained 
 | File | Covers |
 |---|---|
 | `sgvp-website-audit.html` | Single audit in three parts: B2C conversion, B2B lead generation, and page-by-page SEO / AEO / GEO across all 111 URLs |
+| `competitor-analysis.html` | 21 competitors: platform, domain layout, checkout/apps, B2B pages, trust, consultation, reviews, languages, AI crawlers |

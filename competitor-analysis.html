@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SGVP Aarogyam - Competitor Analysis</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<style>
+:root{
+  --bg:#FAF8F3; --surface:#FFFFFF; --surface-2:#F2EEE5; --ink:#1E1B16; --ink-2:#5B554B; --ink-3:#8A8377;
+  --line:#E4DED2; --brand:#D8551F; --brand-ink:#9E3A10; --green:#2F7A3E; --green-soft:#E3F1E4;
+  --blue:#1F5F8B; --blue-soft:#E1ECF5; --amber:#B7791F; --amber-soft:#FBF0D9; --red:#B3261E; --red-soft:#F9E3E1;
+  --radius:10px; --w:1080px; --side:272px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15130F; --surface:#1E1B16; --surface-2:#26221B; --ink:#F1ECE2; --ink-2:#BDB5A6; --ink-3:#8A8377;
+    --line:#37322A; --brand:#F0733D; --brand-ink:#F8A77E; --green:#6CC07A; --green-soft:#1E3322;
+    --blue:#7FB3DC; --blue-soft:#1B2C3B; --amber:#E2A94B; --amber-soft:#3A2D14; --red:#F08B84; --red-soft:#3B1D1B;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15130F; --surface:#1E1B16; --surface-2:#26221B; --ink:#F1ECE2; --ink-2:#BDB5A6; --ink-3:#8A8377;
+  --line:#37322A; --brand:#F0733D; --brand-ink:#F8A77E; --green:#6CC07A; --green-soft:#1E3322;
+  --blue:#7FB3DC; --blue-soft:#1B2C3B; --amber:#E2A94B; --amber-soft:#3A2D14; --red:#F08B84; --red-soft:#3B1D1B;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.55;padding:0}
+h1,h2,h3,h4{font-family:"Bricolage Grotesque","Public Sans",system-ui,sans-serif;line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:clamp(30px,5vw,46px);font-weight:800;letter-spacing:-.01em}
+h2{font-size:clamp(22px,3vw,30px);font-weight:700;margin-bottom:6px}
+h3{font-size:19px;font-weight:700}
+h4{font-size:16px;font-weight:700}
+p{margin:0}
+a{color:var(--blue)}
+.wrap{max-width:none;margin:0}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--brand)}
+.lede{font-size:18px;color:var(--ink-2);max-width:68ch;margin-top:12px}
+header.top{padding-block:40px 28px;border-bottom:1px solid var(--line)}
+nav.toc{display:none}
+.shell{display:grid;grid-template-columns:var(--side) minmax(0,1fr);align-items:start;min-height:100vh}
+.side{position:sticky;top:0;height:100vh;overflow-y:auto;scrollbar-width:thin;background:var(--surface-2);border-right:1px solid var(--line);padding:26px 16px 22px;display:flex;flex-direction:column;gap:20px;z-index:20}
+.side-title{display:block;text-decoration:none;color:var(--ink);font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:17px;line-height:1.2;letter-spacing:-.01em}
+.side-title small{display:block;font-family:"Public Sans",sans-serif;font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--brand);margin-top:6px}
+.side-nav{display:grid;gap:2px;counter-reset:sn}
+.side-nav a{display:grid;grid-template-columns:20px 1fr;gap:9px;align-items:baseline;padding:7px 10px;border-radius:7px;font-size:14px;font-weight:600;color:var(--ink-2);text-decoration:none;line-height:1.3}
+.side-nav a::before{counter-increment:sn;content:counter(sn,decimal-leading-zero);font-family:"Bricolage Grotesque",sans-serif;font-size:10.5px;font-weight:700;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.side-nav a:hover,.side-nav a:focus-visible{background:var(--surface);color:var(--ink)}
+.side-nav a.active{background:var(--surface);color:var(--brand-ink);box-shadow:inset 3px 0 0 var(--brand)}
+.side-nav a.active::before{color:var(--brand)}
+.side-foot{margin-top:auto;font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--line);padding-top:14px;display:grid;gap:7px}
+.side-foot b{display:block;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
+.side-foot a{color:var(--ink-2);text-decoration:none;font-weight:600}
+.side-foot a:hover,.side-foot a:focus-visible{color:var(--brand)}
+.main{min-width:0;padding-inline:clamp(20px,3.2vw,52px);padding-bottom:64px}
+@media (max-width:980px){
+  :root{--side:0px}
+  .shell{grid-template-columns:minmax(0,1fr)}
+  .side{position:sticky;top:0;height:auto;min-width:0;max-width:100vw;flex-direction:row;align-items:center;gap:0;overflow:visible;padding:0;border-right:0;border-bottom:1px solid var(--line);background:var(--bg)}
+  .side-title,.side-foot{display:none}
+  .side-nav{display:flex;gap:4px;flex:1 1 auto;min-width:0;padding:9px 14px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior-x:contain}
+  .side-nav::-webkit-scrollbar{display:none}
+  .side-nav a{flex:0 0 auto;white-space:nowrap;grid-template-columns:1fr;padding:6px 11px;font-size:13.5px}
+  .side-nav a::before{display:none}
+  .side-nav a.active{box-shadow:none;background:var(--surface-2);color:var(--brand-ink)}
+  .main{padding-inline:16px}
+}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+section{padding-block:44px 8px;scroll-margin-top:16px}
+@media (max-width:980px){section{scroll-margin-top:72px}}
+.sec-head{margin-bottom:22px}
+.sec-head p{color:var(--ink-2);max-width:70ch}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
+.tile .num{font-family:"Bricolage Grotesque",sans-serif;font-size:34px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1}
+.tile .lbl{font-size:13px;color:var(--ink-2);margin-top:6px}
+.tile .sub{font-size:13px;color:var(--ink-3);margin-top:8px}
+.callout{border-left:4px solid var(--brand);background:var(--surface-2);padding:16px 20px;border-radius:0 var(--radius) var(--radius) 0;margin-block:18px}
+.callout.warn{border-color:var(--amber);background:var(--amber-soft)}
+.callout.ok{border-color:var(--green);background:var(--green-soft)}
+.callout strong{display:block;margin-bottom:4px}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);background:var(--surface-2);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.n{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+th.n{text-align:right}
+.pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.p-crit{background:var(--red-soft);color:var(--red)}
+.p-high{background:var(--amber-soft);color:var(--amber)}
+.p-med{background:var(--blue-soft);color:var(--blue)}
+.p-ok{background:var(--green-soft);color:var(--green)}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.steps li{position:relative;padding-left:44px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding-block:14px;padding-right:18px}
+.steps li::before{counter-increment:s;content:counter(s);position:absolute;left:14px;top:14px;width:22px;height:22px;border-radius:50%;background:var(--brand);color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center;font-family:"Bricolage Grotesque",sans-serif}
+.steps li strong{display:block;margin-bottom:3px}
+.steps li p{color:var(--ink-2);font-size:14.5px}
+.chan{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;display:flex;flex-direction:column;gap:10px}
+.chan .share{font-family:"Bricolage Grotesque",sans-serif;font-size:26px;font-weight:800;color:var(--brand);letter-spacing:-.01em;line-height:1}
+.chan .share small{font-family:"Public Sans",sans-serif;font-size:12px;font-weight:600;color:var(--ink-3);letter-spacing:.05em;text-transform:uppercase;margin-left:6px}
+.chan ul{margin:0;padding-left:18px;color:var(--ink-2);font-size:14.5px;display:grid;gap:4px}
+.chan .why{font-size:14px;color:var(--ink-2)}
+.timeline{display:grid;gap:14px}
+.phase{display:grid;grid-template-columns:130px 1fr;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
+.phase .when{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:18px;color:var(--brand)}
+.phase .when small{display:block;font-family:"Public Sans",sans-serif;font-size:12px;font-weight:600;color:var(--ink-3);margin-top:4px;text-transform:uppercase;letter-spacing:.05em}
+.phase ul{margin:8px 0 0;padding-left:18px;color:var(--ink-2);font-size:14.5px;display:grid;gap:4px}
+.phase .goal{font-size:14px;font-weight:600;margin-top:10px;color:var(--green)}
+@media (max-width:560px){.phase{grid-template-columns:1fr}}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:14.5px}
+.kv dt{color:var(--ink-3);font-weight:600}
+.kv dd{margin:0}
+.code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:var(--surface-2);padding:1px 6px;border-radius:4px}
+footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-3)}
+.muted{color:var(--ink-3);font-size:13px}
+@media (prefers-reduced-motion:no-preference){a{transition:color .15s}}
+.tile-list{margin:6px 0 0;padding-left:18px;font-size:14.5px;color:var(--ink-2);display:grid;gap:4px}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
+.box h4{margin-bottom:8px}
+.box ul{margin:0;padding-left:18px;color:var(--ink-2);font-size:14.5px;display:grid;gap:5px}
+.box p{color:var(--ink-2);font-size:14.5px}
+.funnel{display:grid;gap:10px}
+.fstep{display:grid;grid-template-columns:120px 1fr;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px 18px}
+.fstep .stage{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:15px;color:var(--brand);line-height:1.25}
+.fstep .stage small{display:block;font-family:"Public Sans",sans-serif;font-size:12px;font-weight:600;color:var(--ink-3);margin-top:3px;text-transform:uppercase;letter-spacing:.05em}
+.fstep .leak{font-size:14.5px;color:var(--ink-2)}
+.fstep .leak b{color:var(--ink)}
+.fstep .do{font-size:14px;color:var(--ink-2);margin-top:6px;padding-top:6px;border-top:1px dashed var(--line)}
+@media (max-width:560px){.fstep{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+<aside class="side">
+  <a class="side-title" href="#top">Competitor analysis<small>Platform · domains · funnels</small></a>
+  <nav class="side-nav" aria-label="Sections">
+  <a href="#summary">Summary</a>
+  <a href="#platforms">Platform map</a>
+  <a href="#domains">Domain patterns</a>
+  <a href="#checkout">Checkout &amp; app stack</a>
+  <a href="#b2b">B2B pages</a>
+  <a href="#trust">Trust &amp; proof</a>
+  <a href="#consult">Consultation funnels</a>
+  <a href="#reviews">Reviews</a>
+  <a href="#language">Languages</a>
+  <a href="#ai">AI crawlers &amp; GEO</a>
+  <a href="#copy">What SGVP should copy</a>
+  <a href="#method">Method &amp; limits</a>
+  </nav>
+  <div class="side-foot">
+    <b>Related</b>
+    <a href="sgvp-website-audit.html">Website audit</a>
+    <a href="sgvp-digital-growth-plan.html">Digital growth plan</a>
+    <a href="sgvp-growth-plan.html">Growth &amp; distribution plan</a>
+    <a href="index.html">Research index</a>
+  </div>
+</aside>
+
+<main class="main" id="top">
+<header class="top">
+  <div class="eyebrow">21 competitors checked live · 30 Sep 2026 · Ayurveda pharma, D2C Ayurveda, A2 ghee</div>
+  <h1 style="margin-top:10px">How competitors build and use their websites — and what that means for Shopify + Astro</h1>
+  <p class="lede">I checked what each competitor actually runs: platform, domain layout, checkout and apps, B2B pages, trust proof, consultation funnels, reviews, languages and AI-crawler policy. Everything here was read from their live sites, headers, robots.txt and sitemaps. Nothing is from memory or third-party "tech lookup" tools.</p>
+</header>
+
+<!-- ============ SUMMARY ============ -->
+<section id="summary">
+  <div class="sec-head">
+    <h2>Summary</h2>
+    <p>The market answers your platform question clearly. Shopify is the default. The brands that left it are venture-funded D2C companies with their own engineering teams and their own back ends. The brands most like SGVP (doctor-led, content-heavy, institutional) split a content site from a shop. That split is the Shopify + Astro plan.</p>
+  </div>
+
+  <div class="grid g4">
+    <div class="tile"><div class="num">13<span style="font-size:18px">/21</span></div><div class="lbl">run their store on Shopify</div><div class="sub">Himalaya, Charak, Zandu, Baidyanath, Kerala Ayurveda, Dr Vaidya's, Jiva and Planet Ayurveda stores, Vedix, Sri Sri Tattva, Organic India, Anveshan, Two Brothers</div></div>
+    <div class="tile"><div class="num">4</div><div class="lbl">run a headless front end</div><div class="sub">Kapiva, Nat Habit, Man Matters (VC-backed D2C) and Arya Vaidya Sala's shop, the one institutional peer</div></div>
+    <div class="tile"><div class="num">4</div><div class="lbl">split content site and shop</div><div class="sub">Jiva, Planet Ayurveda, Arya Vaidya Sala, Himalaya. The closest pattern to your plan.</div></div>
+    <div class="tile"><div class="num" style="color:var(--green)">0</div><div class="lbl">serve Gujarati</div><div class="sub">Only Jiva has Hindi pages. The Gujarati field is empty.</div></div>
+  </div>
+
+  <div class="callout ok">
+    <strong>What this confirms</strong>
+    Staying on Shopify puts you with Himalaya, Charak, Zandu and Dr Vaidya's. Adding an Astro content front end copies what Jiva, Planet Ayurveda and Arya Vaidya Sala do, which are the doctor-led and institutional brands, and improves on it (see the domain patterns below). The gap between SGVP and these competitors is not the platform. It is reviews, trust pages, B2B pages and a consultation funnel, all of which they have and SGVP does not.
+  </div>
+</section>
+
+<!-- ============ PLATFORMS ============ -->
+<section id="platforms">
+  <div class="sec-head">
+    <h2>Platform map</h2>
+    <p>How the store and the content site are built, for each brand. "Content site" is only listed where it differs from the store.</p>
+  </div>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Brand</th><th>Type</th><th>Store runs on</th><th>Content / main site</th><th>Evidence</th></tr></thead>
+    <tbody>
+      <tr><td><b>SGVP Aarogyam</b></td><td>Institutional pharma</td><td><span class="pill p-ok">Shopify</span> Ella 6.6.1 theme</td><td>same</td><td><span class="code">sgvp-aarogyam.myshopify.com</span>, Cloudflare</td></tr>
+      <tr><td>Himalaya Wellness</td><td>Pharma, national</td><td><span class="pill p-ok">Shopify</span></td><td>Shopify + separate subdomains for careers, store locator, health help, herb finder, research papers</td><td>robots.txt: "Shopify storefront"</td></tr>
+      <tr><td>Charak</td><td>Pharma, doctor-led</td><td><span class="pill p-ok">Shopify</span></td><td>same</td><td>robots.txt: "Shopify storefront"</td></tr>
+      <tr><td>Zandu (Emami)</td><td>Pharma, national</td><td><span class="pill p-ok">Shopify</span></td><td>same; order tracking on a third-party subdomain</td><td>robots.txt: Shopify</td></tr>
+      <tr><td>Baidyanath</td><td>Pharma, national</td><td><span class="pill p-ok">Shopify</span> Prestige theme</td><td>same</td><td><span class="code">baidyanath-jhansi.myshopify.com</span>. <b>Store currently behind a password page.</b></td></tr>
+      <tr><td>Kerala Ayurveda</td><td>Pharma + clinics</td><td><span class="pill p-ok">Shopify</span></td><td>same; resorts on separate domains</td><td>robots.txt: "we use Shopify"</td></tr>
+      <tr><td>Dr Vaidya's</td><td>D2C Ayurveda</td><td><span class="pill p-ok">Shopify</span></td><td>same</td><td>robots.txt: "we use Shopify"</td></tr>
+      <tr><td>Jiva Ayurveda</td><td>Doctor / clinic-led</td><td><span class="pill p-ok">Shopify</span> on <span class="code">store.jiva.com</span></td><td>Custom PHP site on <span class="code">www.jiva.com</span></td><td>store robots.txt: "Shopify storefront"</td></tr>
+      <tr><td>Planet Ayurveda</td><td>Pharma + consult, export</td><td><span class="pill p-ok">Shopify</span> on <span class="code">store.planetayurveda.com</span></td><td>WordPress on <span class="code">www.planetayurveda.com</span></td><td>WordPress sitemap index; store robots.txt: Shopify</td></tr>
+      <tr><td>Arya Vaidya Sala Kottakkal</td><td><b>Trust-owned institution</b></td><td><span class="pill p-crit">Headless Next.js</span> on <span class="code">shop.aryavaidyasala.com</span></td><td>WordPress on <span class="code">www.aryavaidyasala.com</span></td><td>Next.js markup on the shop; its robots.txt still carries Magento paths, so Magento is likely the back end behind it</td></tr>
+      <tr><td>Vasu Healthcare</td><td><b>Gujarat pharma (Vadodara)</b></td><td><span class="pill p-med">WooCommerce</span></td><td>WordPress + Elementor</td><td>generator meta: WordPress, WooCommerce 9.1.6; LiteSpeed</td></tr>
+      <tr><td>Patanjali</td><td>Pharma, national</td><td><span class="pill p-high">Custom PHP</span></td><td>same</td><td>Apache on Ubuntu; no platform signature</td></tr>
+      <tr><td>Dabur</td><td>Pharma, national</td><td><span class="muted">not checked</span></td><td><span class="pill p-high">Drupal</span> corporate site</td><td>Apache/CentOS, PHP 8.2, Drupal markup</td></tr>
+      <tr><td>Kapiva</td><td>D2C Ayurveda</td><td><span class="pill p-crit">Headless Next.js</span> + custom back end</td><td>same</td><td>Built on Cloudflare Pages (<span class="code">kapiva-in-nextjs.pages.dev</span>); images via Gumlet</td></tr>
+      <tr><td>Nat Habit</td><td>D2C Ayurvedic personal care</td><td><span class="pill p-crit">Headless Next.js</span> + own API</td><td>same</td><td><span class="code">x-powered-by: Next.js</span>; <span class="code">ecomm.api.nathabit.in</span></td></tr>
+      <tr><td>Man Matters</td><td>D2C men's health (Mosaic)</td><td><span class="pill p-crit">Custom app</span></td><td>same</td><td>App-style routes (assessment, wallet, consult) in robots.txt</td></tr>
+      <tr><td>Vedix</td><td>D2C Ayurvedic hair/skin</td><td><span class="pill p-ok">Shopify</span></td><td>same</td><td><span class="code">vedix-store.myshopify.com</span></td></tr>
+      <tr><td>Sri Sri Tattva</td><td>Ayurveda FMCG</td><td><span class="pill p-ok">Shopify</span></td><td>same</td><td><span class="code">srisritattva-in.myshopify.com</span></td></tr>
+      <tr><td>Organic India</td><td>Herbal / wellness</td><td><span class="pill p-ok">Shopify</span></td><td>same</td><td><span class="code">organic-india-delhi.myshopify.com</span></td></tr>
+      <tr><td>Anveshan</td><td><b>A2 ghee D2C</b></td><td><span class="pill p-ok">Shopify</span></td><td>same</td><td><span class="code">anveshan-farm.myshopify.com</span></td></tr>
+      <tr><td>Two Brothers Organic Farms</td><td><b>A2 ghee D2C</b></td><td><span class="pill p-ok">Shopify</span></td><td>same</td><td>Shopify store ID in markup</td></tr>
+      <tr><td>Akshayakalpa</td><td>Organic dairy</td><td><span class="pill p-med">WooCommerce</span></td><td>WordPress + WPBakery; subscriptions on <span class="code">app.akshayakalpa.org</span></td><td>generator meta: WordPress</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout">
+    <strong>Who went headless, and how your plan differs</strong>
+    Kapiva, Nat Habit and Man Matters built custom Next.js storefronts on their own back ends. All three are venture-funded D2C brands with in-house engineering teams, mobile apps and subscription systems, and they run their own cart and checkout. The more relevant case is <b>Arya Vaidya Sala</b>: a trust-owned Ayurvedic institution like SGVP, with a WordPress content site and a headless Next.js shop, apparently on a Magento back end. It shows an institution can run a split, headless setup. Your plan does the same with less to maintain, because Shopify keeps the checkout, payments and orders, which cost the most to build and run yourself.
+  </div>
+</section>
+
+<!-- ============ DOMAINS ============ -->
+<section id="domains">
+  <div class="sec-head">
+    <h2>Domain patterns — four ways competitors lay it out</h2>
+    <p>Each pattern, who uses it, and how it compares with the plan for SGVP.</p>
+  </div>
+
+  <div class="grid g2">
+    <div class="chan">
+      <div class="share">A<small>One domain, one Shopify store</small></div>
+      <div class="why"><b>Who:</b> Charak, Zandu, Dr Vaidya's, Kerala Ayurveda, Vedix, Sri Sri Tattva, Organic India, Anveshan, Two Brothers, <b>SGVP today</b></div>
+      <ul>
+        <li>Products, blog and pages all on <span class="code">brand.com</span>, served by the Shopify theme</li>
+        <li>Simplest to run; all SEO authority in one place</li>
+        <li>Limited by what the theme allows: schema, speed, language routes</li>
+      </ul>
+    </div>
+    <div class="chan">
+      <div class="share">B<small>Content site + shop subdomain</small></div>
+      <div class="why"><b>Who:</b> Jiva (<span class="code">store.jiva.com</span>), Planet Ayurveda (<span class="code">store.</span>), Arya Vaidya Sala (<span class="code">shop.</span>)</div>
+      <ul>
+        <li>Doctor-led and institutional brands: content, clinics and consultation on the root; products on a subdomain</li>
+        <li>Content ranks strongly (Planet's 100+ disease library; Jiva's disease pages)</li>
+        <li><b>Weakness:</b> product pages sit on the subdomain, so they get only part of the root's authority</li>
+      </ul>
+    </div>
+    <div class="chan">
+      <div class="share">C<small>Shop on root, content on subdomains</small></div>
+      <div class="why"><b>Who:</b> Himalaya</div>
+      <ul>
+        <li>Shopify store on <span class="code">himalayawellness.in</span></li>
+        <li>Separate subdomains: <span class="code">herbfinder.</span>, <span class="code">healthhelp.</span>, <span class="code">researchpapers.</span>, <span class="code">storelocator.</span>, <span class="code">careers.</span></li>
+        <li>Works for a national brand with huge authority. For a smaller brand it spreads content authority thin.</li>
+      </ul>
+    </div>
+    <div class="chan">
+      <div class="share">D<small>Fully custom headless</small></div>
+      <div class="why"><b>Who:</b> Kapiva, Nat Habit, Man Matters</div>
+      <ul>
+        <li>Everything on one domain, rendered by Next.js</li>
+        <li>Best speed and full control</li>
+        <li>They build and run checkout, payments and order systems themselves. Needs an engineering team.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout ok">
+    <strong>Where the SGVP plan sits: pattern B, with its weakness fixed</strong>
+    The plan is Astro on <span class="code">sgvpaarogyam.com</span> for everything Google sees, including product pages, and Shopify on <span class="code">shop.sgvpaarogyam.com</span> for <em>checkout only</em>. That gives you the content strength of Jiva and Planet Ayurveda, while product pages stay on the root domain and keep its full authority. It also avoids the engineering load of Kapiva's pattern, because Shopify still runs the cart, payments and orders.
+  </div>
+
+  <h3 style="margin-top:24px">Subdomains competitors actually use</h3>
+  <div class="table-wrap" style="margin-top:10px">
+  <table>
+    <thead><tr><th>Purpose</th><th>Examples found</th><th>Use for SGVP?</th></tr></thead>
+    <tbody>
+      <tr><td>Shop / store</td><td><span class="code">store.jiva.com</span>, <span class="code">store.planetayurveda.com</span>, <span class="code">shop.aryavaidyasala.com</span></td><td><span class="pill p-ok">Yes</span> <span class="code">shop.</span> for checkout only</td></tr>
+      <tr><td>Country / international</td><td><span class="code">uae.jiva.com</span>, <span class="code">planetayurveda.mk</span>, <span class="code">himalayawellness.com</span></td><td><span class="pill p-med">Later</span> when export starts</td></tr>
+      <tr><td>Clinics / locator</td><td><span class="code">clinics.jiva.com</span>, <span class="code">storelocator.himalayawellness.in</span></td><td><span class="pill p-high">No</span> keep as <span class="code">/where-to-buy</span> on the root</td></tr>
+      <tr><td>Knowledge tools</td><td><span class="code">herbfinder.</span>, <span class="code">healthhelp.</span>, <span class="code">researchpapers.himalayawellness.in</span></td><td><span class="pill p-high">No</span> keep as <span class="code">/herbs/</span> and <span class="code">/research/</span> on the root</td></tr>
+      <tr><td>Loyalty / app</td><td><span class="code">puritycoins.anveshan.farm</span>, <span class="code">app.akshayakalpa.org</span></td><td><span class="pill p-med">Later</span> if you run a loyalty scheme</td></tr>
+      <tr><td>Customer accounts</td><td><span class="code">account.keralaayurveda.com</span> (Shopify customer accounts on a custom subdomain)</td><td><span class="pill p-ok">Yes</span> <span class="code">account.</span>, exactly as planned</td></tr>
+      <tr><td>Checkout helpers</td><td><span class="code">gokwikprod.vedix.com</span>, <span class="code">capi.vedix.com</span> (Meta Conversions API gateway)</td><td><span class="pill p-med">Optional</span> the Conversions API is worth having</td></tr>
+      <tr><td>Payments</td><td><span class="code">gateway.jiva.com</span></td><td><span class="pill p-high">No</span> Shopify checkout covers it</td></tr>
+      <tr><td>Partner portal</td><td>none found</td><td><span class="pill p-ok">Yes</span> <span class="code">partners.</span> in Stage 2. No competitor has one, so it's an edge.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ============ CHECKOUT ============ -->
+<section id="checkout">
+  <div class="sec-head">
+    <h2>Checkout and app stack</h2>
+    <p>The apps each Shopify competitor loads on its homepage. The pattern among the D2C brands is consistent: one-click checkout, pay-later, WhatsApp marketing, reviews and a proper analytics setup.</p>
+  </div>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Brand</th><th>One-click checkout</th><th>Pay later / EMI</th><th>Reviews</th><th>WhatsApp / CRM</th><th>Subscriptions</th><th>Analytics</th></tr></thead>
+    <tbody>
+      <tr><td><b>SGVP</b></td><td><span class="pill p-crit">none</span></td><td><span class="pill p-crit">none</span></td><td>Judge.me <span class="muted">(0 reviews)</span></td><td><span class="pill p-crit">none</span></td><td><span class="pill p-crit">none</span></td><td>Meta Pixel only, <b>no GA4</b></td></tr>
+      <tr><td>Charak</td><td>GoKwik + Fastrr</td><td>—</td><td>Judge.me</td><td>—</td><td>—</td><td>GA4, GTM</td></tr>
+      <tr><td>Dr Vaidya's</td><td>GoKwik</td><td>—</td><td>Judge.me</td><td>Wati</td><td>—</td><td>GA4, GTM</td></tr>
+      <tr><td>Kerala Ayurveda</td><td>GoKwik</td><td>Simpl</td><td>—</td><td>LimeChat, Wati</td><td>—</td><td>GA4, GTM</td></tr>
+      <tr><td>Zandu</td><td>GoKwik</td><td>—</td><td>Judge.me</td><td>Appbrew (mobile app)</td><td>—</td><td>GA4, GTM, Clarity, Meta</td></tr>
+      <tr><td>Himalaya</td><td>—</td><td>Simpl</td><td>Judge.me</td><td>—</td><td>—</td><td>GA4, GTM, Clarity</td></tr>
+      <tr><td>Planet Ayurveda store</td><td>—</td><td>Simpl</td><td>Judge.me</td><td>CleverTap</td><td>—</td><td>GA4, GTM</td></tr>
+      <tr><td>Jiva store</td><td>—</td><td>—</td><td>Judge.me</td><td>Wati (main site)</td><td>—</td><td>GA4, GTM, Clarity</td></tr>
+      <tr><td>Man Matters</td><td>custom</td><td>—</td><td>own</td><td>CleverTap, MoEngage</td><td>ReCharge</td><td>GA4, GTM, Clarity, Meta</td></tr>
+      <tr><td>Two Brothers</td><td>GoKwik</td><td>Snapmint</td><td>Judge.me</td><td>Wati, MoEngage</td><td>—</td><td>GA4, GTM</td></tr>
+      <tr><td>Anveshan</td><td>Fastrr (Shiprocket)</td><td>—</td><td>Judge.me</td><td>MoEngage</td><td>—</td><td>GA4, GTM, Clarity</td></tr>
+      <tr><td>Sri Sri Tattva</td><td>GoKwik + Fastrr</td><td>Simpl</td><td>Judge.me</td><td>WebEngage</td><td>ReCharge</td><td>GA4, GTM, Clarity</td></tr>
+      <tr><td>Organic India</td><td>—</td><td>Simpl</td><td>Judge.me</td><td>LimeChat (WhatsApp AI)</td><td>—</td><td>Clarity</td></tr>
+      <tr><td>Vedix</td><td>GoKwik</td><td>—</td><td>—</td><td>CleverTap</td><td>—</td><td>GTM + Conversions API</td></tr>
+      <tr><td>Dabur</td><td>—</td><td>Simpl</td><td>—</td><td>—</td><td>—</td><td>GA4, GTM, Clarity</td></tr>
+      <tr><td>Vasu (WooCommerce)</td><td>—</td><td>Simpl</td><td>—</td><td>—</td><td>—</td><td>GA4, GTM</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="grid g2" style="margin-top:16px">
+    <div class="box">
+      <h4>What to take from this</h4>
+      <ul>
+        <li><b>GA4 + GTM is universal.</b> All 15 stores in this table except SGVP have it.</li>
+        <li><b>One-click checkout is now standard, including among Ayurveda pharma brands.</b> GoKwik is on Charak, Dr Vaidya's, Kerala Ayurveda, Zandu, Two Brothers, Sri Sri Tattva and Vedix; Fastrr on Anveshan, Charak and Sri Sri Tattva. It pre-fills the address, scores COD risk and cuts RTO. For a COD-heavy medicine store, test it before any redesign.</li>
+        <li><b>WhatsApp marketing tools</b> (Wati, LimeChat, MoEngage) power the refill and abandoned-cart flows in the digital plan.</li>
+        <li>Microsoft Clarity (free session recordings) is on four sites. Add it; it shows exactly where visitors get stuck.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h4>Check before building Astro</h4>
+      <ul>
+        <li>Theme apps such as Judge.me widgets, one-click checkout buttons and WhatsApp bubbles don't appear on a headless front end on their own. Each has to be added in code.</li>
+        <li><b>Ask GoKwik, Fastrr, Judge.me and your WhatsApp tool whether they support headless Shopify</b> before committing. Most offer APIs or scripts for it, but confirm for each one.</li>
+        <li>If a must-have app doesn't support headless, that is the one real reason to stay on the theme longer.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ B2B ============ -->
+<section id="b2b">
+  <div class="sec-head">
+    <h2>B2B pages — the pharma competitors have them</h2>
+    <p>Found in navigation, footers and page sitemaps.</p>
+  </div>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Brand</th><th>B2B and trade pages found</th></tr></thead>
+    <tbody>
+      <tr><td><b>SGVP</b></td><td><span class="pill p-crit">none</span> The stockist page lists distributors' phone numbers publicly and has no way to apply</td></tr>
+      <tr><td><b>Planet Ayurveda</b></td><td>"Be Our Distributor", "Business Opportunities", "Third-Party Manufacturing", "Product Catalog", "How to Order Offline", "Our Exclusive Outlets", named international distributors</td></tr>
+      <tr><td><b>Arya Vaidya Sala</b></td><td>"Authorised Dealers", "C &amp; F", "E-Tender", "Factories", "Quality Control", "Downloads", "Raw Materials"</td></tr>
+      <tr><td><b>Vasu Healthcare</b> <span class="muted">(Gujarat peer)</span></td><td><span class="code">/bulk-order/</span>, <span class="code">/our-distribution-network/</span>, <span class="code">/certification-accreditation/</span>, <span class="code">/quality-policy-of-vasu-healthcare/</span></td></tr>
+      <tr><td>Dr Vaidya's</td><td>"Contract Manufacturing" in the main menu → <span class="code">/pages/contract-manufacturing</span></td></tr>
+      <tr><td>Sri Sri Tattva</td><td><span class="code">/pages/partner-with-us</span></td></tr>
+      <tr><td>Patanjali</td><td>"Bulk deals" category selling case packs (e.g. "1 CLD 12 pcs")</td></tr>
+      <tr><td>Charak</td><td>"Corporate Wellness" in the footer</td></tr>
+      <tr><td>Jiva</td><td>"Jiva Partners", affiliate programme</td></tr>
+      <tr><td>Organic India · Anveshan · Two Brothers</td><td><span class="code">/pages/corporate-gifting</span>. Two Brothers also runs dated seasonal pages: <span class="code">gifting-2025</span>, <span class="code">gifting-2026</span>, <span class="code">gifting-hamper</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="callout warn">
+    <strong>Your closest peers set the bar</strong>
+    Vasu Healthcare is a Gujarat Ayurvedic manufacturer on plain WordPress, and it still publishes a distribution-network page, a bulk-order page and a certification page. Arya Vaidya Sala is trust-owned like SGVP, and it lists authorised dealers, C&amp;F agents, factories and quality control. Neither needed a better platform to do it. They needed the pages.
+  </div>
+</section>
+
+<!-- ============ TRUST ============ -->
+<section id="trust">
+  <div class="sec-head">
+    <h2>Trust and proof</h2>
+  </div>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Brand</th><th>How they prove quality</th></tr></thead>
+    <tbody>
+      <tr><td><b>SGVP</b></td><td><span class="pill p-crit">none in text</span> "AYUSH" and "GMP" appear nowhere; three small unlabelled logos in the footer</td></tr>
+      <tr><td>Charak</td><td>"GMP-Certified Manufacturing" on the homepage, next to "Formulated by Expert Ayurvedic Doctors"</td></tr>
+      <tr><td>Organic India</td><td><span class="code">/pages/organic-and-quality-certifications</span>, <span class="code">/pages/product-quality-report</span>, <span class="code">/pages/quality-certificate</span></td></tr>
+      <tr><td>Two Brothers</td><td><span class="code">/pages/certifications</span>, transaction certificates, "lab report" three times on the homepage</td></tr>
+      <tr><td>Anveshan</td><td>Lab testing on the homepage; the richest schema of any site checked (Organization, PostalAddress, Place, ImageObject)</td></tr>
+      <tr><td>Vasu Healthcare</td><td>Certification and accreditation page, quality policy page, GMP on the homepage</td></tr>
+      <tr><td>Jiva</td><td>"ISO, HACCP &amp; GMP Certified wellness products"</td></tr>
+      <tr><td>Arya Vaidya Sala</td><td>Quality Control page, AYUSH Centre of Excellence projects, research and publications</td></tr>
+      <tr><td>Himalaya</td><td>"Our Research" in the main navigation, research papers, herb finder</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ============ CONSULT ============ -->
+<section id="consult">
+  <div class="sec-head">
+    <h2>Consultation funnels — the lead engine for Ayurveda</h2>
+    <p>The doctor-led brands make a free consultation their main call to action. It gets around the advertising limits on disease claims, captures a phone number and starts a conversation that ends in a prescription-style basket.</p>
+  </div>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Brand</th><th>How consultation is used</th></tr></thead>
+    <tbody>
+      <tr><td><b>SGVP</b></td><td>Has <span class="code">/pages/get-free-consultation</span> with WhatsApp, but it is <b>not in the main navigation</b> and has no meta description</td></tr>
+      <tr><td><b>Jiva</b></td><td>"Book Your Free Consultation Now" is the primary call to action site-wide. Video, clinic and phone options. "Get a call from our health coach in 05–10 mins." Phone number repeated at the top.</td></tr>
+      <tr><td>Dr Vaidya's</td><td>WhatsApp icon in the header on every page; "FREE Consultation" page linked from the footer</td></tr>
+      <tr><td>Zandu</td><td>"FREE Consultation" link in its site menu</td></tr>
+      <tr><td>Planet Ayurveda</td><td>"Consult Doctor", "Consult Dietitian" in the main navigation; two WhatsApp numbers</td></tr>
+      <tr><td>Charak</td><td>"Clinic" in the main navigation; WhatsApp link</td></tr>
+      <tr><td>Man Matters</td><td>"Hair Assessment" quiz as the entry point. Assessment first, then products.</td></tr>
+      <tr><td>Arya Vaidya Sala · Kerala Ayurveda</td><td>Consultation, hospitals and clinics lead the navigation; products are secondary</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="callout ok">
+    <strong>The quickest win on this page</strong>
+    Put "Free Vaidya Consultation" in SGVP's main navigation and make WhatsApp the primary way in. The page already exists. Jiva builds its whole homepage around the consultation, Planet Ayurveda has "Consult Doctor" in its menu, and Dr Vaidya's keeps WhatsApp in the header on every page. SGVP hides both.
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section id="reviews">
+  <div class="sec-head">
+    <h2>Reviews — every competitor shows them</h2>
+  </div>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Brand</th><th>Reviews visible on the homepage</th></tr></thead>
+    <tbody>
+      <tr><td><b>SGVP</b></td><td><span class="pill p-crit">0</span> on the whole site</td></tr>
+      <tr><td>Jiva</td><td>"4.6 ★ · 13,980+ Google Reviews", plus patient video testimonials</td></tr>
+      <tr><td>Planet Ayurveda</td><td>"4.8 · 4000+ Reviews", with a link to Google reviews</td></tr>
+      <tr><td>Dr Vaidya's</td><td>Per-product ratings, e.g. 4.77 from 2,714 reviews and 4.8 from 1,300</td></tr>
+      <tr><td>Himalaya</td><td>Neem Face Wash: 1,551 reviews; Liv.52 DS: 19</td></tr>
+      <tr><td>Charak · Zandu · Kerala Ayurveda</td><td>Star ratings on product cards</td></tr>
+      <tr><td>Two Brothers · Anveshan · Organic India · Sri Sri Tattva</td><td>Judge.me reviews on product pages</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="muted" style="margin-top:10px">Note: Jiva and Planet Ayurveda lead with <b>Google Business reviews</b>, not only product reviews. For a Gujarat brand with a campus and a field team, Google reviews are the faster route. The field team can ask for them at every visit.</p>
+</section>
+
+<!-- ============ LANGUAGE ============ -->
+<section id="language">
+  <div class="sec-head">
+    <h2>Languages — an open field</h2>
+  </div>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Brand</th><th>Languages</th></tr></thead>
+    <tbody>
+      <tr><td>Jiva</td><td>Hindi pages for treatments, medicines and therapies. <b>The only one with Indian-language content.</b></td></tr>
+      <tr><td>Dabur</td><td>hreflang for en-IN and en-US only</td></tr>
+      <tr><td>Two Brothers</td><td>hreflang for en and en-IN only</td></tr>
+      <tr><td>Charak</td><td>Has a language selector, but it offers only English</td></tr>
+      <tr><td>Kerala Ayurveda</td><td>Region/locale settings (country, not language)</td></tr>
+      <tr><td>Patanjali</td><td><span class="code">lang="zxx"</span>, a code meaning "no language". A technical SEO error on a major site.</td></tr>
+      <tr><td>Everyone else, including SGVP</td><td>English only</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="callout ok">
+    <strong>Nobody serves Gujarati</strong>
+    Not one of 21 competitors has Gujarati content. For an Ahmedabad brand whose distributors, retailers and many patients search in Gujarati, this is the least contested ground available. Astro makes it clean: <span class="code">/gu/</span> routes with proper hreflang.
+  </div>
+</section>
+
+<!-- ============ AI ============ -->
+<section id="ai">
+  <div class="sec-head">
+    <h2>AI crawlers and GEO</h2>
+    <p>How competitors treat AI search crawlers in robots.txt. This decides whether ChatGPT, Perplexity, Claude and Google's AI features can read and cite them.</p>
+  </div>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Brand</th><th>Policy</th><th>Effect</th></tr></thead>
+    <tbody>
+      <tr><td>Dr Vaidya's</td><td>Explicitly <b>allows</b> GPTBot, ChatGPT-User, OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended, Applebot, Amazonbot, Meta</td><td><span class="pill p-ok">Best</span> Deliberately open to AI answers</td></tr>
+      <tr><td>Himalaya · Charak · Zandu · Jiva store · Planet store</td><td>Shopify's newer default robots.txt with agent endpoints for AI shopping assistants</td><td><span class="pill p-ok">Open</span> and set up for AI-agent shopping</td></tr>
+      <tr><td>Arya Vaidya Sala</td><td><span class="code">User-agent: * Disallow: /</span>, with only Googlebot allowed</td><td><span class="pill p-crit">Blocked</span> Invisible to every AI crawler except Google's</td></tr>
+      <tr><td>Man Matters</td><td>Blocks app routes; explicitly opens OAI-SearchBot</td><td><span class="pill p-ok">Open</span> on content</td></tr>
+      <tr><td>Jiva (main site)</td><td>Richest medical schema found: <span class="code">MedicalOrganization</span>, <span class="code">MedicalClinic</span>, <span class="code">FAQPage</span>, <span class="code">GeoCoordinates</span></td><td><span class="pill p-ok">Best-structured</span> Easy for AI answers and Google to read as a real medical organisation</td></tr>
+      <tr><td>Man Matters</td><td><span class="code">Product</span>, <span class="code">AggregateRating</span>, <span class="code">FAQPage</span>, <span class="code">Person</span> (doctors), <span class="code">MedicalOrganization</span></td><td><span class="pill p-ok">Strong</span> The markup SGVP is missing</td></tr>
+      <tr><td><b>SGVP</b></td><td>Default Shopify robots.txt; serves <span class="code">sitemap_agentic_discovery.xml</span></td><td><span class="pill p-ok">Open</span> but with nothing citable: no licence numbers, no named doctors, no FAQ schema</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="callout">
+    <strong>A point in Shopify's favour</strong>
+    Shopify is adding AI-shopping support (agent endpoints, agentic sitemaps) to every store automatically. SGVP already gets this. A custom or WooCommerce build would have to add it by hand. If you go headless with Astro, keep the Shopify store's agent endpoints live on <span class="code">shop.</span>, and make sure the Astro <span class="code">robots.txt</span> allows the AI crawlers, as Dr Vaidya's does.
+  </div>
+</section>
+
+<!-- ============ COPY ============ -->
+<section id="copy">
+  <div class="sec-head">
+    <h2>What SGVP should copy — in order</h2>
+    <p>Each item is something a named competitor already does, which shows it works in this market.</p>
+  </div>
+  <ol class="steps">
+    <li><strong>GA4 + GTM + Microsoft Clarity</strong><p>Copied from: Two Brothers, Anveshan, Sri Sri Tattva, Dabur, Vasu. Every serious competitor measures; SGVP doesn't. One day of work.</p></li>
+    <li><strong>"Free Vaidya Consultation" in the main navigation, WhatsApp in the header</strong><p>Copied from: Jiva (consultation-first homepage), Planet Ayurveda ("Consult Doctor" in the menu), Dr Vaidya's (WhatsApp in the header). The page already exists.</p></li>
+    <li><strong>Reviews, including Google Business reviews</strong><p>Copied from: Jiva (13,980 Google reviews), Planet Ayurveda (4,000+), Dr Vaidya's (2,714 on one product). Use the field team.</p></li>
+    <li><strong>A quality page with GMP and AYUSH in plain text</strong><p>Copied from: Charak (on the homepage), Organic India (quality report page), Vasu and Two Brothers (certification pages).</p></li>
+    <li><strong>B2B pages: distributor, bulk, contract manufacturing</strong><p>Copied from: Planet Ayurveda ("Be Our Distributor", "Product Catalog"), Arya Vaidya Sala ("Authorised Dealers", "C &amp; F"), Vasu (distribution network, bulk order), Dr Vaidya's ("Contract Manufacturing" in the main menu).</p></li>
+    <li><strong>Seasonal gifting pages</strong><p>Copied from: Two Brothers (<span class="code">gifting-2026</span>), Anveshan, Organic India (corporate gifting). Needed before Diwali.</p></li>
+    <li><strong>Test one-click checkout (GoKwik or Fastrr)</strong><p>Copied from: Two Brothers, Anveshan, Sri Sri Tattva, Vedix. It targets COD returns directly.</p></li>
+    <li><strong>A knowledge library: herbs, conditions, research</strong><p>Copied from: Planet Ayurveda (100+ conditions), Himalaya (herb finder, research papers), Jiva (disease pages). Keep it on the root domain, not subdomains.</p></li>
+    <li><strong>Open robots.txt to AI crawlers</strong><p>Copied from: Dr Vaidya's. Avoid what Arya Vaidya Sala does.</p></li>
+    <li><strong>Gujarati pages — where nobody competes</strong><p>Copied from nobody. Jiva's Hindi pages are the only precedent.</p></li>
+  </ol>
+</section>
+
+<!-- ============ METHOD ============ -->
+<section id="method">
+  <div class="sec-head">
+    <h2>Method and limits</h2>
+  </div>
+  <div class="grid g2">
+    <div class="box">
+      <h4>How the data was collected</h4>
+      <ul>
+        <li>Homepages, response headers and sitemaps fetched directly for 12 sites; platform identified from markup, headers and generator tags</li>
+        <li>Nine sites (Himalaya, Charak, Dr Vaidya's, Jiva, Man Matters, Kerala Ayurveda, Zandu, Arya Vaidya Sala, Planet Ayurveda) were first read through a web-fetch tool while the office filter blocked them, then <b>re-checked directly</b> once the network allowed, including their shop subdomains. Platforms, apps and schema in this report come from that direct check.</li>
+        <li>Page sitemaps searched for B2B, gifting, quality and certification URLs</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h4>What this does not cover</h4>
+      <ul>
+        <li><b>Competitor page speed</b> is deliberately left out. The speed work focuses on SGVP's own pages.</li>
+        <li>Traffic, rankings and revenue. These need a paid SEO tool (Ahrefs or Similarweb), which isn't connected in this session.</li>
+        <li>Homepage-level app detection only. Apps loaded only on product or cart pages may be missed.</li>
+        <li>Dabur's store platform was not identified; only its corporate site was checked.</li>
+        <li>Everything reflects 30 Sep 2026. Sites change often.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Competitor analysis · 21 brands checked 30 Sep 2026 · Companion to <a href="sgvp-website-audit.html">sgvp-website-audit.html</a> and <a href="sgvp-digital-growth-plan.html">sgvp-digital-growth-plan.html</a>.<br>
+    Platforms were identified from live markup, response headers, robots.txt and sitemaps. Brand names are used only to describe publicly visible website features.
+  </div>
+</footer>
+</main>
+
+</div>
+
+<script>
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.side-nav a'));
+  var secs=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1))}).filter(Boolean);
+  if(!secs.length)return;
+  function set(id){links.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+id)})}
+  var raf=0;
+  function update(){
+    raf=0;
+    var cur=secs[0].id;
+    for(var i=0;i<secs.length;i++){if(secs[i].getBoundingClientRect().top<=140)cur=secs[i].id}
+    if(window.innerHeight+window.scrollY>=document.body.scrollHeight-4)cur=secs[secs.length-1].id;
+    set(cur);
+  }
+  function onScroll(){if(!raf)raf=requestAnimationFrame(update)}
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  update();
+})();
+</script>
+
+</body>
+</html>
