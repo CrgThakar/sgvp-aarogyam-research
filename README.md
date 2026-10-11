@@ -22,3 +22,5 @@ Standalone plans that draw on the research in `index.html`. Same self-contained 
 | `sgvp-website-audit.html` | Single audit in three parts: B2C conversion, B2B lead generation, and page-by-page SEO / AEO / GEO across all 111 URLs |
 | `competitor-analysis.html` | 21 competitors: platform, domain layout, checkout/apps, B2B pages, trust, consultation, reviews, languages, AI crawlers |
 | `meeting-screenshots.html` | The 12 meeting screenshots as full-screen slides, each with a title, the issue and the fix; arrow keys to present |
+| `meeting-slides-1920x1080/` | 57 slide images (1920×1080 PNG) for the 10 Oct 2026 meeting on growing digital presence: situation, competitors (16 slides on what they do well, plus two "what competitors do → how we improve" slides), what digital can deliver, revenue path, Diwali sprint, budget, KPIs, decisions |
+| `meeting-slides-1920x1080-gujarati/` | The same 57 slides in Gujarati (Nirmala UI font; brand, tool and product names kept in English) |
